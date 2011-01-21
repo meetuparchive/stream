@@ -8,6 +8,7 @@ body { background:#333; }
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
+  text-align: center;
 }
 #people span { display:block; overflow:hidden; max-width:50px; width:50px; }
 #people span img { max-height:50px; overflow:hidden; height:50px; }

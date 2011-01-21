@@ -91,7 +91,8 @@
                         var h = lon, s = 100, v = 100;
 
                         var rgb = hsvToRgb(h, s, v);
-                        el.css({"border":"2px solid rgb("+rgb[0]+","+rgb[1]+","+rgb[2]+")"})
+                        el.css({"border":"2px solid rgb("+rgb[0]+","+rgb[1]+","+rgb[2]+")",
+                                "background-color":"rgb("+rgb[0]+","+rgb[1]+","+rgb[2]+")"})
                           .addClass("present").animate({"opacity":0.75}, 500)
                           .append(content)
                           .CreateBubblePopup(bubbleOpts)
