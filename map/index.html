@@ -8,15 +8,11 @@
     <script type="text/javascript" src="polymaps.min.js"></script>
   </head>
   <body>
-    <h1 id="meme">Meeting up Everywhere about Most Everything</h1>
-    <div id="map">
-      <div id="info">
-        <h2>Meetup</h2>
-      </div>
-    </div>
+    <div id="map"></div>
     <div id="rsvp-detail"></div>
     <script type="text/javascript" src="jquery.svg.min.js"></script>
     <script type="text/javascript" src="jquery.svgdom.min.js"></script>
+    <script type="text/javascript" src="../js/dates.js"></script>
     <script type="text/javascript" src="../js/mu.js" ></script>
     <script type="text/javascript" src="../js/jquery.bubblepopup.v2.3.1.min.js"></script>
     <script type="text/javascript">
@@ -29,7 +25,7 @@
                          .appendChild(po.svg("svg")))
               .center({lat: 39, lon: -96})
               .zoom(4)
-              .zoomRange([3, 9])
+              /*.zoomRange([3, 9])*/
               .add(po.interact())
               .add(po.image()
                   .url(po.url("http://{S}tile.cloudmade.com"
@@ -50,19 +46,25 @@
                     .animate({ "opacity":0.25 }, 500)
                     .addClass(rsvp.response === "yes" ? "rsvp-yes" : "rsvp-no"),
 
+                time = new Date(rsvp.event.time),
+
+                simpleMsg = ['<div class="rsvp"><span class="member-photo"><img src="',rsvp.member.photo,
+                       '"/></span><div class="member-info"> <span class="member">', rsvp.member.member_name,
+                        '</span> is meeting up with<br/> <span class="group">', rsvp.group.group_name, '</span>'].join(''),
+
                 msg = ['<div class="rsvp"><span class="member-photo"><img src="',rsvp.member.photo,
                        '"/></span><div class="member-info"> <span class="member">', rsvp.member.member_name,
-                       '</span> is going to <br/> <span class="event">', rsvp.event.event_name,
-                       '</span><br/> with <span class="group">', rsvp.group.group_name,
-                       '</span> in <span class="place">', rsvp.group.group_city, ', ', 
+                       '</span> is meeting up with<br/> ',
+                       '<span class="group">', rsvp.group.group_name,
+                       '</span><br/> in <span class="place">', rsvp.group.group_city, ', ',
                        (rsvp.group.group_state ? rsvp.group.group_state : rsvp.group.group_country).toUpperCase(),
-                       '</span></div></div>'].join(''),
+                       '</span> <span class="time"> @ ', time.format('htt'),  ' on ' , time.format('ddd mmm dS'), '</span></div></div>'].join(''),
 
                 bubbleOpts = {
                     alwaysVisible: true,
                     themePath: '../images/jquerybubblepopup-theme',
                     themeName: 'all-black',
-                    innerHtml: msg,
+                    innerHtml: simpleMsg,
                     afterHidden: function() {
                        f.RemoveBubblePopup();
                     }
