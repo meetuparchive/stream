@@ -101,7 +101,8 @@
              Grid.add(rsvp);
            },
            filter: function(rsvp) {
-             return rsvp.member.photo != undefined;
+             return rsvp.member.photo != undefined &&
+                   rsvp.response === "yes";
            }
          });
       });

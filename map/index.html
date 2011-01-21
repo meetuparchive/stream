@@ -127,7 +127,9 @@
           Map.plot(rsvp);
         },
         filter: function(rsvp) {
-            return rsvp.member.photo != undefined && rsvp.venue != undefined;
+            return rsvp.member.photo != undefined &&
+                rsvp.venue != undefined &&
+                rsvp.response === "yes";
         }
       });
     </script>
