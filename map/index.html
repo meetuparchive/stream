@@ -105,10 +105,10 @@
                 .features([{
                    geometry: {
                      coordinates: [
-                       parseFloat(rsvp.venue.lon), parseFloat(rsvp.venue.lat)],
+                       parseFloat(rsvp.group.group_lon), parseFloat(rsvp.group.group_lat)],
                        type: "Point",
                        radius: 10,
-                       text: rsvp.venue.venue_name || ""
+                       text: rsvp.venue && rsvp.venue.venue_name || ""
                    },
                    properties: {
                       rsvp: rsvp
@@ -124,7 +124,6 @@
         },
         filter: function(rsvp) {
             return rsvp.member.photo != undefined &&
-                rsvp.venue != undefined &&
                 rsvp.response === "yes";
         }
       });
