@@ -1,0 +1,59 @@
+* { margin:0; padding:0; }
+body { background:#333; }
+#people { list-style: none; margin:2px; padding:0; }
+#people li {
+  list-style:none; overflow:hidden; display:block; float:left; height: 50px; margin:2px; width:50px;
+  background:#585355;
+  border:2px solid #585355;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+#people span { display:block; overflow:hidden; max-width:50px; width:50px; }
+#people span img { max-height:50px; overflow:hidden; height:50px; }
+
+#people li.present {
+   /*
+    background: ##E7003A;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#E7003A', endColorstr='#B7000A');
+    background: -webkit-gradient(linear, left top, left bottom, from(#E7003A), to(#B7000A));
+    background: -moz-linear-gradient(top, #E7003A, #B7000A);
+   */
+    background:#FF0066;
+}
+
+.rsvp {
+  text-align:left;
+  margin:0;
+}
+
+.rsvp img {
+ /* float:left; */
+    display:none;
+}
+
+.rsvp .member {
+  font-weight:bold;
+}
+
+.rsvp .event {
+  font-weight:bold;
+}
+
+.jquerybubblepopup-tail {
+  margin: 0 0 -4px 0;
+}
+
+.jquerybubblepopup .member, .jquerybubblepopup .event {
+  font-weight:bold;
+}
+
+.jquerybubblepopup .member-photo {
+  float:left;
+}
+
+.jquerybubblepopup .rsvp-info {
+  float:right;
+  text-align:left;
+  margin:5px;;
+}

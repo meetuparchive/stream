@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>meetup</title>
+    <link href="/css/jquery.bubblepopup.v2.3.1.css" rel="stylesheet" type="text/css" />
+    <link type="text/css" rel="stylesheet" href="photos.css" />
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+  </head>
+  <body>
+    <ul id="people"></ul>
+    <script type="text/javascript" src="/js/mu.js"></script>
+    <script src="/js/jquery.bubblepopup.v2.3.1.min.js" type="text/javascript"></script>
+    <script src="/js/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="jquery.flip.min.js" type="text/javascript"></script>
+    <script src="/js/color.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      $(function() {
+          var p =  $("#people");
+          var Grid = (function() {
+            var picWidth = 50,
+              picHeight = 50,
+              slots = [],
+              full = false,
+              dimensions = function() {
+                return {
+                    width: $(window).width(),
+                    height: $(window).height()
+                }
+              },
+              nextOpenSlot = function() {
+                var next = [];
+                if(!full) {
+                    var d = dimensions(),
+                    findNext = function() {
+                        s = slots[Math.floor(Math.random() * slots.length)];
+                        return s.children().length === 0 ? s : [];
+                    },
+                    scount = 0, slength = slots.length;
+
+                    while(next.length === 0 && scount < slength - 1) {
+                        next = findNext();
+                        scount++;
+                    }
+                   if(scount == slength -1) {
+                       full = true;
+                   }
+                }
+                return next;
+              };
+
+            $(window).bind("resize", function() {
+                // update ui?
+            });
+
+            return {
+                fill: function() {
+                    p.empty();
+                    slots = [];
+                    var d = dimensions(),
+                    rows =  Math.floor(d.width / picWidth),
+                    cols = Math.floor(d.height / picHeight);
+                    for(var r = 0; r < rows; r++) {
+                        for(var c = 0; c < cols; c++) {
+                            var li =$(['<li id="r-', r, '-c-', c, '"></li>'].join(''));
+                            slots.push(li);
+                            p.append(li);
+                        }
+                    }
+                },
+                add: function(rsvp) {
+                    var inject = function (el) {
+                        var content = ['<a target="_blank" href="'+rsvp.event.event_url+'"><span><img src="',rsvp.member.photo,'"/></span></a>'].join(''),
+                          msg = ['<img class-"member-photo" src="',rsvp.member.photo,
+                             '"/><div class="rsvp-info"><span class="member">', rsvp.member.member_name,
+                             '</span><br/> just rsvp\'d ', rsvp.response,
+                             ' to<br/> <span class="event">', rsvp.event.event_name,
+                             '</span></div>'].join(''),
+                          bubbleOpts = {
+                            alwaysVisible:true,
+                            selectable:true,
+                            themePath: '/images/jquerybubblepopup-theme',
+                            themeName: 'all-black',
+                            innerHtml: msg
+                          };
+
+                        var lon = rsvp.venue.lon;
+                        if(lon < 0) {
+                            // see andrew on explaination
+                            lon = (((lon + 180) - 60) / 45) * 240;
+                        }
+                        var h = lon, s = 100, v = 100;
+
+                        var rgb = hsvToRgb(h, s, v);
+                        el.css({"border":"2px solid rgb("+rgb[0]+","+rgb[1]+","+rgb[2]+")"})
+                          .addClass("present").animate({"opacity":0.75}, 500)
+                          .append(content)
+                          .CreateBubblePopup(bubbleOpts)
+                          .hover(function(){
+                            el.animate({"opacity":1.0}, 500).ShowBubblePopup(bubbleOpts);
+                          }, function(){
+                            el.animate({"opacity":0.75}, 500).HideBubblePopup();
+                          });
+                    }
+                    var li =  nextOpenSlot();
+                    if(li.length === 0) {
+                        var i = Math.floor(Math.random() * slots.length),
+                           li = slots[i];
+                        li.empty().removeClass("present").css({"opacity":1.0}, 100);
+                        inject(li);
+                    } else {
+                        inject(li);
+                    }
+                }
+             };
+          })();
+
+         Grid.fill();
+
+         var stm = mu.Stream({
+           onRsvp: function(rsvp) {
+             Grid.add(rsvp);
+           },
+           filter: function(rsvp) {
+             return rsvp.member.photo != undefined && rsvp.venue != undefined;
+           }
+         });
+
+      });
+    </script>
+  <body>
+<html>

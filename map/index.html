@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>streaming MEMEs</title>
+    <link href="/css/jquery.bubblepopup.v2.3.1.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="map.css" />
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="polymaps.min.js"></script>
+  </head>
+  <body>
+    <h1 id="meme">Meeting up Everywhere about Most Everything</h1>
+    <div id="map">
+      <div id="info">
+        <h2>Meetup</h2>
+      </div>
+    </div>
+    <div id="rsvp-detail"></div>
+    <script type="text/javascript" src="jquery.svg.min.js"></script>
+    <script type="text/javascript" src="jquery.svgdom.min.js"></script>
+    <script type="text/javascript" src="/js/mu.js" ></script>
+    <script src="/js/jquery.bubblepopup.v2.3.1.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      var details = $("#details");
+      var Map = (function() {
+          var expiry = 3600000,
+          po = org.polymaps,
+          map = po.map()
+              .container(document.getElementById("map")
+                         .appendChild(po.svg("svg")))
+              .center({lat: 39, lon: -96})
+              .zoom(4)
+              .zoomRange([3, 9])
+              .add(po.interact())
+              .add(po.image()
+                  .url(po.url("http://{S}tile.cloudmade.com"
+                      + "/dbe72e38b0404199b0d8cfdaac26999b" // get yr own key pls @ http://cloudmade.com/register
+                      + "/30389/256/{Z}/{X}/{Y}.png")
+                       .hosts(["a.", "b.", "c.", ""])))
+              .add(po.compass().pan("none"));
+
+          var load = function(e) {
+            for (var i = 0, len = e.features.length; i < len; i++) {
+              var feature = e.features[i],
+                  rsvp = feature.data.properties.rsvp;
+              //feature.element.appendChild(po.svg("title")
+              //                          .appendChild(document.createTextNode(rsvp.venue.venue_name))
+              //                  .parentNode);
+
+                var msg = ['<div class="rsvp"><img class="member-photo" src="',rsvp.member.photo,
+                           '"/><div class="member-info"> <span class="member">', rsvp.member.member_name,
+                           '</span> just rsvp\'d ', rsvp.response,
+                           ' to <span class="event">', rsvp.event.event_name,
+                           '</span></div></div>'].join(''),
+                bubbleOpts = {
+                    alwaysVisible:true,
+                    themePath: '/images/jquerybubblepopup-theme',
+                    themeName: 'all-black',
+                    innerHtml: msg
+                 };
+
+                var f = $(feature.element, $("#map").svg())
+                    .animate({ "opacity":0.25 }, 500)
+                    .addClass(rsvp.response === "yes" ? "rsvp-yes" : "rsvp-no")
+                    .CreateBubblePopup();
+
+                f.hover(function(e) {
+                  f.animate({ "opacity":1 }, 500)
+                    .ShowBubblePopup(bubbleOpts);
+                }, function() {
+                  f.animate({ "opacity":0.25 }, 500)
+                    .HideBubblePopup();
+                }).CreateBubblePopup();
+
+
+                var rm = function() {
+                    f.fadeOut(3000, function() {
+                        f.remove();
+                    });
+                };
+                setTimeout(rm, expiry);
+
+                var details = $("#rsvp-detail"),
+                  detail = $(msg).hide(),
+                  showDetail = function() {
+                    details.prepend(detail);
+                    detail.slideDown(500, function(){
+                      var rm = function() {
+                        if(details.children().length > 1) {
+                            detail.remove();
+                        }
+                      };
+                      setTimeout(rm, 800);
+                    });
+                  };
+                setTimeout(showDetail, 800);
+
+
+            }
+          };
+
+          return {
+            plot: function(rsvp) {
+              map.add(po.geoJson()
+                .features([{
+                   geometry: {
+                     coordinates: [
+                       parseFloat(rsvp.venue.lon), parseFloat(rsvp.venue.lat)],
+                       type: "Point",
+                       radius: 10,
+                       text: rsvp.venue.venue_name || ""
+                   },
+                   properties: {
+                      rsvp: rsvp
+                   }
+                }]).on("load", load));
+              }
+          };
+      })();
+
+      var stm = mu.Stream({
+        onRsvp: function(rsvp) {
+          Map.plot(rsvp);
+        },
+        filter: function(rsvp) {
+            return rsvp.member.photo != undefined && rsvp.venue != undefined;
+        }
+      });
+    </script>
+  </body>
+</html>
