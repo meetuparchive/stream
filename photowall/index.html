@@ -14,7 +14,7 @@
     <script type="text/javascript" src="../js/arrays.js"></script>
     <script type="text/javascript">
       $(function() {
-          var p =  $("#people");
+          var p =  $("#people"), colMax = 0, rowMax = 0;;
           var Grid = (function() {
             var picWidth = 50,
               picHeight = 50,
@@ -40,8 +40,8 @@
                     p.empty();
                     slots = [];
                     var d = dimensions(),
-                    rows =  Math.floor(d.width / picWidth - 1),
-                    cols = Math.floor(d.height / picHeight - 1);
+                    rows =  Math.floor(d.width / picWidth),
+                    cols = Math.floor(d.height / picHeight);
                     for(var r = 0; r < rows; r++) {
                         for(var c = 0; c < cols; c++) {
                             var li =$(['<li id="r-', r, '-c-', c, '"></li>'].join(''));
@@ -60,18 +60,16 @@
                              ' to<br/> <span class="event">', rsvp.event.event_name,
                                  '</span><br/> with <span class="group">', rsvp.group.group_name, '<span></div>'].join(''),
                           bubbleOpts = {
-                            /*alwaysVisible:true,*/
-                            /*selectable:true,*/
                             themePath: '../images/jquerybubblepopup-theme',
                             themeName: 'all-black',
                             innerHtml: msg,
-                            tail: {
-                                align:'left'
-                            },
                             afterHidden: function() {
                                 el.RemoveBubblePopup();
                             }
                           };
+
+                        /* use these to calc best position/align of popup */
+                        var coords = el.attr("id").split("-"), row = parseInt(coords[1]), col = parseInt(coords[3]);
 
                         var lon = rsvp.group.group_lon;
                         //if(lon < 0) {
@@ -98,7 +96,8 @@
                     inject(nextSlot()
                       .empty()
                       .removeClass("present")
-                      .animate({"opacity":1.0}, 100));
+                      .css({"opacity":0})
+                      .animate({"opacity":1.0}, 400));
                 }
              };
           })();
@@ -124,9 +123,9 @@
                      themePath: '../images/jquerybubblepopup-theme',
                      themeName: 'all-black',
                      innerHtml: msg,
-                     tail: {
+                    /* tail: {
                          align:'left'
-                     },
+                     },*/
                      afterHidden: function() {
                          el.RemoveBubblePopup();
                      },
@@ -144,7 +143,7 @@
              }
          };
 
-         setInterval(randomPopup, 7000);
+         //setInterval(randomPopup, 7000);
 
       });
     </script>

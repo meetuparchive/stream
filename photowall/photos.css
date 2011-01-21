@@ -2,29 +2,18 @@
 
 body { width:100%; height:100%; }
 
-.clearfix:after {
-	content: ".";
-	display: block;
-	clear: both;
-	visibility: hidden;
-	line-height: 0;
-	height: 0;
-}
+.clearfix:after {	content: ".";	display: block;	clear: both;	visibility: hidden;	line-height: 0;	height: 0; }
 
-.clearfix {
-	display: inline-block;
-}
+.clearfix {	display: inline-block; }
 
-html[xmlns] .clearfix {
-	display: block;
-}
+html[xmlns] .clearfix { 	display: block; }
 
-* html .clearfix {
-	height: 1%;
-}
+* html .clearfix {	height: 1%; }
 
 body { background:#333; }
+
 #people { list-style: none; margin:2px; padding:0; }
+
 #people li {
   list-style:none; overflow:hidden; display:block; float:left; height: 50px; margin:2px; width:50px;
   background:#585355;
@@ -34,17 +23,13 @@ body { background:#333; }
   border-radius: 5px;
   text-align: center;
 }
+
 #people span { display:block; overflow:hidden; max-width:50px; width:50px; }
+
 #people span img { max-height:50px; overflow:hidden; height:50px; }
 
 #people li.present {
-   /*
-    background: ##E7003A;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#E7003A', endColorstr='#B7000A');
-    background: -webkit-gradient(linear, left top, left bottom, from(#E7003A), to(#B7000A));
-    background: -moz-linear-gradient(top, #E7003A, #B7000A);
-   */
-    background:#FF0066;
+
 }
 
 .rsvp {
