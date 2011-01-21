@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>meetup</title>
-    <link href="/css/jquery.bubblepopup.v2.3.1.css" rel="stylesheet" type="text/css" />
+    <title>Meetup</title>
+    <link href="../css/jquery.bubblepopup.v2.3.1.css" rel="stylesheet" type="text/css" />
     <link type="text/css" rel="stylesheet" href="photos.css" />
-    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
   </head>
   <body>
     <ul id="people"></ul>
     <script type="text/javascript" src="/js/mu.js"></script>
-    <script src="/js/jquery.bubblepopup.v2.3.1.min.js" type="text/javascript"></script>
-    <script src="/js/jquery-ui.min.js" type="text/javascript"></script>
-    <script src="jquery.flip.min.js" type="text/javascript"></script>
-    <script src="/js/color.js" type="text/javascript"></script>
-    <script src="/js/arrays.js" type="text/javascript"></script>
+    <script src="../js/jquery.bubblepopup.v2.3.1.min.js" type="text/javascript"></script>
+    <script src="../js/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="../jquery.flip.min.js" type="text/javascript"></script>
+    <script src="../js/color.js" type="text/javascript"></script>
+    <script src="../js/arrays.js" type="text/javascript"></script>
     <script type="text/javascript">
       $(function() {
           var p =  $("#people");
@@ -32,7 +32,7 @@
                   var next = slots.shift();
                   slots.push(next);
                   return next;
-              };;
+              };
 
             return {
                 fill: function() {
@@ -59,9 +59,9 @@
                              ' to<br/> <span class="event">', rsvp.event.event_name,
                              '</span></div>'].join(''),
                           bubbleOpts = {
-                            alwaysVisible:true,
+                            /*alwaysVisible:true,*/
                             selectable:true,
-                            themePath: '/images/jquerybubblepopup-theme',
+                            themePath: '../images/jquerybubblepopup-theme',
                             themeName: 'all-black',
                             innerHtml: msg
                           };
@@ -92,9 +92,7 @@
                 }
              };
           })();
-
          Grid.fill();
-
          var stm = mu.Stream({
            onRsvp: function(rsvp) {
              Grid.add(rsvp);
@@ -103,7 +101,6 @@
              return rsvp.member.photo != undefined && rsvp.venue != undefined;
            }
          });
-
       });
     </script>
   <body>
