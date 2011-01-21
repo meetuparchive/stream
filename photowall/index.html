@@ -13,6 +13,7 @@
     <script src="/js/jquery-ui.min.js" type="text/javascript"></script>
     <script src="jquery.flip.min.js" type="text/javascript"></script>
     <script src="/js/color.js" type="text/javascript"></script>
+    <script src="/js/arrays.js" type="text/javascript"></script>
     <script type="text/javascript">
       $(function() {
           var p =  $("#people");
@@ -27,25 +28,10 @@
                     height: $(window).height()
                 }
               },
-              nextOpenSlot = function() {
-                var next = [];
-                if(!full) {
-                    var d = dimensions(),
-                    findNext = function() {
-                        s = slots[Math.floor(Math.random() * slots.length)];
-                        return s.children().length === 0 ? s : [];
-                    },
-                    scount = 0, slength = slots.length;
-
-                    while(next.length === 0 && scount < slength - 1) {
-                        next = findNext();
-                        scount++;
-                    }
-                   if(scount == slength -1) {
-                       full = true;
-                   }
-                }
-                return next;
+              nextSlot = function() {
+                  var next = slots.shift();
+                  slots.push(next);
+                  return next;
               };
 
             $(window).bind("resize", function() {
@@ -66,6 +52,7 @@
                             p.append(li);
                         }
                     }
+                    slots.shuffle();
                 },
                 add: function(rsvp) {
                     var inject = function (el) {
@@ -84,10 +71,10 @@
                           };
 
                         var lon = rsvp.venue.lon;
-                        if(lon < 0) {
+                        //if(lon < 0) {
                             // see andrew on explaination
                             lon = (((lon + 180) - 60) / 45) * 240;
-                        }
+                        //}
                         var h = lon, s = 100, v = 100;
 
                         var rgb = hsvToRgb(h, s, v);
@@ -102,15 +89,10 @@
                             el.animate({"opacity":0.75}, 500).HideBubblePopup();
                           });
                     }
-                    var li =  nextOpenSlot();
-                    if(li.length === 0) {
-                        var i = Math.floor(Math.random() * slots.length),
-                           li = slots[i];
-                        li.empty().removeClass("present").css({"opacity":1.0}, 100);
-                        inject(li);
-                    } else {
-                        inject(li);
-                    }
+                    inject(nextSlot()
+                      .empty()
+                      .removeClass("present")
+                      .animate({"opacity":1.0}, 100));
                 }
              };
           })();
