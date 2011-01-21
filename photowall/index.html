@@ -64,7 +64,7 @@
                             innerHtml: msg
                           };
 
-                        var lon = rsvp.venue.lon;
+                        var lon = rsvp.group.group_lon;
                         //if(lon < 0) {
                             // see andrew on explaination
                             lon = (((lon + 180) - 60) / 45) * 240;
@@ -96,7 +96,7 @@
              Grid.add(rsvp);
            },
            filter: function(rsvp) {
-             return rsvp.member.photo != undefined && rsvp.venue != undefined;
+             return rsvp.member.photo != undefined;
            }
          });
       });
