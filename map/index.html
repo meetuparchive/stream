@@ -87,9 +87,10 @@
                 setTimeout(rm, expiry);
 
                 var details = $("#rsvp-detail"),
-                  detail = $(msg),
+                  detail = $(msg).hide(),
                   showDetail = function() {
                     details.prepend(detail);
+                    detail.slideDown();
                     details.children().each(function(idx) {
                       if (idx > 10) $(this).remove()
                     });
