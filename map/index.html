@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Streaming MEMEs</title>
-    <link  rel="stylesheet" type="text/css" href="../css/jquery.bubblepopup.v2.3.1.css" />
+    <link rel="stylesheet" type="text/css" href="../css/jquery.bubblepopup.v2.3.1.css" />
     <link rel="stylesheet" type="text/css" href="map.css" />
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="polymaps.min.js"></script>
@@ -46,34 +46,39 @@
               //                          .appendChild(document.createTextNode(rsvp.venue.venue_name))
               //                  .parentNode);
 
-                var msg = ['<div class="rsvp"><img class="member-photo" src="',rsvp.member.photo,
+                var f = $(feature.element, $("#map").svg())
+                    .animate({ "opacity":0.25 }, 500)
+                    .addClass(rsvp.response === "yes" ? "rsvp-yes" : "rsvp-no"),
+
+                msg = ['<div class="rsvp"><img class="member-photo" src="',rsvp.member.photo,
                            '"/><div class="member-info"> <span class="member">', rsvp.member.member_name,
                            '</span><br/> just rsvp\'d ', rsvp.response,
                            ' to<br/> <span class="event">', rsvp.event.event_name,
                            '</span></div></div>'].join(''),
+
                 bubbleOpts = {
-                    alwaysVisible:true,
+                    alwaysVisible: true,
                     themePath: '../images/jquerybubblepopup-theme',
                     themeName: 'all-black',
-                    innerHtml: msg
+                    innerHtml: msg,
+                    afterHidden: function() {
+                       f.RemoveBubblePopup();
+                    }
                  };
 
-                var f = $(feature.element, $("#map").svg())
-                    .animate({ "opacity":0.25 }, 500)
-                    .addClass(rsvp.response === "yes" ? "rsvp-yes" : "rsvp-no")
-                    .CreateBubblePopup();
-
                 f.hover(function(e) {
-                  f.animate({ "opacity":1 }, 500)
-                    .ShowBubblePopup(bubbleOpts);
+                   f.animate({ "opacity":1 }, 500);
+                    if(!f.HasBubblePopup()) {
+                      f.CreateBubblePopup(bubbleOpts);
+                    }
+                    f.ShowBubblePopup();
                 }, function() {
-                  f.animate({ "opacity":0.25 }, 500)
-                    .HideBubblePopup();
-                }).CreateBubblePopup();
-
+                    f.animate({ "opacity":0.25 }, 500)
+                      .HideBubblePopup();
+                });
 
                 var rm = function() {
-                    f.fadeOut(3000, function() {
+                    f.fadeOut(1500, function() {
                         f.remove();
                     });
                 };

@@ -1,4 +1,26 @@
 * { margin:0; padding:0; }
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+
+.clearfix {
+	display: inline-block;
+}
+
+html[xmlns] .clearfix {
+	display: block;
+}
+
+* html .clearfix {
+	height: 1%;
+}
+
 body { background:#333; }
 #people { list-style: none; margin:2px; padding:0; }
 #people li {
