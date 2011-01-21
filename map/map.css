@@ -38,7 +38,7 @@ circle:hover {
   font-weight:bold;
 }
 
-.rsvp .event {
+.rsvp .event, .rsvp .group, .rsvp .place {
   font-weight:bold;
 }
 

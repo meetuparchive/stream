@@ -51,10 +51,12 @@
                     .addClass(rsvp.response === "yes" ? "rsvp-yes" : "rsvp-no"),
 
                 msg = ['<div class="rsvp"><img class="member-photo" src="',rsvp.member.photo,
-                           '"/><div class="member-info"> <span class="member">', rsvp.member.member_name,
-                           '</span><br/> just rsvp\'d ', rsvp.response,
-                           ' to<br/> <span class="event">', rsvp.event.event_name,
-                           '</span></div></div>'].join(''),
+                       '"/><div class="member-info"> <span class="member">', rsvp.member.member_name,
+                       '</span> is going to <br/> <span class="event">', rsvp.event.event_name,
+                       '</span><br/> with <span class="group">', rsvp.group.group_name,
+                       '</span> in <span class="place">', rsvp.group.group_city, ', ', 
+                       (rsvp.group.group_state ? rsvp.group.group_state : rsvp.group.group_country).toUpperCase(),
+                       '</span></div></div>'].join(''),
 
                 bubbleOpts = {
                     alwaysVisible: true,
