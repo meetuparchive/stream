@@ -50,8 +50,8 @@
                     .animate({ "opacity":0.25 }, 500)
                     .addClass(rsvp.response === "yes" ? "rsvp-yes" : "rsvp-no"),
 
-                msg = ['<div class="rsvp"><img class="member-photo" src="',rsvp.member.photo,
-                       '"/><div class="member-info"> <span class="member">', rsvp.member.member_name,
+                msg = ['<div class="rsvp"><span class="member-photo"><img src="',rsvp.member.photo,
+                       '"/></span><div class="member-info"> <span class="member">', rsvp.member.member_name,
                        '</span> is going to <br/> <span class="event">', rsvp.event.event_name,
                        '</span><br/> with <span class="group">', rsvp.group.group_name,
                        '</span> in <span class="place">', rsvp.group.group_city, ', ', 
@@ -87,21 +87,14 @@
                 setTimeout(rm, expiry);
 
                 var details = $("#rsvp-detail"),
-                  detail = $(msg).hide(),
+                  detail = $(msg),
                   showDetail = function() {
                     details.prepend(detail);
-                    detail.slideDown(500, function(){
-                      var rm = function() {
-                        if(details.children().length > 1) {
-                            detail.remove();
-                        }
-                      };
-                      setTimeout(rm, 800);
+                    details.children().each(function(idx) {
+                      if (idx > 10) $(this).remove()
                     });
                   };
-                setTimeout(showDetail, 800);
-
-
+                showDetail();
             }
           };
 

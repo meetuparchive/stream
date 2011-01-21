@@ -1,6 +1,6 @@
 #map { height:400px; width: 100%; }
 #map #info { position:fixed; top:170px; left:50px; background: transparent; margin:0; padding:0; }
-body { background:#333; font-family:helvetica nueve, helvetica, arial, sans serif; }
+body { background:#333; font-family:helvetica nueve, helvetica, arial, sans serif; overflow: hidden }
 h1 { color:#eee; }
 
 circle.rsvp-no { fill:#FF006F; }
@@ -14,14 +14,12 @@ circle:hover {
     transition:fill .25s ease-in;
 }
 
-#rsvp-detail {
+#rsvp-detail .rsvp {
   margin:.25em 0;
   padding:.25em 0;
   overflow:hidden;
   height:58px;
   max-height:58px;
-}
-#rsvp-detail .rsvp {
   clear:both;
   color:#eee;
 }
@@ -29,11 +27,21 @@ circle:hover {
   text-align:left;
 }
 
-.rsvp img {
+.rsvp .member-photo {
   float:left;
-  margin-right:5px;
+  width: 115px;
 }
 
+.rsvp .member-photo {
+  float:left;
+  width: 115px;
+  height: 58px;
+  text-align: right;
+}
+
+.rsvp .member-photo img {
+  padding-right: 10px;
+}
 .rsvp .member {
   font-weight:bold;
 }
