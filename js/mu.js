@@ -24,9 +24,7 @@ mu.Stream = function(config) {
       filter = config.filter || function(rsvp) {
         return true;
       },
-      log = config.log || function(msg) {
-          if(console && console.log) { console.log(msg); }
-      },
+      log = config.log || function(msg) { },
       error = function(msg) {
          alert(msg);
       };
