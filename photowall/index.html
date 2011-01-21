@@ -33,12 +33,15 @@
               };
 
             return {
+                randomSlot: function() {
+                    return slots[Math.floor(Math.random() * slots.length)];
+                },
                 fill: function() {
                     p.empty();
                     slots = [];
                     var d = dimensions(),
-                    rows =  Math.floor(d.width / picWidth),
-                    cols = Math.floor(d.height / picHeight);
+                    rows =  Math.floor(d.width / picWidth - 1),
+                    cols = Math.floor(d.height / picHeight - 1);
                     for(var r = 0; r < rows; r++) {
                         for(var c = 0; c < cols; c++) {
                             var li =$(['<li id="r-', r, '-c-', c, '"></li>'].join(''));
@@ -55,13 +58,16 @@
                              '"/><div class="rsvp-info"><span class="member">', rsvp.member.member_name,
                              '</span><br/> just rsvp\'d ', rsvp.response,
                              ' to<br/> <span class="event">', rsvp.event.event_name,
-                             '</span></div>'].join(''),
+                                 '</span><br/> with <span class="group">', rsvp.group.group_name, '<span></div>'].join(''),
                           bubbleOpts = {
                             /*alwaysVisible:true,*/
                             /*selectable:true,*/
                             themePath: '../images/jquerybubblepopup-theme',
                             themeName: 'all-black',
                             innerHtml: msg,
+                            tail: {
+                                align:'left'
+                            },
                             afterHidden: function() {
                                 el.RemoveBubblePopup();
                             }
@@ -75,7 +81,8 @@
                         var h = lon, s = 100, v = 100;
 
                         var rgb = hsvToRgb(h, s, v);
-                        el.css({"border":"2px solid rgb("+rgb[0]+","+rgb[1]+","+rgb[2]+")",
+                        el.data("msg", msg)
+                          .css({"border":"2px solid rgb("+rgb[0]+","+rgb[1]+","+rgb[2]+")",
                                 "background-color":"rgb("+rgb[0]+","+rgb[1]+","+rgb[2]+")"})
                           .addClass("present").animate({"opacity":0.75}, 500)
                           .append(content)
@@ -95,7 +102,9 @@
                 }
              };
           })();
+
          Grid.fill();
+
          var stm = mu.Stream({
            onRsvp: function(rsvp) {
              Grid.add(rsvp);
@@ -105,6 +114,38 @@
                    rsvp.response === "yes";
            }
          });
+
+         var randomPopup = function() {
+             var slot = Grid.randomSlot(),
+             el = $(['#r-', slot[0], '-c-', slot[1]].join(''));
+             if(el.children().length > 0 && el.data()['msg'] != undefined) {
+                 var msg = el.data()['msg'];
+                 bubbleOpts = {
+                     themePath: '../images/jquerybubblepopup-theme',
+                     themeName: 'all-black',
+                     innerHtml: msg,
+                     tail: {
+                         align:'left'
+                     },
+                     afterHidden: function() {
+                         el.RemoveBubblePopup();
+                     },
+                     afterShown: function() {
+                         var h = function() {
+                             el.HideBubblePopup();
+                         };
+                         setTimeout(h, 3000);
+                     }
+                 };
+                 if(!el.HasBubblePopup()) {
+                     el.CreateBubblePopup(bubbleOpts);
+                 }
+                 el.ShowBubblePopup();
+             }
+         };
+
+         setInterval(randomPopup, 7000);
+
       });
     </script>
   <body>

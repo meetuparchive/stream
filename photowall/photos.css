@@ -1,5 +1,7 @@
 * { margin:0; padding:0; }
 
+body { width:100%; height:100%; }
+
 .clearfix:after {
 	content: ".";
 	display: block;
@@ -55,11 +57,7 @@ body { background:#333; }
     display:none;
 }
 
-.rsvp .member {
-  font-weight:bold;
-}
-
-.rsvp .event {
+.rsvp .member, .rsvp .event, .rsvp .group {
   font-weight:bold;
 }
 
