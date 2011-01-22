@@ -1,4 +1,4 @@
-#map { height:100%; float:left; width: 700px; }
+#map { height:100%; float:left; width: 60%; }
 #map #info { position:fixed; top:170px; left:50px; background: transparent; margin:0; padding:0; }
 body { background:#333; font-family:helvetica nueve, helvetica, arial, sans serif; overflow: hidden }
 h1 { color:#eee; }
@@ -16,6 +16,7 @@ circle:hover {
 
 #rsvp-detail {
   float:left;
+  width:400px;
 }
 
 #rsvp-detail .rsvp {
@@ -41,11 +42,18 @@ circle:hover {
   width: 115px;
   height: 58px;
   text-align: right;
+  display:block;
+  float:left;
 }
 
 .rsvp .member-photo img {
   padding-right: 10px;
 }
+
+#rsvp-detail .member-info {
+
+}
+
 .rsvp .member {
   font-weight:bold;
 }
