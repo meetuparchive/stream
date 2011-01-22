@@ -88,12 +88,13 @@
                   detail = $(msg).hide(),
                   showDetail = function() {
                     details.prepend(detail);
-                    detail.slideDown();
-                    details.children().each(function(idx) {
-                      if (idx > 10) $(this).remove()
+                    detail.slideDown(500, function() {
+                      details.children().each(function(idx) {
+                        if (idx > 10) $(this).remove();
+                      });
                     });
                   };
-                showDetail();
+                setTimeout(showDetail, 500);
             }
           };
 

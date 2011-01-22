@@ -1,4 +1,4 @@
-#map { height:300px; width: 100%; }
+#map { height:100%; float:left; width: 700px; }
 #map #info { position:fixed; top:170px; left:50px; background: transparent; margin:0; padding:0; }
 body { background:#333; font-family:helvetica nueve, helvetica, arial, sans serif; overflow: hidden }
 h1 { color:#eee; }
@@ -14,12 +14,15 @@ circle:hover {
     transition:fill .25s ease-in;
 }
 
+#rsvp-detail {
+  float:left;
+}
+
 #rsvp-detail .rsvp {
   margin:.25em 0;
   padding:.25em 0;
   overflow:hidden;
-  height:58px;
-  max-height:58px;
+  height:68px;
   clear:both;
   color:#eee;
 }
