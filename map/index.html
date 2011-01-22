@@ -25,7 +25,6 @@
                          .appendChild(po.svg("svg")))
               .center({lat: 39, lon: -96})
               .zoom(4)
-              /*.zoomRange([3, 9])*/
               .add(po.interact())
               .add(po.image()
                   .url(po.url("http://{S}tile.cloudmade.com"
@@ -37,16 +36,13 @@
           var load = function(e) {
             for (var i = 0, len = e.features.length; i < len; i++) {
               var feature = e.features[i],
-                  rsvp = feature.data.properties.rsvp;
-              //feature.element.appendChild(po.svg("title")
-              //                          .appendChild(document.createTextNode(rsvp.venue.venue_name))
-              //                  .parentNode);
+                 rsvp = feature.data.properties.rsvp;
 
                 var f = $(feature.element, $("#map").svg())
                     .animate({ "opacity":0.25 }, 500)
                     .addClass(rsvp.response === "yes" ? "rsvp-yes" : "rsvp-no"),
 
-                time = new Date(rsvp.event.time),
+                time = new Date(rsvp.mtime),
 
                 simpleMsg = ['<div class="rsvp"><span class="member-photo"><img src="',rsvp.member.photo,
                        '"/></span><div class="member-info"> <span class="member">', rsvp.member.member_name,
@@ -58,7 +54,7 @@
                        '<span class="group">', rsvp.group.group_name,
                        '</span><br/> in <span class="place">', rsvp.group.group_city, ', ',
                        (rsvp.group.group_state ? rsvp.group.group_state : rsvp.group.group_country).toUpperCase(),
-                       '</span> <span class="time"> @ ', time.format('htt'),  ' on ' , time.format('ddd mmm dS'), '</span></div></div>'].join(''),
+                       '</span> <span class="time"> ', time.format('h:MMtt'),  ' on ' , time.format('ddd mmm dS'), '</span></div></div>'].join(''),
 
                 bubbleOpts = {
                     alwaysVisible: true,
@@ -122,7 +118,7 @@
 
       var stm = mu.Stream({
         onRsvp: function(rsvp) {
-          Map.plot(rsvp);
+            Map.plot(rsvp);
         },
         filter: function(rsvp) {
             return rsvp.member.photo != undefined &&

@@ -30,6 +30,7 @@ circle:hover {
 
 .rsvp .time {
   color: #bbb;
+  font-size:smaller;
 }
 
 #rsvp-detail .rsvp .member-photo {
