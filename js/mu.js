@@ -5,7 +5,9 @@ mu = {};
    *  host - websocket host for stream
    *  onRsvp - function that accepts an rsvp as they are streamed
    *  onConnect - function called when connected with host
-   *  onDisconnect - function called when disconnected from host
+   *  onDisconnect - function called when disconnected from host; note that
+   *    disconnect may not fire for some time after a network interface is lost.
+   *    The default implementation tries to reconnect.
    *  onUnsupported - function called script detects browser does not support
    *                  websockets
    *  filter - function that takes an rsvp and returns true if it should
@@ -17,7 +19,12 @@ mu.Stream = function(config) {
     var host = config.host || "ws://stream.meetup.com/2/rsvps",
       onRsvp = config.onRsvp || function(rsvp) { },
       onConnect = config.onConnect || function() { },
-      onDisconnect = config.onDisconnect || function() {  },
+      onDisconnect = config.onDisconnect || function() {
+        // silently try to reconnect after a second
+        settimeout(1000, function() {
+          mu.Stream(config);
+        });
+      },
       onUnsupported = config.onUnsupported || function() {
         alert("your browser does not support web sockets");
       },
