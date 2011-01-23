@@ -46,15 +46,15 @@
 
                 simpleMsg = ['<div class="rsvp"><span class="member-photo"><img src="',rsvp.member.photo,
                        '"/></span><div class="member-info"> <span class="member">', rsvp.member.member_name,
-                        '</span> is meeting up with<br/> <span class="group">', rsvp.group.group_name, '</span>'].join(''),
+                        '</span> will meetup with<br/> <span class="group">', rsvp.group.group_name, '</span>'].join(''),
 
                 msg = ['<div class="rsvp"><span class="member-photo"><img src="',rsvp.member.photo,
                        '"/></span><div class="member-info"> <span class="member">', rsvp.member.member_name,
-                       '</span> is meeting up with<br/> ',
+                       '</span> will meetup with<br/> ',
                        '<span class="group">', rsvp.group.group_name,
                        '</span><br/> in <span class="place">', rsvp.group.group_city, ', ',
                        (rsvp.group.group_state ? rsvp.group.group_state : rsvp.group.group_country).toUpperCase(),
-                       '</span> <span class="time"> ', time.format('h:MMtt'),  ' on ' , time.format('ddd mmm dS'), '</span></div></div>'].join(''),
+                       '</span> <span class="time">(RSVP ', time.format('h:MMtt Z'), ')</span></div></div>'].join(''),
 
                 bubbleOpts = {
                     alwaysVisible: true,
