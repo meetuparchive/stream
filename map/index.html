@@ -8,23 +8,60 @@
     <script type="text/javascript" src="polymaps.min.js"></script>
   </head>
   <body>
-    <div id="map"></div>
+    <div id="map">
+      <div id="plug">powered by <a target="_blank" href="http://meetup.com/meetup_api">Meetup API</a></div>
+    </div>
     <div id="rsvp-detail"></div>
     <script type="text/javascript" src="jquery.svg.min.js"></script>
     <script type="text/javascript" src="jquery.svgdom.min.js"></script>
     <script type="text/javascript" src="../js/dates.js"></script>
     <script type="text/javascript" src="../js/mu.js" ></script>
     <script type="text/javascript" src="../js/jquery.bubblepopup.v2.3.1.min.js"></script>
+     <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
     <script type="text/javascript">
       var details = $("#details");
-      var Map = (function() {
+      $("#map .present").live('mouseenter mouseleave', function(e) {
+        var r = $(this), x = e.clientX, y = e.clientY, bubbleOpts = {
+            alwaysVisible: true,
+            themePath: '../images/jquerybubblepopup-theme',
+            themeName: 'all-black',
+            width:250,
+            innerHtml: r.data()['rsvp']
+        };;
+        /* jquery bubblepopup doesn't do a great job at positioning when close to edge, rectify this using x, y */
+        if(x < 20) {
+            bubbleOpts.position = 'right';
+        } else if(x < 150) {
+            bubbleOpts.align = 'left';
+            bubbleOpts.tail = {
+                align: 'left'
+            };
+        }
+        if(y < 80) {
+            bubbleOpts.position = 'bottom';
+        }
+        if(e.type === 'mouseenter') {
+            r.animate({ "opacity":1 }, 500);
+            if(!r.HasBubblePopup()) {
+              r.CreateBubblePopup(bubbleOpts);
+            }
+            r.ShowBubblePopup();
+        } else if(e.type==='mouseleave') {
+            r.animate({ "opacity":0.25 }, 500);
+            if(r.HasBubblePopup()) {
+                r.HideBubblePopup();
+            }
+        }
+      });
+
+     var Map = (function() {
           var expiry = 3600000,
           po = org.polymaps,
           map = po.map()
               .container(document.getElementById("map")
                          .appendChild(po.svg("svg")))
               .center({lat: 39, lon: -60})
-              .zoom(3.2)
+              .zoom(3)
               .add(po.interact())
               .add(po.image()
                   .url(po.url("http://{S}tile.cloudmade.com"
@@ -39,44 +76,27 @@
                  rsvp = feature.data.properties.rsvp;
 
                 var f = $(feature.element, $("#map").svg())
-                    .animate({ "opacity":0.25 }, 500)
-                    .addClass(rsvp.response === "yes" ? "rsvp-yes" : "rsvp-no"),
+                    .animate({ "opacity":0.25, stroke: '#ffffff' }, 500)
+                    .addClass(rsvp.response === "yes" ? "rsvp-yes" : "rsvp-no").addClass("present"),
 
                 time = new Date(rsvp.mtime),
 
                 simpleMsg = ['<div class="rsvp"><span class="member-photo"><img src="',rsvp.member.photo,
                        '"/></span><div class="member-info"> <span class="member">', rsvp.member.member_name,
-                        '</span> is meeting up with<br/> <span class="group">', rsvp.group.group_name, '</span>'].join(''),
+                             '</span> will meet up with<br/> <span class="group">', rsvp.group.group_name, '</span> in <span class="place">',
+                             rsvp.group.group_city, ', ',
+                              (rsvp.group.group_state ? rsvp.group.group_state : rsvp.group.group_country).toUpperCase(),
+                             '</span></div>'].join(''),
 
                 msg = ['<div class="rsvp"><span class="member-photo"><img src="',rsvp.member.photo,
                        '"/></span><div class="member-info"> <span class="member">', rsvp.member.member_name,
-                       '</span> is meeting up with<br/> ',
+                       '</span> will meet up with<br/> ',
                        '<span class="group">', rsvp.group.group_name,
                        '</span><br/> in <span class="place">', rsvp.group.group_city, ', ',
                        (rsvp.group.group_state ? rsvp.group.group_state : rsvp.group.group_country).toUpperCase(),
-                       '</span> <span class="time"> ', time.format('h:MMtt'),  ' on ' , time.format('ddd mmm dS'), '</span></div></div>'].join(''),
+                       '</span><br/> <span class="time">(RSVP ', time.format('h:Mtt Z'), ')</span></div></div>'].join('');
 
-                bubbleOpts = {
-                    alwaysVisible: true,
-                    themePath: '../images/jquerybubblepopup-theme',
-                    themeName: 'all-black',
-                    innerHtml: simpleMsg,
-                    afterHidden: function() {
-                       f.RemoveBubblePopup();
-                    }
-                 };
-
-                f.hover(function(e) {
-                   f.animate({ "opacity":1 }, 500);
-                    if(!f.HasBubblePopup()) {
-                      f.CreateBubblePopup(bubbleOpts);
-                    }
-                    f.ShowBubblePopup();
-                }, function() {
-                    f.animate({ "opacity":0.25 }, 500)
-                      .HideBubblePopup();
-                });
-
+                f.data('rsvp', simpleMsg);
                 var rm = function() {
                     f.fadeOut(1500, function() {
                         f.remove();
@@ -88,11 +108,13 @@
                   detail = $(msg).hide(),
                   showDetail = function() {
                     details.prepend(detail);
-                    detail.slideDown(500, function() {
+                    detail.fadeIn(500, function() {
                       details.children().each(function(idx) {
                         if (idx > 10) $(this).remove();
                       });
+                        details = null;
                     });
+
                   };
                 setTimeout(showDetail, 500);
             }
@@ -125,6 +147,10 @@
             return rsvp.member.photo != undefined &&
                 rsvp.response === "yes";
         }
+      });
+
+      $(window).bind("unload", function() {
+        $("*").add(document).unbind();
       });
     </script>
   </body>

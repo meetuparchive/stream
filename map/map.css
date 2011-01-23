@@ -1,8 +1,15 @@
 #map { height:100%; float:left; width: 60%; }
-#map #info { position:fixed; top:170px; left:50px; background: transparent; margin:0; padding:0; }
-body { background:#333; font-family:helvetica nueve, helvetica, arial, sans serif; overflow: hidden }
-h1 { color:#eee; }
+#map #plug { font-size:10px; position:fixed; bottom:10px; left:20px; background: transparent; margin:0; padding:0; }
+body {
+ background:#333; font-family:helvetica nueve, helvetica, arial, sans serif; overflow: hidden;
+}
+a:link, a:visited {
+  color:#FF006F;
+  text-decoration:none;
+}
+a:hover {
 
+}
 circle.rsvp-no { fill:#FF006F; }
 circle.rsvp-yes { fill:#00E1FF; fill:#FF006F; }
 circle:hover {
@@ -17,13 +24,14 @@ circle:hover {
 #rsvp-detail {
   float:left;
   width:400px;
+  font-size:18px;
 }
 
 #rsvp-detail .rsvp {
-  margin:.25em 0;
+  margin:0 0 1em 0;
   padding:.25em 0;
   overflow:hidden;
-  height:68px;
+ /* height:78px;*/
   clear:both;
   color:#eee;
 }
@@ -32,15 +40,15 @@ circle:hover {
   text-align:left;
 }
 
-.rsvp .time {
+#rsvp-detail .rsvp .time {
   color: #bbb;
-  font-size:smaller;
+  font-size:12px;
 }
 
 #rsvp-detail .rsvp .member-photo {
   float:left;
   width: 115px;
-  height: 58px;
+  height: 78px;
   text-align: right;
   display:block;
   float:left;
@@ -50,17 +58,11 @@ circle:hover {
   padding-right: 10px;
 }
 
-#rsvp-detail .member-info {
-
+#rsvp-detail .rsvp .member-info {
+  margin-left: 120px;
 }
 
-.rsvp .member {
-  font-weight:bold;
-}
-
-.rsvp .event, .rsvp .group, .rsvp .place {
-  font-weight:bold;
-}
+.rsvp .member, .rsvp .event, .rsvp .group, .rsvp .place { }
 
 .compass .back {
   fill: #eee;
@@ -106,4 +108,8 @@ circle:hover {
   float:right;
   text-align:left;
   margin:5px;
+}
+
+.jquerybubblepopup .member-info {
+  margin-left:auto;
 }
