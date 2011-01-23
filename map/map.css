@@ -28,7 +28,7 @@ circle:hover {
 }
 
 #rsvp-detail .rsvp {
-  margin:0 0 1em 0;
+  margin:0 0 .25em 0;
   padding:.25em 0;
   overflow:hidden;
  /* height:78px;*/
