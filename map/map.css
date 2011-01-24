@@ -1,7 +1,8 @@
-#map { height:100%; float:left; width: 60%; }
+#map { height:100%; width: 100% }
 #map #plug { font-size:10px; position:fixed; bottom:10px; left:20px; background: transparent; margin:0; padding:0; }
 body {
  background:#333; font-family:helvetica nueve, helvetica, arial, sans serif; overflow: hidden;
+ margin: 0;
 }
 a:link, a:visited {
   color:#FF006F;
@@ -22,9 +23,15 @@ circle:hover {
 }
 
 #rsvp-detail {
-  float:left;
-  width:400px;
+  background:#333;
+  position: absolute;
+  padding: .25em .25em 0 0;
+  top: 0px;
+  right: 0px;
+  width: 500px;
+  height: 100%;
   font-size:18px;
+  opacity: .8;
 }
 
 #rsvp-detail .rsvp {
