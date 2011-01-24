@@ -116,6 +116,9 @@
                 f.attr("transform", "translate("+tx+","+(ty-30)+")");
                 f.animate({ "opacity":0.25, svgTransform:t }, 500)
                     .addClass(rsvp.response === "yes" ? "rsvp-yes" : "rsvp-no");//.addClass("present");
+
+                logoInner.attr({transform:"translate("+tx+","+((ty+2.5)-30)+")"});
+                logoInner.animate({svgTransform:"translate("+tx+","+(ty+2.5)+")"}, 500);
                 logoInner.addClass("present");
                 var time = new Date(rsvp.mtime),
 
