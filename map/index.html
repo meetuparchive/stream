@@ -101,25 +101,10 @@
 
                 p.addClass("present").attr("id", "r-"+uuid++);
 
-                /* begin logo */
-                f.remove();
-                f = $(po.svg("rect"), $("#map").svg());
-                f.attr({transform:t, style:"fill:#E51937;", rx:2, ry:2, width:10, height:8});
-                var logoInner = $(po.svg("rect"), $("#map").svg());
-                logoInner.attr({transform:"translate("+tx+","+(ty+2.5)+")", style:"fill:#fff;margin-top:2px;",
-                                rx:1, ry:1, width:10, height:4});
-                p.append(f);
-                p.append(logoInner);
-                /* end logo */
-
-
-                f.attr("transform", "translate("+tx+","+(ty-30)+")");
+                f.attr({"transform":  "translate("+tx+","+(ty-30)+")"});
                 f.animate({ "opacity":0.25, svgTransform:t }, 500)
                     .addClass(rsvp.response === "yes" ? "rsvp-yes" : "rsvp-no");//.addClass("present");
 
-                logoInner.attr({transform:"translate("+tx+","+((ty+2.5)-30)+")"});
-                logoInner.animate({svgTransform:"translate("+tx+","+(ty+2.5)+")"}, 500);
-                logoInner.addClass("present");
                 var time = new Date(rsvp.mtime),
 
                 simpleMsg = ['<div class="rsvp"><span class="member-photo"><img src="',rsvp.member.photo,
