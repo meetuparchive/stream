@@ -16,6 +16,7 @@
     <div id="rsvp-detail"></div>
     <script type="text/javascript" src="jquery.svg.min.js"></script>
     <script type="text/javascript" src="jquery.svgdom.min.js"></script>
+    <script type="text/javascript" src="jquery.svganim.min.js"></script>
     <script type="text/javascript" src="../js/dates.js"></script>
     <script type="text/javascript" src="../js/mu.js" ></script>
     <script type="text/javascript" src="../js/jquery.bubblepopup.v2.3.1.min.js"></script>
@@ -57,13 +58,13 @@
       });
 
      var Map = (function() {
-          var expiry = 3600000,
+         var expiry = 3600000,
           po = org.polymaps,
           map = po.map()
               .container(document.getElementById("map")
                          .appendChild(po.svg("svg")))
               .center({lat: 27, lon: -15})
-              .zoom(3)
+              .zoom(2.87)
               .add(po.interact())
               .add(po.image()
                   .url(po.url("http://{S}tile.cloudmade.com"
@@ -77,11 +78,14 @@
               var feature = e.features[i],
                  rsvp = feature.data.properties.rsvp;
 
-                var f = $(feature.element, $("#map").svg())
-                    .animate({ "opacity":0.25, stroke: '#ffffff' }, 500)
-                    .addClass(rsvp.response === "yes" ? "rsvp-yes" : "rsvp-no").addClass("present"),
+                var f = $(feature.element, $("#map").svg()), t = f.attr("transform"),
+                  m = /translate\((\S+),(\S+)\)/.exec(t), tx = parseFloat(m[1]), ty = parseFloat(m[2]);
 
-                time = new Date(rsvp.mtime),
+                f.attr("transform", "translate("+tx+","+(ty-30)+")");
+                f.animate({ "opacity":0.25, svgTransform:t }, 500)
+                    .addClass(rsvp.response === "yes" ? "rsvp-yes" : "rsvp-no").addClass("present");
+
+                var time = new Date(rsvp.mtime),
 
                 simpleMsg = ['<div class="rsvp"><span class="member-photo"><img src="',rsvp.member.photo,
                        '"/></span><div class="member-info"> <span class="member">', rsvp.member.member_name,
@@ -100,7 +104,7 @@
 
                 f.data('rsvp', simpleMsg);
                 var rm = function() {
-                    f.fadeOut(1500, function() {
+                    f.animate({opacity:0, svgR:20}, 1500, function() {
                         f.remove();
                     });
                 };
