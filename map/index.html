@@ -22,24 +22,22 @@
     <script type="text/javascript" src="../js/jquery.bubblepopup.v2.3.1.min.js"></script>
     <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
     <script type="text/javascript">
-      var details = $("#details"), uuid = 0, rsvps = {}, cleanupInterval = 2000, cleanup = function() {
-           var rm = function(rid) {
-               var p = $("#"+rid);
-               p.animate({opacity:0, svgR:0}, 1500, function() {
-                   if(p.HasBubblePopup()) {
-                       p.RemoveBubblePopup();
-                   }
-                   p.remove();
-               });
-          };
+      var details = $("#details"), uuid = 0, rsvps = {}, cleanupInterval = 2000, domrm = function(rid) {
+          var p = $("#"+rid);
+          p.animate({opacity:0, svgR:0}, 1500, function() {
+              if(p.HasBubblePopup()) {
+                  p.RemoveBubblePopup();
+              }
+              p.remove();
+          });
+      }, cleanup = function() {
           for(var id in rsvps) {
               var expires = rsvps[id];
               if(+new Date() > expires) {
-                  rm(id);
+                  domrm(id);
                   delete rsvps[id];
               }
           }
-          console.log(rsvps);
       };
       setInterval(cleanup, cleanupInterval);
 
