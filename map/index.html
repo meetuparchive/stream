@@ -117,7 +117,7 @@
                   detail = $(msg).hide(),
                   showDetail = function() {
                     details.prepend(detail);
-                    detail.fadeIn(500, function() {
+                    detail.css({opacity:0}).animate({height:'toggle', opacity:1}, 500, function() {
                       details.children().each(function(idx) {
                         if (idx > 10) $(this).remove();
                       });
