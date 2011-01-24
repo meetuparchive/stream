@@ -31,9 +31,9 @@
               p.remove();
           });
       }, cleanup = function() {
+          var now = +new Date();
           for(var id in rsvps) {
-              var expires = rsvps[id];
-              if(+new Date() > expires) {
+              if(now > rsvps[id]) {
                   domrm(id);
                   delete rsvps[id];
               }
