@@ -20,9 +20,29 @@
     <script type="text/javascript" src="../js/dates.js"></script>
     <script type="text/javascript" src="../js/mu.js" ></script>
     <script type="text/javascript" src="../js/jquery.bubblepopup.v2.3.1.min.js"></script>
-     <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
     <script type="text/javascript">
-      var details = $("#details"), rsvps = [];
+      var details = $("#details"), uuid = 0, rsvps = {}, cleanupInterval = 2000, cleanup = function() {
+           var rm = function(rid) {
+               var p = $("#"+rid);
+               p.animate({opacity:0, svgR:0}, 1500, function() {
+                   if(p.HasBubblePopup()) {
+                       p.RemoveBubblePopup();
+                   }
+                   p.remove();
+               });
+          };
+          for(var id in rsvps) {
+              var expires = rsvps[id];
+              if(+new Date() > expires) {
+                  rm(id);
+                  delete rsvps[id];
+              }
+          }
+          console.log(rsvps);
+      };
+      setInterval(cleanup, cleanupInterval);
+
       $("#map .present").live('mouseenter mouseleave', function(e) {
         var r = $(this), x = e.clientX, y = e.clientY, bubbleOpts = {
             alwaysVisible: true,
@@ -81,7 +101,7 @@
                 var f = $(feature.element, $("#map").svg()), p = f.parent(), t = f.attr("transform"),
                   m = /translate\((\S+),(\S+)\)/.exec(t), tx = parseFloat(m[1]), ty = parseFloat(m[2]);
 
-                p.addClass("present");
+                p.addClass("present").attr("id", "r-"+uuid++);
 
                 /* begin logo */
                 f.remove();
@@ -117,15 +137,9 @@
                        '</span><br/> <span class="time">RSVP ', time.format('h:Mtt Z'), '</span></div></div>'].join('');
 
                 p.data('rsvp', simpleMsg);
-                var rm = function() {
-                   p.animate({opacity:0, svgR:0}, 1500, function() {
-                        if(logoInner.HasBubblePopup()) {
-                            logoInner.RemoveBubblePopup();
-                        }
-                        p.remove();
-                    });
-                };
-                setTimeout(rm, expiry);
+
+                /* push this map entry in a queue to be removed from the dom at a given time */
+                rsvps[p.attr("id")] = +new Date()+expiry;
 
                 var details = $("#rsvp-detail"),
                   detail = $(msg).hide(),
