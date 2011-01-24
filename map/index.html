@@ -105,6 +105,9 @@
                 f.data('rsvp', simpleMsg);
                 var rm = function() {
                     f.animate({opacity:0, svgR:20}, 1500, function() {
+                        if(f.HasBubblePopup()) {
+                            f.RemoveBubblePopup();
+                        }
                         f.remove();
                     });
                 };
