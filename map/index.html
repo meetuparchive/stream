@@ -58,7 +58,7 @@
       });
 
      var Map = (function() {
-         var expiry = 3600000,
+         var expiry = 1800000,
           po = org.polymaps,
           map = po.map()
               .container(document.getElementById("map")
@@ -104,7 +104,7 @@
 
                 f.data('rsvp', simpleMsg);
                 var rm = function() {
-                    f.animate({opacity:0, svgR:20}, 1500, function() {
+                    f.animate({opacity:0, svgR:0}, 1500, function() {
                         if(f.HasBubblePopup()) {
                             f.RemoveBubblePopup();
                         }
