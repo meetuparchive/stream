@@ -11,8 +11,7 @@ a:link, a:visited {
 a:hover {
 
 }
-circle.rsvp-no { fill:#FF006F; }
-circle.rsvp-yes { fill:#00E1FF; fill:#FF006F; }
+circle.rsvp-no, circle.rsvp-yes { fill:#E51937; }
 circle:hover {
     background:#fff;
     opacity:1.0;

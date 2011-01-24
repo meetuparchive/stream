@@ -22,7 +22,7 @@
     <script type="text/javascript" src="../js/jquery.bubblepopup.v2.3.1.min.js"></script>
      <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
     <script type="text/javascript">
-      var details = $("#details");
+      var details = $("#details"), rsvps = [];
       $("#map .present").live('mouseenter mouseleave', function(e) {
         var r = $(this), x = e.clientX, y = e.clientY, bubbleOpts = {
             alwaysVisible: true,
@@ -44,13 +44,13 @@
             bubbleOpts.position = 'bottom';
         }
         if(e.type === 'mouseenter') {
-            r.animate({ "opacity":1 }, 500);
+            $(r.children()[0]).animate({ "opacity":1 }, 500);
             if(!r.HasBubblePopup()) {
               r.CreateBubblePopup(bubbleOpts);
             }
             r.ShowBubblePopup();
         } else if(e.type==='mouseleave') {
-            r.animate({ "opacity":0.25 }, 500);
+            $(r.children()[0]).animate({ "opacity":0.25 }, 500);
             if(r.HasBubblePopup()) {
                 r.HideBubblePopup();
             }
@@ -78,13 +78,27 @@
               var feature = e.features[i],
                  rsvp = feature.data.properties.rsvp;
 
-                var f = $(feature.element, $("#map").svg()), t = f.attr("transform"),
+                var f = $(feature.element, $("#map").svg()), p = f.parent(), t = f.attr("transform"),
                   m = /translate\((\S+),(\S+)\)/.exec(t), tx = parseFloat(m[1]), ty = parseFloat(m[2]);
+
+                p.addClass("present");
+
+                /* begin logo */
+                f.remove();
+                f = $(po.svg("rect"), $("#map").svg());
+                f.attr({transform:t, style:"fill:#E51937;", rx:2, ry:2, width:10, height:8});
+                var logoInner = $(po.svg("rect"), $("#map").svg());
+                logoInner.attr({transform:"translate("+tx+","+(ty+2.5)+")", style:"fill:#fff;margin-top:2px;",
+                                rx:1, ry:1, width:10, height:4});
+                p.append(f);
+                p.append(logoInner);
+                /* end logo */
+
 
                 f.attr("transform", "translate("+tx+","+(ty-30)+")");
                 f.animate({ "opacity":0.25, svgTransform:t }, 500)
-                    .addClass(rsvp.response === "yes" ? "rsvp-yes" : "rsvp-no").addClass("present");
-
+                    .addClass(rsvp.response === "yes" ? "rsvp-yes" : "rsvp-no");//.addClass("present");
+                logoInner.addClass("present");
                 var time = new Date(rsvp.mtime),
 
                 simpleMsg = ['<div class="rsvp"><span class="member-photo"><img src="',rsvp.member.photo,
@@ -102,13 +116,13 @@
                        (rsvp.group.group_state ? rsvp.group.group_state : rsvp.group.group_country).toUpperCase(),
                        '</span><br/> <span class="time">RSVP ', time.format('h:Mtt Z'), '</span></div></div>'].join('');
 
-                f.data('rsvp', simpleMsg);
+                p.data('rsvp', simpleMsg);
                 var rm = function() {
-                    f.animate({opacity:0, svgR:0}, 1500, function() {
-                        if(f.HasBubblePopup()) {
-                            f.RemoveBubblePopup();
+                   p.animate({opacity:0, svgR:0}, 1500, function() {
+                        if(logoInner.HasBubblePopup()) {
+                            logoInner.RemoveBubblePopup();
                         }
-                        f.remove();
+                        p.remove();
                     });
                 };
                 setTimeout(rm, expiry);
