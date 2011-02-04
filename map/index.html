@@ -175,6 +175,10 @@
       $(window).bind("unload", function() {
         $("*").add(document).unbind();
       });
-    </script>
+      setTimeout(function() {
+        // you win, memory leaks! (reload after 6 hours)
+        window.location.reload();
+      }, 30000);
+      </script>
   </body>
 </html>
