@@ -64,6 +64,10 @@ circle:hover {
   float:left;
 }
 
+span#rate {
+    color: #bbb;
+}
+
 .rsvp .member-photo img {
   padding-right: 10px;
 }
