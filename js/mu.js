@@ -70,7 +70,7 @@ mu.Stream = function(config) {
             }
         }
     } else {
-        if(typeof onUnupported === "function") {
+        if(typeof onUnsupported === "function") {
             onUnsupported();
         } else {
             error("onUnsupported is not a function");
