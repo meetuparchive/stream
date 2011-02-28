@@ -11,7 +11,7 @@
     <div id="map">
       <div id="plug">
         <a target="_blank" href="http://www.meetup.com/meetup_api/docs/stream/2/rsvps/#websockets"><img alt="Powered by Meetup API" src ="meetupapi.png" /></a> 
-        <span id="rate"></span>
+        <span id="rate"><span>0.0.</span>RSVPs / minute</span>
       </div>
     </div>
     <div id="rsvp-detail"></div>
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="../js/jquery.bubblepopup.v2.3.1.min.js"></script>
     <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
     <script type="text/javascript">
-      var details = $("#details"), uuid = 0, rsvps = {}, cleanupInterval = 2000, domrm = function(rid) {
+      var details = $("#details"), uuid = 0, rsvps = [], cleanupInterval = 2000, domrm = function(rid) {
           var p = $("#"+rid);
           p.animate({opacity:0, svgR:0}, 1500, function() {
               if(p.HasBubblePopup()) {
@@ -32,28 +32,15 @@
               p.remove();
           });
       }, cleanup = function() {
-          var expiry = 1800000, cutoff = new Date() - expiry;
-          for(var id in rsvps) {
-              if(rsvps[id] < cutoff) {
-                  domrm(id);
-                  delete rsvps[id];
-              }
+          var expiry = /*1800000*/5000, cutoff = new Date() - expiry;
+          var i = 0;
+          while(i < rsvps.length && rsvps[i].time < cutoff) {
+              domrm(rsvps[i].id);
+              i++;
           }
+          if (i > 0) rsvps.splice(0, i)
       };
       setInterval(cleanup, cleanupInterval);
-      var win = 10000;
-      setTimeout(function() {
-          var ratep = $("span#rate");
-          ratep.append("<span>0.0</span> RSVPs/sec");
-          var rate = $("span#rate span");
-          setInterval(function() {
-              var cutoff = new Date() - win;
-              var count = 0;
-              for (var id in rsvps)
-                  if (rsvps[id] > cutoff) count++;
-              rate.text(count * 1000 / win);
-          }, 1000);
-      }, win);
 
       $("#map .present").live('mouseenter mouseleave', function(e) {
         var r = $(this), x = e.clientX, y = e.clientY, bubbleOpts = {
@@ -138,7 +125,14 @@
                 p.data('rsvp', simpleMsg);
 
                 /* push this map entry in a queue to be removed from the dom at a given time */
-                rsvps[p.attr("id")] = +new Date();
+                rsvps.push({ id: p.attr("id"), time: +new Date() });
+
+                /*var rate = $("span#rate span");
+                for (var i=rsvps.length = 1; i >= 0 rsvps.length in rsvps) {
+                    if (rsvps[id] > cutoff) count++;
+                        rate.text(count * 1000 / win);
+                    }, 1000);
+                }, win); */
 
                 var details = $("#rsvp-detail"),
                   detail = $(msg).hide(),
