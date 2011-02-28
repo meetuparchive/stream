@@ -11,7 +11,7 @@
     <div id="map">
       <div id="plug">
         <a target="_blank" href="http://www.meetup.com/meetup_api/docs/stream/2/rsvps/#websockets"><img alt="Powered by Meetup API" src ="meetupapi.png" /></a> 
-        <span id="rate"><span>0.0.</span>RSVPs / minute</span>
+        <span id="rate"><span>&mdash;</span> RSVPs / minute</span>
       </div>
     </div>
     <div id="rsvp-detail"></div>
@@ -32,7 +32,7 @@
               p.remove();
           });
       }, cleanup = function() {
-          var expiry = /*1800000*/5000, cutoff = new Date() - expiry;
+          var expiry = 1800000, cutoff = new Date() - expiry;
           var i = 0;
           while(i < rsvps.length && rsvps[i].time < cutoff) {
               domrm(rsvps[i].id);
@@ -127,12 +127,11 @@
                 /* push this map entry in a queue to be removed from the dom at a given time */
                 rsvps.push({ id: p.attr("id"), time: +new Date() });
 
-                /*var rate = $("span#rate span");
-                for (var i=rsvps.length = 1; i >= 0 rsvps.length in rsvps) {
-                    if (rsvps[id] > cutoff) count++;
-                        rate.text(count * 1000 / win);
-                    }, 1000);
-                }, win); */
+                var depth = Math.min(rsvps.length, 60);
+                if (depth > 1) {
+                    var rate = (depth - 1) * 60 * 1000 / (rsvps[rsvps.length-1].time - rsvps[rsvps.length - depth].time);
+                    $("span#rate span").text(Math.round(rate));
+                }
 
                 var details = $("#rsvp-detail"),
                   detail = $(msg).hide(),
