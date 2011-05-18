@@ -8,25 +8,21 @@ mu = {};
    *  onDisconnect - function called when disconnected from host; note that
    *    disconnect may not fire for some time after a network interface is lost.
    *    The default implementation tries to reconnect.
-   *  onUnsupported - function called script detects browser does not support
-   *                  websockets
    *  filter - function that takes an rsvp and returns true if it should
    *           be passed to onRsvp
    *  log    - function that logs a msg
    *  error  - function called when an error occurs
    */
 mu.Stream = function(config) {
-    var host = config.host || "ws://stream.meetup.com/2/rsvps",
+    var host = config.host || "ws://www.dev.meetup.com:8100/2/rsvps",
+      pollingUrl = config.pollingUrl || host.replace(/^ws/, 'http'),
       onRsvp = config.onRsvp || function(rsvp) { },
       onConnect = config.onConnect || function() { },
       onDisconnect = config.onDisconnect || function() {
         // silently try to reconnect after a second
-        settimeout(1000, function() {
+        setTimeout(1000, function() {
           mu.Stream(config);
         });
-      },
-      onUnsupported = config.onUnsupported || function() {
-        alert("your browser does not support web sockets");
       },
       filter = config.filter || function(rsvp) {
         return true;
@@ -34,24 +30,26 @@ mu.Stream = function(config) {
       log = config.log || function(msg) { },
       error = function(msg) {
          alert(msg);
+      },
+      handleJson = function(rsvp) {
+        if(typeof onRsvp === "function") {
+            if(typeof filter === "function") {
+                if(filter(rsvp)) {
+                    onRsvp(rsvp);
+                }
+            } else {
+                onRsvp(rsvp);
+            }
+        } else {
+            error("onRsvp is not a function");
+        }
       };
 
     if(window.WebSocket) {
         var s = new WebSocket(host);
         s.onmessage = function(e) {
             log(e);
-            if(typeof onRsvp === "function") {
-                var rsvp = JSON.parse(e.data);
-                if(typeof filter === "function") {
-                    if(filter(rsvp)) {
-                        onRsvp(rsvp);
-                    }
-                } else {
-                    onRsvp(rsvp);
-                }
-            } else {
-                error("onRsvp is not a function");
-            }
+            handleJson(JSON.parse(e.data))
         }
         s.onopen = function(e) {
             log(e);
@@ -70,10 +68,23 @@ mu.Stream = function(config) {
             }
         }
     } else {
-        if(typeof onUnsupported === "function") {
-            onUnsupported();
-        } else {
-            error("onUnsupported is not a function");
-        }
+        var successCallback = function(ary) {
+            var newest = 0;
+            if (ary) for (i in ary) {
+                handleJson(ary[i])
+                newest = Math.max(newest, ary[i].mtime);
+            }
+            var params = {};
+            if (newest > 0)
+                params = { since_mtime: newest }
+            $.ajax({
+                url: pollingUrl,
+                data: params,
+                dataType: 'jsonp',
+                jsonpCallback: "jsonpcallback",
+                success: successCallback
+            });
+        };
+        setTimeout(successCallback, 100);
     }
 }
