@@ -168,14 +168,9 @@
           };
       })();
 
-      var stm = mu.Stream({
-        onRsvp: function(rsvp) {
-            Map.plot(rsvp);
-        },
-        filter: function(rsvp) {
-            return rsvp.member.photo != undefined &&
-                rsvp.response === "yes";
-        }
+      var stm = mu.Rsvps(function(rsvp) {
+          if (rsvp.member.photo != undefined && rsvp.response === "yes")
+              Map.plot(rsvp);
       });
 
       $(window).bind("unload", function() {

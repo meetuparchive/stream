@@ -1,71 +1,39 @@
 mu = {};
 
+mu.Rsvps = function(callback) {
+    mu.Stream({
+        url: "http://www.dev.meetup.com:8100/2/rsvps",
+        callback: callback
+    });
+}
+
   /**
    * @param config object that defines the following options
    *  host - websocket host for stream
-   *  onRsvp - function that accepts an rsvp as they are streamed
-   *  onConnect - function called when connected with host
-   *  onDisconnect - function called when disconnected from host; note that
-   *    disconnect may not fire for some time after a network interface is lost.
-   *    The default implementation tries to reconnect.
-   *  filter - function that takes an rsvp and returns true if it should
-   *           be passed to onRsvp
+   *  callback - callback for messages, parameter is one JS object
    *  log    - function that logs a msg
    *  error  - function called when an error occurs
    */
 mu.Stream = function(config) {
-    var host = config.host || "ws://www.dev.meetup.com:8100/2/rsvps",
-      pollingUrl = config.pollingUrl || host.replace(/^ws/, 'http'),
-      onRsvp = config.onRsvp || function(rsvp) { },
-      onConnect = config.onConnect || function() { },
-      onDisconnect = config.onDisconnect || function() {
-        // silently try to reconnect after a second
-        setTimeout(1000, function() {
-          mu.Stream(config);
-        });
-      },
-      filter = config.filter || function(rsvp) {
-        return true;
-      },
+    var url = config.url || "http://stream.meetup.com/2/rsvps",
+      wsUrl = config.wsUrl || url.replace(/^http/, 'ws'),
       log = config.log || function(msg) { },
       error = function(msg) {
          alert(msg);
       },
       handleJson = function(rsvp) {
-        if(typeof onRsvp === "function") {
-            if(typeof filter === "function") {
-                if(filter(rsvp)) {
-                    onRsvp(rsvp);
-                }
-            } else {
-                onRsvp(rsvp);
-            }
+        if(typeof config.callback === "function") {
+            config.callback(rsvp);
         } else {
-            error("onRsvp is not a function");
+            error("callback is not a function");
         }
       };
 
     if(window.WebSocket) {
-        var s = new WebSocket(host);
+        var s = new WebSocket(wsUrl);
         s.onmessage = function(e) {
             log(e);
             handleJson(JSON.parse(e.data))
-        }
-        s.onopen = function(e) {
-            log(e);
-            if(typeof onConnect === "function") {
-                onConnect();
-            } else {
-                error("onConnect is not a function");
-            }
-        }
-        s.onclose = function(e) {
-            log(e);
-            if(typeof onDisconnect === "function") {
-                onDisconnect();
-            } else {
-                error("onDisconnect is not a function");
-            }
         }
     } else {
         var successCallback = function(ary) {
@@ -78,13 +46,15 @@ mu.Stream = function(config) {
             if (newest > 0)
                 params = { since_mtime: newest }
             $.ajax({
-                url: pollingUrl,
+                url: url,
                 data: params,
                 dataType: 'jsonp',
                 jsonpCallback: "jsonpcallback",
                 success: successCallback
             });
         };
-        setTimeout(successCallback, 100);
+        $(window).load(function () {
+            successCallback();
+        });
     }
 }
