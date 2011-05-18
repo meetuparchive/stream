@@ -103,15 +103,9 @@
           })();
 
          Grid.fill();
-
-         var stm = mu.Stream({
-           onRsvp: function(rsvp) {
-             Grid.add(rsvp);
-           },
-           filter: function(rsvp) {
-             return rsvp.member.photo != undefined &&
-                   rsvp.response === "yes";
-           }
+         var stm = mu.Rsvps(function(rsvp) {
+             if (rsvp.member.photo != undefined && rsvp.response === "yes")
+                 Grid.add(rsvp);
          });
 
          var randomPopup = function() {

@@ -1,9 +1,9 @@
 mu = {};
 
-mu.Rsvps = function(callback) {
+mu.Rsvps = function(jsonpCallback) {
     mu.Stream({
         url: "http://www.dev.meetup.com:8100/2/rsvps",
-        callback: callback
+        callback: jsonpCallback
     });
 }
 
@@ -21,9 +21,9 @@ mu.Stream = function(config) {
       error = function(msg) {
          alert(msg);
       },
-      handleJson = function(rsvp) {
+      handleJson = function(json) {
         if(typeof config.callback === "function") {
-            config.callback(rsvp);
+            config.callback(json);
         } else {
             error("callback is not a function");
         }
@@ -38,10 +38,10 @@ mu.Stream = function(config) {
     } else {
         var successCallback = function(ary) {
             var newest = 0;
-            if (ary) for (i in ary) {
-                handleJson(ary[i])
-                newest = Math.max(newest, ary[i].mtime);
-            }
+            if (ary) $.each(ary, function() {
+                handleJson(this);
+                newest = Math.max(newest, this.mtime);
+            });
             var params = {};
             if (newest > 0)
                 params = { since_mtime: newest }
