@@ -6,6 +6,12 @@ mu.Rsvps = function(jsonpCallback) {
         callback: jsonpCallback
     });
 }
+mu.Photos = function(jsonpCallback) {
+    mu.Stream({
+        url: "http://www.dev.meetup.com:8100/2/photos",
+        callback: jsonpCallback
+    });
+}
 
   /**
    * @param config object that defines the following options
