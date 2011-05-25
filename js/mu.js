@@ -49,7 +49,6 @@ mu.Stream = function(config) {
                 url: url,
                 data: params,
                 dataType: 'jsonp',
-                jsonpCallback: "jsonpcallback",
                 success: successCallback
             });
         };
