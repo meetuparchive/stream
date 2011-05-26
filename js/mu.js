@@ -2,13 +2,13 @@ mu = {};
 
 mu.Rsvps = function(jsonpCallback) {
     mu.Stream({
-        url: "http://www.dev.meetup.com:8100/2/rsvps",
+        url: "http://stream.dev.meetup.com:8100/2/rsvps",
         callback: jsonpCallback
     });
 }
 mu.Photos = function(jsonpCallback) {
     mu.Stream({
-        url: "http://www.dev.meetup.com:8100/2/photos",
+        url: "http://stream.dev.meetup.com:8100/2/photos",
         callback: jsonpCallback
     });
 }
