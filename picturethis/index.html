@@ -57,10 +57,12 @@
                  :  [photo.member.name
                  , " with "
                  , photo.photo_album.group.name].join('');
-             $("h1 span").fadeOut("fast").text(what).fadeIn("fast");
-               if(p.find(".meta").is(":visible")) {
-                  p.find(".meta").animate({"bottom":"+=40"});
-               }
+             $("h1 span").fadeOut("fast", function(){
+               $(this).text(what).fadeIn("fast");
+		     });
+             if(p.find(".meta").is(":visible")) {
+               p.find(".meta").animate({"bottom":"+=40"});
+             }
            }
            , function() {
              $("h1 span").empty();

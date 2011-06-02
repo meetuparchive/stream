@@ -17,13 +17,10 @@ body{
   position: absolute;
   opacity:0.85;
   bottom:-35px;
-  right:0;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+  right:5px;
   padding:.25em;
   text-align:right;
-  width:95%;
+  width:90%;
   font-size:90%;
 }
 a, a img { color:transparent; }
