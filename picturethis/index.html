@@ -79,22 +79,25 @@
                  var all = $("#photos").children();
                  if($("#container").height() + 150 < window.innerHeight || all.size() % 5 !== 0) {
                    $("#photos").append(p);
-                   p.fadeIn(3000);
+                   p.fadeIn(1500);
                  } else {
                    var l = all.size()
                    , c = all[Math.floor(Math.random() * l)];
-                   $(c).fadeOut(2000, function() {
+                   $(c).fadeOut(1500, function() {
                      $(this).replaceWith(p);
+					 p.fadeIn(1500);
                    });
-                   p.fadeIn(2000);
                  }
              });
 
 		   } /* else no photo */
 		 };
 
-		 setInterval(poll, 1000);
-		 mu.Photos(function(photo) { queue.push(photo); });
+         var go = function() {
+		   setInterval(poll, 1000);
+         };
+         mu.Photos(function(photo) { queue.push(photo); });
+         setTimeout(go, 2000);
       });
     })(jQuery);
     </script>

@@ -38,7 +38,7 @@ a:hover {
 }
 h1 { font-size:20px; font-weight:normal; text-shadow: #333 2px -1px 2px; }
 h1 span { font-weight:bold; font-size:90%;}
-#container { width:900px; margin:1em auto;}
+#container { width:80%; margin:1em auto;}
 #photos { list-style:none; }
 #photos li {
   display:hidden;
