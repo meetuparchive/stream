@@ -5,13 +5,13 @@ mu.Rsvps = function(jsonpCallback) {
         url: "http://stream.meetup.com/2/rsvps",
         callback: jsonpCallback
     });
-}
+};
 mu.Photos = function(jsonpCallback) {
     mu.Stream({
         url: "http://stream.meetup.com/2/photos",
         callback: jsonpCallback
     });
-}
+};
 
   /**
    * @param config object that defines the following options
@@ -20,7 +20,7 @@ mu.Photos = function(jsonpCallback) {
    *  log    - function that logs a msg
    *  error  - function called when an error occurs
    */
-mu.Stream = function(config) {
+mu.Stream = (function(config) {
     var url = config.url || "http://stream.meetup.com/2/rsvps",
       wsUrl = config.wsUrl || url.replace(/^http/, 'ws'),
       log = config.log || function(msg) { },
@@ -40,7 +40,7 @@ mu.Stream = function(config) {
         s.onmessage = function(e) {
             log(e);
             handleJson(JSON.parse(e.data))
-        }
+        };
     } else {
         var successCallback = function(ary) {
             var newest = 0;
@@ -62,4 +62,4 @@ mu.Stream = function(config) {
             successCallback();
         });
     }
-}
+});
