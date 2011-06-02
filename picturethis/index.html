@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="What does going offline with strangers look like?" />
+    <title>picture this.</title>
+    <link rel="stylesheet" type="text/css" href="picturethis.css"/>
+    <link rel="stylesheet" type="text/css" href="facebox.css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/mu.js"></script>
+    <script type="text/javascript" src="facebox.js"></script>
+  </head>
+  <body>
+    <div id="container" class="clearfix">
+      <h1>Picture this <span>...</span></h1>
+      <p id="big-question">What does going <span>offline</span> with strangers look like?</p>
+      <ul id="photos"></ul>
+    </div>
+    <div id="mup">
+      <a href="http://meetup.com/api" target="_blank">
+        <img alt="Meetup API" src="http://meetup.github.com/stream/map/meetupapi.png"/>
+      </a>
+    </div>
+    <script type="text/javascript">
+    (function($) {
+      $(function() {
+         $("#photos li").live('click', function() {
+           var big = $(this).data().photo_link;
+           $.facebox({image: big});
+         });
+         mu.Photos(function(photo) {
+           if($("#big-question").is(":visible")) {
+             $("#big-question").slideUp("slow");
+           }
+           var p = $([
+             '<li><span><a href="#"><img alt="Meetup Photo" class="pho" src="'
+             , photo.photo_link
+             , '"/></a></span>'
+             , '<div class="meta"><a title="comment" href="http://meetup.com/'
+             , photo.photo_album.group.urlname
+             , '/photos/'
+             , photo.photo_album.photo_album_id
+             , '/'
+             , photo.photo_id
+             , '" target="_blank">'
+             , '<img src="comment.png"/> on Meetup'
+             ,'</a></div></li>'].join('')
+           );
+           p.data(photo);
+           p.hover(function() {
+             $("h1 span").fadeOut("fast").text(
+                [photo.member.name
+                , " with "
+                , photo.photo_album.group.name].join('')
+             ).fadeIn("fast");
+               if(p.find(".meta").is(":visible")) {
+                  p.find(".meta").animate({"bottom":"+=40"});
+               }
+           }
+           , function() {
+             $("h1 span").empty();
+               p.find(".meta").animate({"bottom":"-=40"});
+             });
+             p.hide();
+             p.find("img").load(function(){
+               if($("#container").height() + 180 < screen.height) {
+                 $("#photos").append(p);
+                 p.fadeIn("slow");
+               } else {
+                 var all = $("#photos").children()
+                 , l = all.size()
+                 , c = all[Math.floor(Math.random() * l)];
+                 $(c).fadeOut("slow", function() {
+                   $(this).replaceWith(p);
+                 });
+                 p.fadeIn("slow");
+               }
+             });
+           });
+        });
+      })(jQuery);
+    </script>
+  </body>
+</html>
