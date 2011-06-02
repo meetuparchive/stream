@@ -48,11 +48,16 @@
            );
            p.data(photo);
            p.hover(function() {
-             $("h1 span").fadeOut("fast").text(
-                [photo.member.name
-                , " with "
-                , photo.photo_album.group.name].join('')
-             ).fadeIn("fast");
+             var what = photo.photo_album.event ?
+                 [photo.member.name
+                 , " at "
+                 , photo.photo_album.event.name
+                 , " with "
+                 , photo.photo_album.group.name].join('')
+                 :  [photo.member.name
+                 , " with "
+                 , photo.photo_album.group.name].join('');
+             $("h1 span").fadeOut("fast").text(what).fadeIn("fast");
                if(p.find(".meta").is(":visible")) {
                   p.find(".meta").animate({"bottom":"+=40"});
                }
@@ -61,9 +66,9 @@
              $("h1 span").empty();
                p.find(".meta").animate({"bottom":"-=40"});
              });
-             p.hide();
+             //p.hide();
              p.find("img").load(function(){
-               if($("#container").height() + 180 < screen.height) {
+               if($("#container").height() + 190 < screen.height) {
                  $("#photos").append(p);
                  p.fadeIn("slow");
                } else {
