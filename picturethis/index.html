@@ -28,27 +28,33 @@
            var big = $(this).data().photo_link;
            $.facebox({image: big});
          });
-         mu.Photos(function(photo) {
-           if($("#big-question").is(":visible")) {
-             $("#big-question").slideUp("slow");
-           }
-           var p = $([
-             '<li><span><a href="#"><img alt="Meetup Photo" class="pho" src="'
-             , photo.photo_link
-             , '"/></a></span>'
-             , '<div class="meta"><a title="comment" href="http://meetup.com/'
-             , photo.photo_album.group.urlname
-             , '/photos/'
-             , photo.photo_album.photo_album_id
-             , '/'
-             , photo.photo_id
-             , '" target="_blank">'
-             , '<img src="comment.png"/> on Meetup'
-             ,'</a></div></li>'].join('')
-           );
-           p.data(photo);
-           p.hover(function() {
-             var what = photo.photo_album.event ?
+
+		 var queue = [],
+		 poll = function() {
+		   var photo = queue.shift();
+           if(photo) {
+
+			 if($("#big-question").is(":visible")) { $("#big-question").slideUp("slow"); }
+
+ 			 var p = $([
+               '<li><span><a href="#"><img alt="Meetup Photo" class="pho" src="'
+               , photo.photo_link
+               , '"/></a></span>'
+               , '<div class="meta"><a title="comment" href="http://meetup.com/'
+               , photo.photo_album.group.urlname
+               , '/photos/'
+               , photo.photo_album.photo_album_id
+               , '/'
+               , photo.photo_id
+               , '" target="_blank">'
+               , '<img src="comment.png"/> on Meetup'
+               ,'</a></div></li>'].join('')
+             );
+
+             p.data(photo);
+
+             p.hover(function() {
+               var what = photo.photo_album.event ?
                  [photo.member.name
                  , " at "
                  , photo.photo_album.event.name
@@ -57,34 +63,40 @@
                  :  [photo.member.name
                  , " with "
                  , photo.photo_album.group.name].join('');
-             $("h1 span").fadeOut("fast", function(){
-               $(this).text(what).fadeIn("fast");
-		     });
-             if(p.find(".meta").is(":visible")) {
-               p.find(".meta").animate({"bottom":"+=40"});
+               $("h1 span").fadeOut("fast", function(){
+                 $(this).text(what).fadeIn("fast");
+		       });
+               if(p.find(".meta").is(":visible")) {
+                 p.find(".meta").animate({"bottom":"+=40"});
+               }
              }
-           }
-           , function() {
-             $("h1 span").empty();
+             , function() {
+               $("h1 span").empty();
                p.find(".meta").animate({"bottom":"-=40"});
              });
+
              p.find("img").load(function(){
-               if($("#container").height() + 190 < screen.height) {
-                 $("#photos").append(p);
-                 p.fadeIn("slow");
-               } else {
-                 var all = $("#photos").children()
-                 , l = all.size()
-                 , c = all[Math.floor(Math.random() * l)];
-                 $(c).fadeOut("slow", function() {
-                   $(this).replaceWith(p);
-                 });
-                 p.fadeIn("slow");
-               }
+                 var all = $("#photos").children();
+                 if($("#container").height() + 150 < window.innerHeight || all.size() % 5 !== 0) {
+                   $("#photos").append(p);
+                   p.fadeIn(3000);
+                 } else {
+                   var l = all.size()
+                   , c = all[Math.floor(Math.random() * l)];
+                   $(c).fadeOut(2000, function() {
+                     $(this).replaceWith(p);
+                   });
+                   p.fadeIn(2000);
+                 }
              });
-           });
-        });
-      })(jQuery);
+
+		   } /* else no photo */
+		 };
+
+		 setInterval(poll, 1000);
+		 mu.Photos(function(photo) { queue.push(photo); });
+      });
+    })(jQuery);
     </script>
   </body>
 </html>
