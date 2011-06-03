@@ -45,12 +45,12 @@
         });
         var queue = []
         , poll = function() {
-		   var photo = queue.shift();
+           var photo = queue.shift();
            if(photo) {
 
-			   if($("#big-question").is(":visible")) { $("#big-question").slideUp("slow"); }
+              if($("#big-question").is(":visible")) { $("#big-question").slideUp("slow"); }
 
- 			   var p = $([
+               var p = $([
                  '<li><span><a href="#"><img alt="Meetup Photo" class="pho" src="'
                  , photo.photo_link
                  , '"/></a></span>'
@@ -79,7 +79,7 @@
                   , photo.photo_album.group.name].join('');
                  $("h1 span").fadeOut("fast", function(){
                    $(this).text(what).fadeIn("fast");
-		             });
+		         });
                  var meta = p.find("div.meta");
                  if(meta.is(":visible")) {
                    meta.animate({"bottom":"+=35"});
@@ -96,20 +96,19 @@
                  if(photos.height() + 159 > window.innerHeight) {
                      var perRow = Math.floor(photos.width() / 159);
                      if(all.size() % perRow === 0) { /* recycle */
-                         var l = all.size()
-                         , c = all[Math.floor(Math.random() * l)];
+                         var c = all[Math.floor(Math.random() * all.size())];
                          $(c).fadeOut(1000, function() {
                              $(this).replaceWith(p.fadeIn(500));
                          });
                      } else { /* final row */
-                         $("#photos").append(p.fadeIn(500));
+                         photos.append(p.fadeIn(500));
                      }
                  } else {
-                     $("#photos").append(p.fadeIn(500));
+                     photos.append(p.fadeIn(500));
                  }
              });
-		   } /* else no photo */
-		 };
+           } /* else no photo */
+         };
 
          var go = function() {
            setInterval(poll, 3000);
