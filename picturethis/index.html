@@ -77,9 +77,7 @@
                   : [photo.member.name
                   , " with "
                   , photo.photo_album.group.name].join('');
-                 $("h1 span").fadeOut("fast", function(){
-                   $(this).text(what).fadeIn("fast");
-		         });
+                 $("h1 span").text(what);
                  var meta = p.find("div.meta");
                  if(meta.is(":visible")) {
                    meta.animate({"bottom":"+=35"});
