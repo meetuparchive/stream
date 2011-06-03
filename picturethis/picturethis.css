@@ -38,7 +38,6 @@ body{
   width:90%;
   font-size:90%;
 }
-/*a, a img { color:transparent; }*/
 .meta a img { margin-bottom:-3px; }
 .meta a:link, .meta a:visited {
   text-decoration:none;
@@ -98,16 +97,16 @@ h1 span { font-weight:bold; font-size:90%;}
 #big-question span { font-weight:bold; }
 
 *::selection {
-    background:#E51937;
-    color:#fff;
+  background:#E51937;
+  color:#fff;
 }
 
 *::-moz-selection {
-    background:#E51937;
-    color:#fff;
+  background:#E51937;
+  color:#fff;
 }
 
 *::-webkit-selection {
-    background:#E51937;
-    color:#fff;
+  background:#E51937;
+  color:#fff;
 }
