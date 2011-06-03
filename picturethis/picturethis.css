@@ -25,9 +25,9 @@ body{
   color:#FF297E;
   text-shadow: #ccc 2px -1px 2px;
 }
-/*a:link img, a:visited img {
+a:link img, a:visited img {
   color:transparent;
-}*/
+}
 a:hover {
 
 }
