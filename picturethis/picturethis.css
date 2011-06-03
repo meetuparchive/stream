@@ -7,6 +7,26 @@ body{
   font-family:"Helvetica Neue", Helvetica, arial, sans-serif;
   font-weight:normal;
 }
+#info {
+  background: rgb(200, 54, 54);
+  background: rgba(200, 54, 54, 0.5);
+  position:fixed;
+  bottom:0;
+  right:0;
+  width:100%;
+  text-align:center;
+  text-shadow: #333 1px -1px 1px;
+  padding:.5em;
+}
+#info a:hover, #meta a:hover {
+    text-decoration:underline;
+}
+#info a:link, #info a:visited {
+  text-decoration:none;
+  color:#FF297E;
+  text-shadow: #333 0px 0px 1px;
+  font-weight:bold;
+}
 .meta {
   background:#eee;
   position: absolute;
@@ -23,13 +43,10 @@ body{
 .meta a:link, .meta a:visited {
   text-decoration:none;
   color:#FF297E;
-  text-shadow: #ccc 2px -1px 2px;
+  text-shadow: #ddd 1px -1px 0px;
 }
 a:link img, a:visited img {
   color:transparent;
-}
-a:hover {
-
 }
 h1 { font-size:20px; font-weight:normal; text-shadow: #333 2px -1px 2px; }
 h1 span { font-weight:bold; font-size:90%;}
@@ -66,7 +83,7 @@ h1 span { font-weight:bold; font-size:90%;}
 #mup {
   bottom:0;
   left:0;
-  padding:1em;
+  padding:0 0 2em 1em;
   position:absolute;
 }
 #mup img { display:block; margin:1em 0; }
