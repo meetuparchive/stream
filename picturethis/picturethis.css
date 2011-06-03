@@ -2,11 +2,6 @@
 body{
   background:#242222;
   background:url('bg.png') #242222;
-  /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#242222', endColorstr='#000000'); */
-  /*
-  background-image: url('bg.png'), -webkit-gradient(linear, left top, left bottom, from(#242222), to(#000));
-  background-image: url('bg.png'), -moz-linear-gradient(top,  #242222,  #000);
-  */
   height:100%;
   color:#DBDBDB;
   font-family:"Helvetica Neue", Helvetica, arial, sans-serif;
@@ -23,16 +18,16 @@ body{
   width:90%;
   font-size:90%;
 }
-a, a img { color:transparent; }
+/*a, a img { color:transparent; }*/
 .meta a img { margin-bottom:-3px; }
 .meta a:link, .meta a:visited {
   text-decoration:none;
   color:#FF297E;
   text-shadow: #ccc 2px -1px 2px;
 }
-a:link img, a:visited img {
+/*a:link img, a:visited img {
   color:transparent;
-}
+}*/
 a:hover {
 
 }
@@ -74,6 +69,7 @@ h1 span { font-weight:bold; font-size:90%;}
   padding:1em;
   position:absolute;
 }
+#mup img { display:block; margin:1em 0; }
 .clearfix:after {
   content: ".";
   clear: both;

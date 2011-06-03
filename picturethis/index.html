@@ -14,90 +14,98 @@
     <div id="container" class="clearfix">
       <h1>Picture this <span>...</span></h1>
       <p id="big-question">What does going <span>offline</span> with strangers look like?</p>
-      <ul id="photos"></ul>
+      <ul id="photos" class="clearfix"></ul>
     </div>
+
     <div id="mup">
       <a href="http://meetup.com/api" target="_blank">
         <img alt="Meetup API" src="http://meetup.github.com/stream/map/meetupapi.png"/>
       </a>
+       <a href="http://twitter.com/MeetupAPI" data-link-color="FF297E" data-text-color="ffffff" class="twitter-follow-button">Follow @MeetupAPI</a>
+
+<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
     </div>
     <script type="text/javascript">
     (function($) {
       $(function() {
-         $("#photos li").live('click', function() {
-           var big = $(this).data().photo_link;
-           $.facebox({image: big});
-         });
+        $("#photos li").live('click', function() {
+          var big = $(this).data().photo_link;
+          $.facebox({image: big});
+        });
 
-		 var queue = [],
-		 poll = function() {
-		   var photo = queue.shift();
-           if(photo) {
+		    var queue = []
+		    , poll = function() {
+		        var photo = queue.shift();
+            if(photo) {
 
-			 if($("#big-question").is(":visible")) { $("#big-question").slideUp("slow"); }
+			        if($("#big-question").is(":visible")) { $("#big-question").slideUp("slow"); }
 
- 			 var p = $([
-               '<li><span><a href="#"><img alt="Meetup Photo" class="pho" src="'
-               , photo.photo_link
-               , '"/></a></span>'
-               , '<div class="meta"><a title="comment" href="http://meetup.com/'
-               , photo.photo_album.group.urlname
-               , '/photos/'
-               , photo.photo_album.photo_album_id
-               , '/'
-               , photo.photo_id
-               , '" target="_blank">'
-               , '<img src="comment.png"/> on Meetup'
-               ,'</a></div></li>'].join('')
-             );
+ 			          var p = $([
+                 '<li><span><a href="#"><img alt="Meetup Photo" class="pho" src="'
+                 , photo.photo_link
+                 , '"/></a></span>'
+                 , '<div class="meta"><a title="comment" href="http://meetup.com/'
+                 , photo.photo_album.group.urlname
+                 , '/photos/'
+                 , photo.photo_album.photo_album_id
+                 , '/'
+                 , photo.photo_id
+                 , '" target="_blank">'
+                 , '<img src="comment.png"/> on Meetup'
+                 , '</a></div></li>'].join('')
+               );
 
-             p.data(photo);
+                p.data(photo);
 
-             p.hover(function() {
-               var what = photo.photo_album.event ?
-                 [photo.member.name
-                 , " at "
-                 , photo.photo_album.event.name
-                 , " with "
-                 , photo.photo_album.group.name].join('')
-                 :  [photo.member.name
-                 , " with "
-                 , photo.photo_album.group.name].join('');
-               $("h1 span").fadeOut("fast", function(){
-                 $(this).text(what).fadeIn("fast");
-		       });
-               if(p.find(".meta").is(":visible")) {
-                 p.find(".meta").animate({"bottom":"+=40"});
-               }
-             }
+                p.hover(function() {
+                  var what = photo.photo_album.event ?
+                  [photo.member.name
+                  , " at "
+                  , photo.photo_album.event.name
+                  , " with "
+                  , photo.photo_album.group.name].join('')
+                  : [photo.member.name
+                  , " with "
+                  , photo.photo_album.group.name].join('');
+                 $("h1 span").fadeOut("fast", function(){
+                   $(this).text(what).fadeIn("fast");
+		             });
+                 var meta = p.find("div.meta");
+                 if(meta.is(":visible")) {
+                   meta.animate({"bottom":"+=35"});
+                 }
+              }
              , function() {
                $("h1 span").empty();
-               p.find(".meta").animate({"bottom":"-=40"});
+               p.find("div.meta").animate({"bottom":"-=35"});
              });
 
-             p.find("img").load(function(){
-                 var all = $("#photos").children();
-                 if($("#container").height() + 150 < window.innerHeight || all.size() % 5 !== 0) {
-                   $("#photos").append(p);
-                   p.fadeIn(1500);
+             p.find("img.pho").load(function(){
+                 var photos = $("#photos")
+                 , all = photos.children();
+                 if(photos.height() + 159 > window.innerHeight) {
+                     var perRow = Math.floor(photos.width() / 159);
+                     if(all.size() % perRow === 0) { /* recycle */
+                         var l = all.size()
+                         , c = all[Math.floor(Math.random() * l)];
+                         $(c).fadeOut(1000, function() {
+                             $(this).replaceWith(p.fadeIn(1000));
+                         });
+                     } else { /* final row */
+                         $("#photos").append(p.fadeIn(1000));
+                     }
                  } else {
-                   var l = all.size()
-                   , c = all[Math.floor(Math.random() * l)];
-                   $(c).fadeOut(1500, function() {
-                     $(this).replaceWith(p);
-					 p.fadeIn(1500);
-                   });
+                     $("#photos").append(p.fadeIn(1000));
                  }
              });
-
-		   } /* else no photo */
-		 };
+		       } /* else no photo */
+		     };
 
          var go = function() {
-		   setInterval(poll, 1000);
+		         setInterval(poll, 3000);
          };
          mu.Photos(function(photo) { queue.push(photo); });
-         setTimeout(go, 2000);
+         setTimeout(go, 2500);
       });
     })(jQuery);
     </script>
