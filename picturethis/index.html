@@ -118,7 +118,6 @@
                  , '</div></li>'].join('')
                );
 
-                rltwt();
                 p.data(photo);
 
                 p.hover(function() {
@@ -136,6 +135,7 @@
                  if(meta.is(":visible")) {
                    meta.animate({"bottom":"+=55"}, 400);
                  }
+                 rltwt();
               }
              , function() {
                $("h1 span").empty();
