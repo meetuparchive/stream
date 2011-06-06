@@ -29,14 +29,13 @@
     <div id="mup">
       <a class="muapi" href="http://meetup.com/api" target="_blank">
         <img alt="Meetup API" src="http://meetup.github.com/stream/map/meetupapi.png"/>
-      </a>
-       <a href="http://twitter.com/MeetupAPI" data-link-color="FF297E" data-text-color="ffffff" class="twitter-follow-button">Follow @MeetupAPI</a>
-       <script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
+      </a>       
     </div>
     <div id="info">
       &uarr; This is a <strong>live</strong> display of photos as they are uploaded to public <a href="http://meetup.com"><strong>Meetup</strong></a> groups &uarr;
     </div>
     <div id="big"/>
+    <script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
     <script type="text/javascript">
      if (!Array.prototype.filter){
        Array.prototype.filter = function(fun){
@@ -69,6 +68,18 @@
    }
     (function($) {
       $(function() {
+     
+        var twt = function(url) {
+          return ['<a href="http://twitter.com/share" class="twitter-share-button"'
+                 , ' data-text="Current status:" data-count="horizontal"'
+                 , ' data-url="'
+                 , url
+                 , '" data-related="Meetup"'
+                 , ' data-via="MeetupAPI">Tweet</a>'].join('');
+        }, rltwt = function() {
+          /* needed for dynamic additions of tweet btns to the page. don't worry. it's cached.*/                              
+          $.ajax({url:"http://platform.twitter.com/widgets.js",dataType:"script",cache:true});                           
+        };
         $("#photos li").live('click', function() {
           var p = $(this).data();
           var mulink = ['http://meetup.com'
@@ -77,7 +88,11 @@
           , p.photo_album.photo_album_id
           , p.photo_id].join('/')
           , biglink = p.photo_link;
-          $("#big").html(['<a href="',mulink,'" target="_blank"><img src="', biglink, '"/></a>'].join(''));
+          $("#big").html(['<a href="',mulink,'" target="_blank"><img src="'
+            , biglink, '"/></a><div>'
+            , twt(mulink)
+            , '</div>'].join(''));
+          rltwt();
           $.facebox({div: '#big'});
         });
         var queue = []
@@ -98,10 +113,12 @@
                  , '<div class="meta"><a title="comment" href="'
                  , mulink
                  , '" target="_blank">'
-                 , '<img src="comment.png"/> on Meetup'
-                 , '</a></div></li>'].join('')
+                 , '<img src="comment.png"/> on Meetup</a>'
+                 , twt(mulink)
+                 , '</div></li>'].join('')
                );
 
+                rltwt();
                 p.data(photo);
 
                 p.hover(function() {
@@ -117,12 +134,12 @@
                  $("h1 span").text(what);
                  var meta = p.find("div.meta");
                  if(meta.is(":visible")) {
-                   meta.animate({"bottom":"+=35"}, 200);
+                   meta.animate({"bottom":"+=55"}, 400);
                  }
               }
              , function() {
                $("h1 span").empty();
-               p.find("div.meta").animate({"bottom":"-=35"}, 200);
+               p.find("div.meta").animate({"bottom":"-=55"}, 400);
              });
 
              p.find("img.pho").load(function(){

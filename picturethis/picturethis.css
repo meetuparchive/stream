@@ -32,10 +32,10 @@ body{
   background:#eee;
   position: absolute;
   opacity:0.85;
-  bottom:-35px;
+  bottom:-55px;
   right:5px;
   padding:.25em;
-  text-align:right;
+  text-align:left;
   width:90%;
   font-size:90%;
 }
