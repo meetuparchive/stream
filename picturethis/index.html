@@ -36,12 +36,20 @@
     <div id="info">
       &uarr; This is a <strong>live</strong> display of photos as they are uploaded to public <a href="http://meetup.com"><strong>Meetup</strong></a> groups &uarr;
     </div>
+    <div id="big"/>
     <script type="text/javascript">
     (function($) {
       $(function() {
         $("#photos li").live('click', function() {
-          var big = $(this).data().photo_link;
-          $.facebox({image: big});
+          var p = $(this).data();
+          var mulink = ['http://meetup.com'
+          , p.photo_album.group.urlname
+          , 'photos'
+          , p.photo_album.photo_album_id
+          , p.photo_id].join('/')
+          , biglink = p.photo_link;
+          $("#big").html(['<a href="',mulink,'" target="_blank"><img src="', biglink, '"/></a>'].join(''));
+          $.facebox({div: '#big'});
         });
         var queue = []
         , poll = function() {
@@ -49,17 +57,17 @@
            if(photo) {
 
               if($("#big-question").is(":visible")) { $("#big-question").slideUp("slow"); }
-
-               var p = $([
+               var mulink = ['http://meetup.com'
+               , photo.photo_album.group.urlname
+               , 'photos'
+               , photo.photo_album.photo_album_id
+               , photo.photo_id].join('/')
+               , p = $([
                  '<li><span><a href="#"><img alt="Meetup Photo" class="pho" src="'
                  , photo.photo_link
                  , '"/></a></span>'
-                 , '<div class="meta"><a title="comment" href="http://meetup.com/'
-                 , photo.photo_album.group.urlname
-                 , '/photos/'
-                 , photo.photo_album.photo_album_id
-                 , '/'
-                 , photo.photo_id
+                 , '<div class="meta"><a title="comment" href="'
+                 , mulink
                  , '" target="_blank">'
                  , '<img src="comment.png"/> on Meetup'
                  , '</a></div></li>'].join('')
@@ -80,12 +88,12 @@
                  $("h1 span").text(what);
                  var meta = p.find("div.meta");
                  if(meta.is(":visible")) {
-                   meta.animate({"bottom":"+=35"});
+                   meta.animate({"bottom":"+=35"}, 200);
                  }
               }
              , function() {
                $("h1 span").empty();
-               p.find("div.meta").animate({"bottom":"-=35"});
+               p.find("div.meta").animate({"bottom":"-=35"}, 200);
              });
 
              p.find("img.pho").load(function(){

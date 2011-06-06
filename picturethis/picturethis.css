@@ -7,6 +7,7 @@ body{
   font-family:"Helvetica Neue", Helvetica, arial, sans-serif;
   font-weight:normal;
 }
+#big {display:none;}
 #info {
   background: rgb(200, 54, 54);
   background: rgba(200, 54, 54, 0.5);
