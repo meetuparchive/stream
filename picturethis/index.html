@@ -38,6 +38,35 @@
     </div>
     <div id="big"/>
     <script type="text/javascript">
+     if (!Array.prototype.filter){
+       Array.prototype.filter = function(fun){
+       var len = this.length;
+       if (typeof fun != "function") { throw new TypeError(); }
+       var res = [], thisp = arguments[1];
+       for (var i = 0; i < len; i++) {
+         if (i in this) {
+           var val = this[i];
+           if (fun.call(thisp, val, i, this)) { res.push(val); }
+         }
+       }
+       return res;
+      };
+    }
+
+    if (!Array.prototype.indexOf) {
+      Array.prototype.indexOf = function(elt) {
+       var len = this.length, from = Number(arguments[1]) || 0;
+       from = (from < 0)
+         ? Math.ceil(from)
+         : Math.floor(from);
+       if (from < 0) from += len;
+
+      for (; from < len; from++) {
+        if (from in this && this[from] === elt) return from;
+      }
+      return -1;
+     };
+   }
     (function($) {
       $(function() {
         $("#photos li").live('click', function() {
@@ -118,8 +147,26 @@
 
          var go = function() {
            setInterval(poll, 3000);
+         }
+        , Flagged = ['digcam'
+           ,'entrepreneur'
+           ,'singles'
+           ,'workathome'
+           ,'newlysingle'
+           ,'networkmarket'
+           ,'figuredrawing'
+           ,'couples'
+           ,'modeling'
+           ,'wingman']
+        , inappropriate = function(t){
+           return Flagged.indexOf(t.urlkey) !== -1;
          };
-         mu.Photos(function(photo) { queue.push(photo); });
+         mu.Photos(function(photo) {
+           var topics = photo.photo_album.group.group_topics;
+           if(!topics || topics.filter(inappropriate).length<1) {
+             queue.push(photo);
+           }
+         });
          setTimeout(go, 2500);
       });
     })(jQuery);
