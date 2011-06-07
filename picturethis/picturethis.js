@@ -28,14 +28,27 @@ if (!Array.prototype.indexOf) {
     };
 }
 (function($) {
-    var resizeGrid = function() {
-        var MARGIN = 150, PHOTO_W = 168;
-        var avail = $(window).width() - MARGIN*2;
-        $("#container").width(avail - (avail % PHOTO_W));
+    var SIDE_MARGIN = 150, PHOTO_W = 168, TOP_MARGIN = 58, PHOTO_H = 169;
+    var columns = function () {
+        return Math.floor(($(window).width() - SIDE_MARGIN*2) / PHOTO_W);
     }
+    var resizeGrid = function() {
+        $("#container").width(columns() * PHOTO_W);
+        // remove any photos that go over the limit
+        var all = function() {
+            return $("#photos").children();
+        };
+        while (all().size() > rows() * columns()) {
+            all().last().remove();
+        }
+    }
+    var rows = function() {
+        return Math.floor(($(window).height() - TOP_MARGIN) / PHOTO_H);
+    };
     $(function() {
         resizeGrid();
         $(window).resize(resizeGrid);
+        $(window).resize(rows);
         var twt = function(url) {
             return ['<a href="http://twitter.com/share" class="twitter-share-button"'
                     , ' data-text="Future status:" data-count="horizontal"'
@@ -112,7 +125,7 @@ if (!Array.prototype.indexOf) {
                 p.find("img.pho").load(function(){
                     var photos = $("#photos")
                     , all = photos.children();
-                    if(photos.height() + 159 > window.innerHeight) {
+                    if((all.size() + 1) >= rows() * columns()) {
                         var perRow = Math.floor(photos.width() / 159);
                         if(all.size() % perRow === 0) { /* recycle */
                             var c = all[Math.floor(Math.random() * all.size())];
