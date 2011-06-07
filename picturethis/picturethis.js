@@ -29,18 +29,15 @@ if (!Array.prototype.indexOf) {
 }
 (function($) {
     var SIDE_MARGIN = 150, PHOTO_W = 168, TOP_MARGIN = 58, PHOTO_H = 169;
+    var photos = $("#photos"),
+        all = function() { return photos.children() };
     var columns = function () {
         return Math.floor(($(window).width() - SIDE_MARGIN*2) / PHOTO_W);
     }
     var resizeGrid = function() {
         $("#container").width(columns() * PHOTO_W);
         // remove any photos that go over the limit
-        var all = function() {
-            return $("#photos").children();
-        };
-        while (all().size() > rows() * columns()) {
-            all().last().remove();
-        }
+        all().slice(rows() * columns()).remove();
     }
     var rows = function() {
         return Math.floor(($(window).height() - TOP_MARGIN) / PHOTO_H);
@@ -123,18 +120,12 @@ if (!Array.prototype.indexOf) {
                   }); */
 
                 p.find("img.pho").load(function(){
-                    var photos = $("#photos")
-                    , all = photos.children();
-                    if((all.size() + 1) >= rows() * columns()) {
-                        var perRow = Math.floor(photos.width() / 159);
-                        if(all.size() % perRow === 0) { /* recycle */
-                            var c = all[Math.floor(Math.random() * all.size())];
-                            $(c).fadeOut(1000, function() {
-                                $(this).replaceWith(p.fadeIn(500));
-                            });
-                        } else { /* final row */
-                            photos.append(p.fadeIn(500));
-                        }
+                    var count = all().size();
+                    if(count >= rows() * columns()) {
+                        var c = all()[Math.floor(Math.random() * count)];
+                        $(c).fadeOut(1000, function() {
+                            $(this).replaceWith(p.fadeIn(500));
+                        });
                     } else {
                         photos.append(p.fadeIn(500));
                     }
