@@ -28,7 +28,7 @@ if (!Array.prototype.indexOf) {
     };
 }
 (function($) {
-    var SIDE_MARGIN = 150, PHOTO_W = 168, TOP_MARGIN = 58, PHOTO_H = 169;
+    var SIDE_MARGIN = 150, PHOTO_W = 168, TOP_MARGIN = 70, PHOTO_H = 169;
     var photos = $("#photos"),
         all = function() { return photos.children() };
     var columns = function () {
@@ -40,7 +40,8 @@ if (!Array.prototype.indexOf) {
         all().slice(rows() * columns()).remove();
     }
     var rows = function() {
-        return Math.floor(($(window).height() - TOP_MARGIN) / PHOTO_H);
+        return Math.max(1,
+            Math.floor(($(window).height() - TOP_MARGIN) / PHOTO_H));
     };
     $(function() {
         resizeGrid();
@@ -48,7 +49,7 @@ if (!Array.prototype.indexOf) {
         $(window).resize(rows);
         var twt = function(url) {
             return ['<a href="http://twitter.com/share" class="twitter-share-button"'
-                    , ' data-text="Future status:" data-count="horizontal"'
+                    , ' data-text="Picture this:" data-count="horizontal"'
                     , ' data-url="'
                     , url
                     , '" data-related="Meetup"'
