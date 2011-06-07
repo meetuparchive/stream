@@ -29,21 +29,21 @@ if (!Array.prototype.indexOf) {
 }
 (function($) {
     var SIDE_MARGIN = 150, PHOTO_W = 168, TOP_MARGIN = 70, PHOTO_H = 169;
-    var photos = $("#photos"),
-        all = function() { return photos.children() };
     var columns = function () {
         return Math.floor(($(window).width() - SIDE_MARGIN*2) / PHOTO_W);
-    }
-    var resizeGrid = function() {
-        $("#container").width(columns() * PHOTO_W);
-        // remove any photos that go over the limit
-        all().slice(rows() * columns()).remove();
-    }
+    };
     var rows = function() {
         return Math.max(1,
             Math.floor(($(window).height() - TOP_MARGIN) / PHOTO_H));
     };
-    $(function() {
+   $(function() {
+       var photos = $("#photos")
+       , all = function() { return photos.children() }
+       , resizeGrid = function() {
+        $("#container").width(columns() * PHOTO_W);
+          // remove any photos that go over the limit
+          all().slice(rows() * columns()).remove();
+        };
         resizeGrid();
         $(window).resize(resizeGrid);
         $(window).resize(rows);
@@ -80,7 +80,6 @@ if (!Array.prototype.indexOf) {
         , poll = function() {
             var photo = queue.shift();
             if(photo) {
-
                 if($("#big-question").is(":visible")) { $("#big-question").slideUp("slow"); }
                 var mulink = ['http://meetup.com'
                               , photo.photo_album.group.urlname
@@ -127,7 +126,7 @@ if (!Array.prototype.indexOf) {
                     var count = all().size();
                     if(count >= rows() * columns()) {
                         var c = all()[Math.floor(Math.random() * count)];
-                        $(c).fadeOut(1000, function() {
+                      $(c).fadeOut(1000, function() {
                             $(this).replaceWith(p.fadeIn(500));
                         });
                     } else {
@@ -154,7 +153,7 @@ if (!Array.prototype.indexOf) {
         mu.Photos(function(photo) {
             var topics = photo.photo_album.group.group_topics;
             if(!topics || topics.filter(inappropriate).length<1) {
-                queue.push(photo);
+              queue.push(photo);
             }
         });
         setTimeout(go, 2500);
