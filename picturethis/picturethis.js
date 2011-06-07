@@ -28,8 +28,14 @@ if (!Array.prototype.indexOf) {
     };
 }
 (function($) {
+    var resizeGrid = function() {
+        var MARGIN = 150, PHOTO_W = 168;
+        var avail = $(window).width() - MARGIN*2;
+        $("#container").width(avail - (avail % PHOTO_W));
+    }
     $(function() {
-
+        resizeGrid();
+        $(window).resize(resizeGrid);
         var twt = function(url) {
             return ['<a href="http://twitter.com/share" class="twitter-share-button"'
                     , ' data-text="Future status:" data-count="horizontal"'
