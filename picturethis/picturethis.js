@@ -49,7 +49,7 @@ if (!Array.prototype.indexOf) {
         $(window).resize(rows);
         var twt = function(url) {
             return ['<a href="http://twitter.com/share" class="twitter-share-button"'
-                    , ' data-text="Picture this:" data-count="horizontal"'
+                    , ' data-text="Picture this..." data-count="horizontal"'
                     , ' data-url="'
                     , url
                     , '" data-related="Meetup"'
