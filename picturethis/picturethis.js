@@ -66,11 +66,14 @@ if (!Array.prototype.indexOf) {
                           , p.photo_id].join('/')
             , biglink = p.photo_link;
             $("#big").html(['<a href="',mulink,'" target="_blank"><img src="'
-                            , biglink, '"/></a><div>'
+                            , biglink, '"/>'
+                            , '<img class="smlogo" src="../img/meetup.png"/>'
+                            , '</a><div>'
                             , twt(mulink)
                             , '</div>'].join(''));
             rltwt();
             $.facebox({div: '#big'});
+            return false;
         });
         var queue = []
         , poll = function() {
@@ -141,7 +144,9 @@ if (!Array.prototype.indexOf) {
                      ,'networkmarket'
                      ,'figuredrawing'
                      ,'modeling'
-                     ,'wingman']
+                     ,'wingman',
+                     ,'model-photography'
+                     ,'studio-photography']
         , inappropriate = function(t){
             return Flagged.indexOf(t.urlkey) !== -1;
         };

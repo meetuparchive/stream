@@ -111,3 +111,6 @@ h1 span { font-weight:bold; font-size:90%;}
   background:#E51937;
   color:#fff;
 }
+.popup .smlogo {
+  float: right;
+}
