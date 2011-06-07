@@ -136,14 +136,10 @@ if (!Array.prototype.indexOf) {
         var go = function() {
             setInterval(poll, 3000);
         }
-        , Flagged = ['digcam'
-                     ,'entrepreneur'
-                     ,'singles'
+        , Flagged = ['entrepreneur'
                      ,'workathome'
-                     ,'newlysingle'
                      ,'networkmarket'
                      ,'figuredrawing'
-                     ,'couples'
                      ,'modeling'
                      ,'wingman']
         , inappropriate = function(t){
