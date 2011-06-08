@@ -12,6 +12,7 @@ a:link, a:visited {
 a:hover {
 
 }
+#apilink:link, #apilink:visited { color:transparent; }
 circle.rsvp-no, circle.rsvp-yes { fill:#E51937; }
 circle:hover {
     background:#fff;
