@@ -1,0 +1,101 @@
+*{
+    marign:0;
+    padding:0;
+}
+html {
+    height:100%;
+}
+body{
+    height:100%;
+    color:#333;
+}
+a {
+    text-decoration:none;
+}
+a:link, a:visited {
+    color:#E51937;
+}
+a.disabled {
+    color:#ccc;
+}
+a img {
+    color:transparent;
+}
+#container{
+    height:100%;
+}
+
+#highlight {
+    background:#FCFFC9;
+    height:160px;
+    width:100%;
+    position:fixed;
+    top:45%;
+    opacity:.5;
+}
+
+.reel .t {
+    background:#fff;
+    border:1px solid #eee;
+    position:relative;
+    top:-160px;
+}
+#bg .reel span {
+    display: block;
+    height: 150px;
+    max-height: 150px;
+    overflow: hidden;
+    text-align:center;
+}
+#bg .reel img.pho {
+    max-width: 150px;
+    overflow: hidden;
+    width: 150px;
+}
+#bg, #fg {
+    height:90%;
+    position:absolute;
+}
+#bg {
+    left:20px;
+}
+#fg {
+    left: 430px;
+}
+.reel {
+    overflow:auto;
+    height:100%;
+}
+#bg .reel {
+    width:160px;
+    background:#eee;
+    padding: .25em;
+}
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+#info {
+    background: rgb(71, 61, 64);
+    background: rgba(71, 61, 64, 0.85);
+    position:fixed;
+    bottom:0;
+    right:0;
+    color:#fff;
+    width:100%;
+    text-align:center;
+    text-shadow: #333 1px 0 0;
+    padding:.5em;
+}
+#info a:hover, #meta a:hover {
+    text-decoration:underline;
+}
+#info a:link, #info a:visited {
+  text-decoration:none;
+  color:#FF297E;
+  text-shadow: #333 0px 0px 1px;
+  font-weight:bold;
+}
