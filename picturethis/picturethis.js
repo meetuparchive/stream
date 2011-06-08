@@ -99,8 +99,8 @@ if (!Array.prototype.indexOf) {
                        );
 
                 p.data(photo);
-                /*
-                  p.hover(function() {
+                
+                p.hover(function() {
                   var what = photo.photo_album.event ?
                   [photo.member.name
                   , " at "
@@ -111,16 +111,16 @@ if (!Array.prototype.indexOf) {
                   , " with "
                   , photo.photo_album.group.name].join('');
                   $("h1 span").text(what);
-                  var meta = p.find("div.meta");
+                  /*var meta = p.find("div.meta");
                   if(meta.is(":visible")) {
-                  meta.animate({"bottom":"+=55"}, 400);
+                    meta.animate({"bottom":"+=55"}, 400);
                   }
-                  rltwt();
+                  rltwt();*/
                   }
                   , function() {
                   $("h1 span").empty();
-                  p.find("div.meta").animate({"bottom":"-=55"}, 400);
-                  }); */
+                  //p.find("div.meta").animate({"bottom":"-=55"}, 400);
+                });
 
                 p.find("img.pho").load(function(){
                     var count = all().size();
