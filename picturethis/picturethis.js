@@ -139,14 +139,11 @@ if (!Array.prototype.indexOf) {
         var go = function() {
             setInterval(poll, 3000);
         }
-        , Flagged = ['entrepreneur'
-                     ,'workathome'
-                     ,'networkmarket'
-                     ,'figuredrawing'
-                     ,'modeling'
-                     ,'wingman',
-                     ,'model-photography'
-                     ,'studio-photography']
+       , Flagged = ['naturism',
+                    ,'figuredrawing'
+                    ,'modeling'
+                    ,'model-photography',
+                    ,'studio-photography']
         , inappropriate = function(t){
             return Flagged.indexOf(t.urlkey) !== -1;
         };
