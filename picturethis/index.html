@@ -16,16 +16,7 @@
     </style>
     <![endif]-->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
-    <script type="text/javascript" src="http://static1.dev.meetupstatic.com/script/Meetup/api/mu.js"></script>
-    <script>
-      // dev override, delete later, also fix dev URL above
-      mu.Photos = function(callback) {
-        mu.Stream({
-          url: "http://stream.dev.meetup.com:8100/2/photos",
-          callback: callback
-        });
-      };
-    </script>
+    <script type="text/javascript" src="http://static1.meetupstatic.com/script/Meetup/api/mu.js"></script>
     <script type="text/javascript" src="facebox.js"></script>
     <script type="text/javascript" src="picturethis.js"></script>
   </head>
