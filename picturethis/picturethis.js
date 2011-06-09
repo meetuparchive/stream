@@ -49,7 +49,7 @@ if (!Array.prototype.indexOf) {
         $(window).resize(rows);
         var twt = function(url) {
             return ['<a href="http://twitter.com/share" class="twitter-share-button"'
-                    , ' data-text="Picture this..." data-count="horizontal"'
+                    , ' data-text="Picture this: " data-count="horizontal"'
                     , ' data-url="'
                     , url
                     , '" data-related="Meetup"'
@@ -60,7 +60,7 @@ if (!Array.prototype.indexOf) {
         };
         $("#photos li").live('click', function() {
             var p = $(this).data();
-            var mulink = ['http://meetup.com'
+            var mulink = ['http://www.meetup.com'
                           , p.photo_album.group.urlname
                           , 'photos'
                           , p.photo_album.photo_album_id
