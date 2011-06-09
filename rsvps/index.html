@@ -13,12 +13,12 @@
       <ul id="photos"></ul>
     </div>
     <script type="text/javascript">
-      mu.Rsvps(function(e) {
+      mu.Rsvps(function(rsvp) {
           $("#photos").append( [
               '<li><a target="_blank" href="'
-              , e.event_url,
+              , rsvp.event.event_url,
               ,'">'
-              , e.response
+              , rsvp.response
               , '</a></li>'
           ].join(''));
       });
