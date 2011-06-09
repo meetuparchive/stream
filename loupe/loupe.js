@@ -1,18 +1,18 @@
 (function($){
    var T = {
-       puri: function(p){ 
+       puri: function(p){
            return ['http://meetup.com'
                    , p.photo_album.group.urlname
                    , 'photos'
                    , p.photo_album.photo_album_id
                    , p.photo_id].join('/');
        }
-        , img: function(src, classes, alt){
+       , img: function(src, classes, alt){
             return ['<img src="',src,'" alt="',(alt||'Group Photo'),'" class="',(classes||''),'"/>'].join('');
-        }
-        , li: function(content) {
-            return ['<li>', content,'</li>'].join('');
-        }
+       }
+       , li: function(content) {
+           return ['<li>', content,'</li>'].join('');
+       }
         , div:  function(content, classes) {
             return ['<div class="',(classes||''),'">', content, '</div>'].join('');
         }
@@ -33,7 +33,7 @@
         , 'studio-photography']
     , inappropriate = function(t) {
         return Flagged.indexOf(t.urlkey) !== -1;
-    }, PHOH = 150, TBPAD = 100;
+    }, PHOH = 150, TBPAD = 75;
 
     $(function() {
         var bg = $("#bg .reel")
@@ -52,9 +52,18 @@
             if(photo) {
                 var thumb = $(T.div(T.thumb(photo), "t"));
                 thumb.find("img.pho").load(function() {
+                    var thumbs = bg.find("div.t")
+                    , top = true//thumbs.size() < cells
+                        ? (PHOH*(0|cells/2)) /* middle */
+                        : parseInt($(thumbs[0]).css("top").replace("px","")) - PHOH;
                     bg.prepend(thumb);
-                    thumb.animate({top:(PHOH*(0|cells/2))+""}, 800, function(){
-                       /*done animating, do any nessessary readjusting*/
+
+                    top -= 20;
+                    thumb.animate({top:top}, 800, function(){
+                        /*done animating, do any nessessary readjusting*/
+                        var full = $(T.div(T.full(photo), "f"));
+                       // full.css({top:fg.height()/2+full.height()/2});
+                        fg.html(full);
                     });
                });
             }
