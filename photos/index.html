@@ -6,8 +6,17 @@
     <script type="text/javascript" src="../js/mu.js" ></script>
   </head>
   <body>
-    <script language="JavaScript">
-      mu.Photos(function(photo) { alert(photo.photo_link) });
+    <div id="l">
+      <ul id="photos"></ul>
+    </div>
+    <script type="text/javascript">
+      mu.Photos(function(photo) {
+          $("#photos").append( [
+              '<li><img src="'
+              , photo.photo_link
+              ,'"/></li>'
+          ].join(''));
+      });
     </script>
   </body>
 </html>
