@@ -140,8 +140,9 @@ if (!Array.prototype.indexOf) {
             setInterval(poll, 3000);
         }
        , Flagged = ['naturism',
-                    ,'figuredrawing'
-                    ,'modeling'
+                    ,'figuredrawing',
+                    ,'beautyindustry',
+                    ,'modeling',
                     ,'model-photography',
                     ,'studio-photography']
         , inappropriate = function(t){
