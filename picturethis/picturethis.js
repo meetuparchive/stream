@@ -67,7 +67,7 @@ if (!Array.prototype.indexOf) {
                           , p.photo_id].join('/')
             , biglink = p.photo_link;
             $("#big").html(['<a href="',mulink,'" target="_blank"><img src="'
-                            , biglink, '"/>'
+                            , biglink, '" class="bigphoto" />'
                             , '<img class="smlogo" src="../img/meetup.png"/>'
                             , '</a><div>'
                             , twt(mulink)
@@ -157,5 +157,13 @@ if (!Array.prototype.indexOf) {
             }
         });
         setTimeout(go, 2500);
+    });
+    $(document).bind('afterReveal.facebox', function() {
+        if ($.browser.msie) {
+            $('#facebox .bigphoto').each(function() {
+                $('#facebox .content').width(this.clientWidth + 'px');
+                $('#facebox').css('left', $(window).width() / 2 - ($('#facebox .popup').outerWidth() / 2));
+            });
+        }
     });
 })(jQuery);
