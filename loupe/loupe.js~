@@ -1,49 +1,23 @@
 (function($){
-     var MEETUP = 'http://meetup.com' 
-     , T = {
-         glink: function(p) {
-             return [MEETUP, p.photo_album.group.urlname].join('/');
-         }
-         , plink: function(p){
-           return [T.glink(p)
+   var T = {
+       puri: function(p){
+           return ['http://meetup.com'
+                   , p.photo_album.group.urlname
                    , 'photos'
                    , p.photo_album.photo_album_id
                    , p.photo_id].join('/');
-         }
-         , elink: function(p) {
-             return [T.glink(p), 'events', p.photo_album.event.id].join('/');
-         }
-         , mlink:  function(p, t) {
-             return [T.glink(p), 'members', p.member.member_id].join('/');
-         }
-         , a: function(href, txt) {
-             return ['<a href="',href,'" target="_blank">',txt,'</a>'].join('');
-         }
-         , desc: function(p) {
-             return p.photo_album.event ?
-                  [T.a(T.mlink(p), p.member.name)
-                  , " at "
-                  , T.a(T.elink(p), p.photo_album.event.name)
-                  , " with "
-                  , T.a(T.glink(p), p.photo_album.group.name)].join('')
-                  : [T.a(T.mlink(p), p.member.name)
-                  , " with "
-                  , T.a(T.glink(p), p.photo_album.group.name)].join('');
-         }
-         , img: function(src, classes, alt){
-             return ['<img src="',src,'" alt="',(alt||'Group Photo'),'" class="',(classes||''),'"/>'].join('');
-         }
-         , div:  function(content, classes) {
-             return ['<div class="',(classes||''),'">', content, '</div>'].join('');
-         }
-         , thumb: function(p) {
-             return ['<a href="',T.plink(p),'" target="_blank" class="thumb"><span>',T.img(p.photo_link, "pho"),'</span></a>'].join('');
-         }
-         , full: function(p) {
-            return T.div(['<a href="',T.plink(p)
-                          ,'" class="full" target="_blank"><span>'
-                          ,T.img(p.photo_link, "pho")
-                          ,'</span></a>', T.div(T.desc(p))].join(''));
+       }
+       , img: function(src, classes, alt){
+            return ['<img src="',src,'" alt="',(alt||'Group Photo'),'" class="',(classes||''),'"/>'].join('');
+       }
+        , div:  function(content, classes) {
+            return ['<div class="',(classes||''),'">', content, '</div>'].join('');
+        }
+        , thumb: function(p) {
+             return ['<a href="',T.puri(p),'" target="_blank" class="thumb"><span>',T.img(p.photo_link, "pho"),'</span></a>'].join('');
+        }
+        , full: function(p) {
+             return ['<a href="',T.puri(p),'" class="full" target="_blank"><span>',T.img(p.photo_link, "pho"),'</span></a>'].join('');
         }
     }
     , Flagged = ['entrepreneur'
@@ -89,7 +63,7 @@
         , refocus = function() {
             var focused = focusedPhoto();
             if(focused) {
-                fg.find("div.focused").html(T.div(T.full(focused), "f"));    
+                fg.html(T.div(T.full(focused), "f"));    
             }
         }
         , poll = function() {

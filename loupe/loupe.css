@@ -73,9 +73,14 @@ a img {
     height:100%;
 }
 #fg {
+    padding:0 .5em;
+    background:#eee;
     height:100%;
     left: 330px;
     vertical-align:middle;
+    -moz-box-shadow: 0 0 10px #333;
+    -webkit-box-shadow: 0 0 10px #333;
+    box-shadow: 0 0 10px #333;
 }
 .reel {
     overflow:hidden;
@@ -92,9 +97,6 @@ a img {
     background:#ccc;
     text-align:center;
     position:relative;
-    -moz-box-shadow: 0 0 10px #333;
-    -webkit-box-shadow: 0 0 10px #333;
-    box-shadow: 0 0 10px #333;
 }
 #fg .reel .f {
     width:604px;
