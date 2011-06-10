@@ -9,6 +9,7 @@ body{
     height:100%;
     color:#333;
     font-family:helvetica, arial, sans-serif;
+    background:#fff;
 }
 a {
     text-decoration:none;
@@ -18,6 +19,7 @@ a:link, a:visited {
 }
 a.disabled {
     color:#ccc;
+    cursor:default;
 }
 a img {
   color:transparent;
@@ -45,6 +47,17 @@ a img {
     position:absolute;
     top:50%;
     margin-top:-250px;
+}
+.reel .f .desc {
+    text-align:left;
+    padding:.5em;
+}
+.reel .f a {
+    font-weight:bold;
+}
+.reel .f .time {
+    color:#aaa;
+    display:block;
 }
 .reel .f img {
     max-height:500px;
@@ -98,7 +111,6 @@ a img {
     text-align:center;
     position:relative;
 }
-
 #fg .reel  h1 {
     text-align:left;
     background:#eee;

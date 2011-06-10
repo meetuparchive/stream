@@ -25,10 +25,16 @@
                   , " at "
                   , T.a(T.elink(p), p.photo_album.event.name)
                   , " with "
-                  , T.a(T.glink(p), p.photo_album.group.name)].join('')
+                  , T.a(T.glink(p), p.photo_album.group.name)
+                  , ' <span class="time">uploaded '
+                   , mu.Time.ago(p.ctime)
+                   , '</span>'].join('')
                   : [T.a(T.mlink(p), p.member.name)
                   , " with "
-                  , T.a(T.glink(p), p.photo_album.group.name)].join('');
+                  , T.a(T.glink(p), p.photo_album.group.name)
+                  , ' <span class="time">uploaded '
+                  , mu.Time.ago(p.ctime)
+                  , '</span>'].join('');
          }
          , img: function(src, classes, alt){
              return ['<img src="',src,'" alt="',(alt||'Group Photo'),'" class="',(classes||''),'"/>'].join('');
@@ -43,7 +49,7 @@
             return T.div(['<a href="',T.plink(p)
                           ,'" class="full" target="_blank"><span>'
                           ,T.img(p.photo_link, "pho")
-                          ,'</span></a>', T.div(T.desc(p))].join(''));
+                          ,'</span></a>', T.div(T.desc(p), "desc")].join(''));
         }
     }
     , Flagged = ['entrepreneur'
@@ -56,14 +62,14 @@
         , 'studio-photography']
     , inappropriate = function(t) {
         return Flagged.indexOf(t.urlkey) !== -1;
-    }, PHOH = 150, TBPAD = 75, SPEED = 500;
+    }, PHOH = 150, TBPAD = 75, SPEED = 500, SCROLL_SPEED = 200;
 
     $(function() {
         var bg = $("#bg .reel")
         , fg = $("#fg .reel")
         , hl = $("#highlight")
         , queue = []
-        , data = []
+        , processing = []
         , processing = false
         , calculateCells = function() {
             var c = 0|(($(window).height()-TBPAD) / PHOH);
@@ -98,8 +104,9 @@
             , thumbs = bg.find("div.t")
             , head = thumbs[0]
             , last = thumbs[thumbs.size()-1]
-            , htop = hl.offset().top;
-            if(last && $(last).offset().top > bg.height()) {
+            , htop = hl.offset().top
+            , hbot = htop + PHOH;
+            if(last && ($(last).offset().top) > hbot) {
                 earlier.removeClass("disabled");
             } else {
                 earlier.addClass("disabled");
@@ -124,7 +131,7 @@
                         : 0
                     , htopmin = hl.offset().top
                     , htopmax = htopmin + PHOH;
-                    var top = thumbs.size() === 0 || (
+                    var top = !thumbs[0] || (
                         ftop+offset >= htopmin && ftop+offset <= htopmax
                         )
                         ? (PHOH*(0|cells/2)) - offset
@@ -152,7 +159,7 @@
             e.preventDefault();
             if(!$(this).hasClass("disabled") && !processing) {
                 processing = true;
-                $("#bg .reel div.t").animate({top:"-="+PHOH}, SPEED, function(){
+                $("#bg .reel div.t").animate({top:"-="+PHOH}, SCROLL_SPEED, function(){
                     refocus();
                     updateNav();
                     processing = false;
@@ -164,7 +171,7 @@
             e.preventDefault();
             if(!$(this).hasClass("disabled") && !processing) {
                 processing = true;
-                $("#bg .reel div.t").animate({top:"+="+PHOH}, SPEED, function(){
+                $("#bg .reel div.t").animate({top:"+="+PHOH}, SCROLL_SPEED, function(){
                     refocus();
                     updateNav();
                     processing = false;
@@ -174,7 +181,7 @@
         });
         setInterval(poll, 3000);
         mu.Stream({
-            url: "http://stream.dev.meetup.com:8100/2/photos",
+            url: "http://stream.meetup.com/2/photos",
             callback: function(photo) {
                 var topics = photo.photo_album.group.group_topics;
                 if(!topics || topics.filter(inappropriate).length<1) {
