@@ -98,11 +98,23 @@ a img {
     text-align:center;
     position:relative;
 }
+
+#fg .reel  h1 {
+    text-align:left;
+    background:#eee;
+    padding:.5em;
+}
+#fg .reel h1 img { float:left; }
+#fg .reel h1 span {
+    padding: 0 0 1em .25em;
+    text-shadow: #fffff 0 0 5px;
+}
+
 #fg .reel .f {
     width:604px;
-     -moz-box-shadow: 5px 0 5px #333;
-     -webkit-box-shadow: 0 5px 5px #333;
-     box-shadow: 5px 0 5px #333;
+    -moz-box-shadow: 5px 0 5px #333;
+    -webkit-box-shadow: 0 5px 5px #333;
+    box-shadow: 5px 0 5px #333;
 }
 .clearfix:after {
     content: ".";

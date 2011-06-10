@@ -56,7 +56,7 @@
         , 'studio-photography']
     , inappropriate = function(t) {
         return Flagged.indexOf(t.urlkey) !== -1;
-    }, PHOH = 150, TBPAD = 75;
+    }, PHOH = 150, TBPAD = 75, SPEED = 500;
 
     $(function() {
         var bg = $("#bg .reel")
@@ -64,10 +64,10 @@
         , hl = $("#highlight")
         , queue = []
         , data = []
+        , processing = false
         , calculateCells = function() {
-            /* floor of window.height-padding / photo height */
             var c = 0|(($(window).height()-TBPAD) / PHOH);
-            /* ensure an odd number of cells, so center represents focused */
+            /* ensure an odd number of cells, so center represents a `focused` photo */
             return (c % 2 !== 0) ? c : c - 1;
         }
         , cells = calculateCells()
@@ -92,14 +92,33 @@
                 fg.find("div.focused").html(T.div(T.full(focused), "f"));    
             }
         }
+        , updateNav = function() {
+            var earlier = $("#earlier")
+            , later = $("#later")
+            , thumbs = bg.find("div.t")
+            , head = thumbs[0]
+            , last = thumbs[thumbs.size()-1]
+            , htop = hl.offset().top;
+            if(last && $(last).offset().top > bg.height()) {
+                earlier.removeClass("disabled");
+            } else {
+                earlier.addClass("disabled");
+            }
+            if(head && $(head).offset().top > htop) {
+                later.addClass("disabled");
+            } else if(head) {
+                later.removeClass("disabled");
+            }
+        }
         , poll = function() {
+            if(processing) { return; }
             var photo = queue.shift();
             if(photo) {
-                data.push(photo);
+                processing = true;
                 var thumb = $(T.div(T.thumb(photo), "t")).data(photo);
                 thumb.find("img.pho").load(function() {
                    var thumbs = bg.find("div.t")
-                    , offset = 10
+                    , offset = 15
                     , ftop = thumbs[0]
                         ? parseInt($(thumbs[0]).css("top").replace("px",""))
                         : 0
@@ -108,12 +127,14 @@
                     var top = thumbs.size() === 0 || (
                         ftop+offset >= htopmin && ftop+offset <= htopmax
                         )
-                        ? (PHOH*(0|cells/2)) - offset /* middle (20?) */
+                        ? (PHOH*(0|cells/2)) - offset
                         : ftop - PHOH - 2;
                     thumbs.css({top:top});
                     bg.prepend(thumb)
-                    thumb.animate({top:top}, 800, function(){
-                        refocus();
+                    thumb.animate({top:top}, SPEED, function(){
+                       refocus();
+                       updateNav();
+                       processing = false;
                     });
                });
             }
@@ -123,23 +144,30 @@
             bg.css({'height':cells*PHOH+"px"});
             hl.css({'top':((0|cells/2))*PHOH+"px"});
             refocus();
+            updateNav();
         };
         onResize();
         $(window).resize(onResize);
         $("#earlier").bind('click', function(e){
             e.preventDefault();
-            if(!$(this).hasClass("odisabled")) {            
-                $("#bg .reel div.t").animate({top:"-="+PHOH}, 500, function(){
-                   refocus();
+            if(!$(this).hasClass("disabled") && !processing) {
+                processing = true;
+                $("#bg .reel div.t").animate({top:"-="+PHOH}, SPEED, function(){
+                    refocus();
+                    updateNav();
+                    processing = false;
                 });
             }
             return false;
         });
         $("#later").bind('click', function(e){
             e.preventDefault();
-            if(!$(this).hasClass("odisabled")) {            
-                $("#bg .reel div.t").animate({top:"+="+PHOH}, 500, function(){
-                   refocus();
+            if(!$(this).hasClass("disabled") && !processing) {
+                processing = true;
+                $("#bg .reel div.t").animate({top:"+="+PHOH}, SPEED, function(){
+                    refocus();
+                    updateNav();
+                    processing = false;
                 });
             }
             return false;    
