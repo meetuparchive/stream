@@ -80,7 +80,7 @@ if (!Array.prototype.indexOf) {
         , poll = function() {
             var photo = queue.shift();
             if(photo) {
-                if($("#big-question").is(":visible")) { $("#big-question").slideUp("slow"); }
+                if($("#intro").is(":visible")) { $("#intro").slideUp("slow"); }
                 var mulink = ['http://meetup.com'
                               , photo.photo_album.group.urlname
                               , 'photos'
@@ -137,6 +137,7 @@ if (!Array.prototype.indexOf) {
         };
 
         var go = function() {
+            $("#please-wait").slideDown();
             setInterval(poll, 3000);
         }
        , Flagged = ['naturism',
@@ -148,13 +149,13 @@ if (!Array.prototype.indexOf) {
         , inappropriate = function(t){
             return Flagged.indexOf(t.urlkey) !== -1;
         };
-        mu.Photos(function(photo) {
-            var topics = photo.photo_album.group.group_topics;
-            if(!topics || topics.filter(inappropriate).length<1) {
-              queue.push(photo);
-            }
-        });
-        setTimeout(go, 2500);
+       mu.Photos(function(photo) {
+           var topics = photo.photo_album.group.group_topics;
+           if(!topics || topics.filter(inappropriate).length<1) {
+               queue.push(photo);
+           }
+       });
+       setTimeout(go, 2500);
     });
     $(document).bind('afterReveal.facebox', function() {
         if ($.browser.msie) {

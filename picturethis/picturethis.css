@@ -103,6 +103,7 @@ h1 span { font-weight:bold; font-size:90%;}
 }
 #big-question { font-size: 550%;  text-shadow: #333 2px -1px 2px; }
 #big-question span { font-weight:bold; }
+#please-wait { font-style: italic; display: none; }
 
 *::selection {
   background:#E51937;
