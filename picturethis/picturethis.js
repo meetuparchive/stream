@@ -118,7 +118,7 @@ if (!Array.prototype.indexOf) {
                   rltwt();*/
                   }
                   , function() {
-                  $("h1 span").empty();
+                  $("h1 span").text('...');
                   //p.find("div.meta").animate({"bottom":"-=55"}, 400);
                 });
 
