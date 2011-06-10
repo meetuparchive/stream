@@ -106,6 +106,9 @@ a img {
     width:160px;
     background:#eee;
     padding: 0 .25em;
+    -moz-box-shadow: 0 0 10px #fff;
+    -webkit-box-shadow: 0 0 10px #fff;
+    box-shadow: 0 0 10px #fff;
 }
 #fg .reel {
     padding:2px;

@@ -183,7 +183,7 @@
         $("#later").bind('click', function(e){
             e.preventDefault();
             onDown();
-            return false;    
+            return false;
         });
         $(window).bind('keydown', function(e){
            switch(window.event ? e.window.keyCode : e.which) {
