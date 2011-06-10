@@ -155,9 +155,8 @@
         };
         onResize();
         $(window).resize(onResize);
-        $("#earlier").bind('click', function(e){
-            e.preventDefault();
-            if(!$(this).hasClass("disabled") && !processing) {
+        var onUp = function() {
+            if(!$("#earlier").hasClass("disabled") && !processing) {
                 processing = true;
                 $("#bg .reel div.t").animate({top:"-="+PHOH}, SCROLL_SPEED, function(){
                     refocus();
@@ -165,11 +164,9 @@
                     processing = false;
                 });
             }
-            return false;
-        });
-        $("#later").bind('click', function(e){
-            e.preventDefault();
-            if(!$(this).hasClass("disabled") && !processing) {
+        }
+        , onDown = function() {
+            if(!$("#later").hasClass("disabled") && !processing) {
                 processing = true;
                 $("#bg .reel div.t").animate({top:"+="+PHOH}, SCROLL_SPEED, function(){
                     refocus();
@@ -177,7 +174,22 @@
                     processing = false;
                 });
             }
+        };
+        $("#earlier").bind('click', function(e){
+            e.preventDefault();
+            onUp();
+            return false;
+        });
+        $("#later").bind('click', function(e){
+            e.preventDefault();
+            onDown();
             return false;    
+        });
+        $(window).bind('keydown', function(e){
+           switch(window.event ? e.window.keyCode : e.which) {
+           case 38/*arrow up*/: onDown(); break;
+           case 40/*arrow down*/: onUp(); break;
+           }
         });
         setInterval(poll, 3000);
         mu.Stream({
