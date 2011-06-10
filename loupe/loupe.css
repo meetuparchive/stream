@@ -37,7 +37,10 @@ a img {
 
 .reel .t, .reel .f {
     background:#fff;
-    border:1px solid #eee;
+}
+
+.reel .t {
+    border-bottom:1px dashed #aaa;
 }
 .reel .t {
     position:relative;
