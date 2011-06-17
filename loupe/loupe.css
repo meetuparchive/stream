@@ -30,7 +30,7 @@ a img {
 
 #highlight {
   background:#FCFFC9;
-  height:160px;
+  height:154px;
   width:100%;
   position:fixed;
 }
@@ -54,6 +54,11 @@ a img {
 .reel .f .desc {
     text-align:left;
     padding:.5em;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    background:#eee;
+    margin:.5em;
 }
 .reel .f a {
     font-weight:bold;
@@ -104,6 +109,7 @@ a img {
 }
 #bg .reel {
     width:160px;
+    margin-top:20px;
     background:#eee;
     padding: 0 .25em;
     -moz-box-shadow: 0 0 10px #fff;
@@ -126,12 +132,14 @@ a img {
 #fg .reel h1 span {
     padding: 0 0 1em .25em;
     text-shadow: #fffff 0 0 5px;
+    font-family: 'La Belle Aurore', helvetica, arial, sans-serif;
+    font-size:32px;
 }
 
 #fg .reel .f {
     width:604px;
-    -moz-box-shadow: 5px 0 5px #333;
-    -webkit-box-shadow: 0 5px 5px #333;
+    -moz-box-shadow: 0 0 5px #333;
+    -webkit-box-shadow: 0 0 5px #333;
     box-shadow: 5px 0 5px #333;
 }
 .clearfix:after {

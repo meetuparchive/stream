@@ -26,9 +26,9 @@
                   , T.a(T.elink(p), p.photo_album.event.name)
                   , " with "
                   , T.a(T.glink(p), p.photo_album.group.name)
-                  , ' <span class="time">uploaded '
+                  , ' <span class="time">uploaded <strong>'
                    , mu.Time.ago(p.ctime)
-                   , '</span>'].join('')
+                   , '</strong></span>'].join('')
                   : [T.a(T.mlink(p), p.member.name)
                   , " with "
                   , T.a(T.glink(p), p.photo_album.group.name)
@@ -47,9 +47,9 @@
          }
          , full: function(p) {
             return T.div(['<a href="',T.plink(p)
-                          ,'" class="full" target="_blank"><span>'
-                          ,T.img(p.photo_link, "pho")
-                          ,'</span></a>', T.div(T.desc(p), "desc")].join(''));
+                ,'" class="full" target="_blank"><span>'
+                ,T.img(p.photo_link, "pho")
+                ,'</span></a>', T.div(T.desc(p), "desc")].join(''));
         }
     }
     , Flagged = ['entrepreneur'
@@ -62,7 +62,7 @@
         , 'studio-photography']
     , inappropriate = function(t) {
         return Flagged.indexOf(t.urlkey) !== -1;
-    }, PHOH = 150, TBPAD = 75, SPEED = 500, SCROLL_SPEED = 200;
+    }, PHOH = 154, TBPAD = 75, SPEED = 500, SCROLL_SPEED = 200;
 
     $(function() {
         var bg = $("#bg .reel")
@@ -125,9 +125,9 @@
                 var thumb = $(T.div(T.thumb(photo), "t")).data(photo);
                 thumb.find("img.pho").load(function() {
                    var thumbs = bg.find("div.t")
-                    , offset = 15
+                    , offset = 0
                     , ftop = thumbs[0]
-                        ? parseInt($(thumbs[0]).css("top").replace("px",""))
+                        ? parseInt($(thumbs[0]).offset().top)
                         : 0
                     , htopmin = hl.offset().top
                     , htopmax = htopmin + PHOH;
@@ -136,9 +136,12 @@
                         )
                         ? (PHOH*(0|cells/2)) - offset
                         : ftop - PHOH - 2;
+                    console.log(["ftop:", ftop,", htopmin:", htopmin,", htopmax:",htopmax,", top:",top ].join(''));
                     thumbs.css({top:top});
-                    bg.prepend(thumb)
-                    thumb.animate({top:top}, SPEED, function(){
+                    bg.prepend(thumb);
+                    thumb.animate({top:top},
+                      SPEED,
+                      function(){
                        refocus();
                        updateNav();
                        processing = false;
@@ -149,7 +152,8 @@
         , onResize = function() {
             cells = calculateCells();
             bg.css({'height':cells*PHOH+"px"});
-            hl.css({'top':((0|cells/2))*PHOH+"px"});
+            hl.css({'top':(( (0|cells/2) * PHOH)+40)+"px"});
+            //hl.css({'top':40});
             refocus();
             updateNav();
         };
@@ -158,7 +162,7 @@
         var onUp = function() {
             if(!$("#earlier").hasClass("disabled") && !processing) {
                 processing = true;
-                $("#bg .reel div.t").animate({top:"-="+PHOH}, SCROLL_SPEED, function(){
+                $("#bg .reel div.t").animate({top:"-="+(PHOH)}, SCROLL_SPEED, function(){
                     refocus();
                     updateNav();
                     processing = false;
@@ -193,7 +197,7 @@
         });
         setInterval(poll, 3000);
         mu.Stream({
-            url: "http://stream.meetup.com/2/photos",
+            url: "http://stream.dev.meetup.com:8100/2/photos",
             callback: function(photo) {
                 var topics = photo.photo_album.group.group_topics;
                 if(!topics || topics.filter(inappropriate).length<1) {
