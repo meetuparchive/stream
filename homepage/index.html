@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Streaming MEMEs</title>
+    <link rel="stylesheet" type="text/css" href="../css/jquery.bubblepopup.v2.3.1.css" />
+    <link rel="stylesheet" type="text/css" href="map.css" />
+    <!--[if IE]>
+    <style type="text/css">
+      #rsvp-detail {
+        background:transparent;
+        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#33333370,endColorstr=#33333370);
+        zoom: 1;
+      }
+    </style>
+     <![endif]-->
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="polymaps.min.js"></script>
+  </head>
+  <body>
+    <div id="frame">
+  	<div id="full">
+	    <div id="map">
+	      <div id="plug">
+	        <a id="apilink" target="_blank" href="http://www.meetup.com/meetup_api/docs/stream/2/rsvps/#websockets"><img alt="Powered by Meetup API" src ="../img/meetupapi.png" /></a> 
+	      </div>
+	          	<div id="grid">
+	    	<ul id="people" class="clearfix"></ul>
+    	</div>
+	    </div>
+    	<br>
+	    <script type="text/javascript" src="jquery.svg.min.js"></script>
+	    <script type="text/javascript" src="jquery.svgdom.min.js"></script>
+	    <script type="text/javascript" src="jquery.svganim.min.js"></script>
+	    <script type="text/javascript" src="../js/dates.js"></script>
+	    <script type="text/javascript" src="http://static1.meetupstatic.com/script/Meetup/api/mu.js" ></script>
+	    <script type="text/javascript" src="../js/jquery.bubblepopup.v2.3.1.min.js"></script>
+	    <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+	    <script type="text/javascript" src="../js/mu.time.js"></script>
+	    <script type="text/javascript" src="map.js"></script>
+	    <script type="text/javascript" src="../js/color.js"></script>
+    	<script type="text/javascript" src="../js/arrays.js"></script>
+
+    	<script type="text/javascript">
+    	  	$(function() {
+    	  		var slotCount = 0;
+    	     	var p =  $("#people"), colMax = 0, rowMax = 0;;
+          		var Grid = (function() {
+            	var picWidth = 37,
+              		picHeight = 37,
+              		slots = [],
+              		full = false,
+              		dimensions = function() {
+                		return {
+                    width: $("#grid").width(),
+                    height: $("#grid").height()
+                }
+              },
+              nextSlot = function() {
+                  var next = slots.shift();
+                  slots.push(next);
+                  return $(['#r-', next[0], '-c-', next[1]].join(''));
+              };
+
+            return {
+                randomSlot: function() {
+                    return slots[Math.floor(Math.random() * slots.length)];
+                },
+                lineSlot: function() {
+                	var temp = slotCount
+                	slotCount = (slotCount + 1) % slots.length;
+                	return slots[temp];
+                	
+                },
+                fill: function() {
+                    p.empty();
+                    slots = [];
+                    var d = dimensions(),
+                    rows =  Math.floor(d.width / picWidth);
+                    cols = Math.floor(d.height / picHeight);
+                    for(var r = 0; r < rows; r++) {
+                        for(var c = 0; c < cols; c++) {
+                            var li =$(['<li id="r-', r, '-c-', c, '"></li>'].join(''));
+                            slots.push([r,c]);
+                            p.append(li);
+                        }
+                    }
+                    slots.shuffle();
+                },
+                add: function(rsvp) {
+                    var inject = function (el) {
+                        var content = ['<a target="_blank" href="'+rsvp.event.event_url+'"><span><img src="',rsvp.member.photo,'"/></span></a>'].join(''),
+                          msg = ['<img class-"member-photo" src="',rsvp.member.photo,
+                             '"/><div class="rsvp-info"><span class="member">', rsvp.member.member_name,
+                             '</span><br/> just rsvp\'d ', rsvp.response,
+                             ' to<br/> <span class="event">', rsvp.event.event_name,
+                                 '</span><br/> with <span class="group">', rsvp.group.group_name, '<span></div>'].join(''),
+                          bubbleOpts = {
+                            themePath: '../images/jquerybubblepopup-theme',
+                            themeName: 'all-black',
+                            innerHtml: msg,
+                            afterHidden: function() {
+                                el.RemoveBubblePopup();
+                            }
+                          };
+
+                        /* use these to calc best position/align of popup */
+                        var coords = el.attr("id").split("-"), row = parseInt(coords[1]), col = parseInt(coords[3]);
+
+                        var lon = rsvp.group.group_lon;
+                        //if(lon < 0) {
+                            // see andrew on explaination
+                            lon = (((lon + 180) - 60) / 45) * 240;
+                        //}
+                        var h = lon, s = 100, v = 100;
+
+                        var rgb = hsvToRgb(h, s, v);
+                        el.data("msg", msg)
+                          .addClass("present").animate({"opacity":0.75}, 500)
+                          .append(content)
+                          .hover(function() {
+                            el.animate({"opacity":1.0}, 500);
+                            if(!el.HasBubblePopup()){
+                                el.CreateBubblePopup(bubbleOpts);
+                            }
+                          }, function() {
+                              el.animate({"opacity":0.75}, 500);
+                          });
+                    }
+                    inject(nextSlot()
+                      .empty()
+                      .removeClass("present")
+                      .css({"opacity":0})
+                      .animate({"opacity":1.0}, 400));
+                }
+             };
+          })();
+
+         Grid.fill();
+         var stm = mu.Rsvps(function(rsvp) {
+             if (rsvp.member.photo != undefined && rsvp.response === "yes")
+                 Grid.add(rsvp);
+         });
+
+         var randomPopup = function() {
+             var slot = Grid.lineSlot(),
+             el = $(['#r-', slot[0], '-c-', slot[1]].join(''));
+             if(el.children().length > 0 && el.data()['msg'] != undefined) {
+                 var msg = el.data()['msg'];
+                 bubbleOpts = {
+                     themePath: '../images/jquerybubblepopup-theme',
+                     themeName: 'all-black',
+                     innerHtml: msg,
+                    /* tail: {
+                         align:'left'
+                     },*/
+                     afterHidden: function() {
+                         el.RemoveBubblePopup();
+                     },
+                     afterShown: function() {
+                         var h = function() {
+                             el.HideBubblePopup();
+                         };
+                         setTimeout(h, 3000);
+                     }
+                 };
+                 if(!el.HasBubblePopup()) {
+                     el.CreateBubblePopup(bubbleOpts);
+                 }
+                 el.ShowBubblePopup();
+             }
+         };
+
+         //setInterval(randomPopup, 7000);
+
+      });
+    </script>
+	</div>
+	</div>
+  </body>
+</html>
