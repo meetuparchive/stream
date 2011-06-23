@@ -1,9 +1,15 @@
+#bg {
+	background-color: #EEE;
+}
+
 #frame {
-	background: #999999;
+	top:60px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
 	position: relative;
 	margin: auto;
 	height: 700px;
-	width: 1000px;
+	width: 970px;
 	padding: 20px;
 }
 
@@ -15,10 +21,45 @@
 	padding: 20px;
 }
 
-#grid {
+#register {
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	background-color: #FFF;
+	filter:alpha(opacity=70);
+	-moz-opacity:0.7;
+	opacity: 0.7;
+	padding: 15px;
 	position: absolute;
-	bottom: 0px;
-	left: 0px;
+	bottom: 40px;
+	right: 10px;
+}
+
+#meetupFind {
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	background-color: #FFF;
+	filter:alpha(opacity=70);
+	-moz-opacity:0.7;
+	opacity: 0.7;
+	padding: 15px;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+#header {
+color: #C60C30;
+}
+#subheader{
+	font-size:12px;
+}
+
+#grid {
+	font-family: "Helvetica";
+	color: #666;
+	font-size: 12px;
+	position: absolute;
+	bottom: 30px;
+	left: 10px;
 	overflow: hidden;
 	width: 35%;
 	height: 45%;
@@ -105,18 +146,18 @@ circle:hover {
   list-style:none;
   overflow:hidden;
   display:block;
-  float:left; height: 30px; margin:2px; width:30px;
+  float:left; height: 30px; margin:0px; width:30px;
   background:#585355;
-  border:2px solid #585355;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+  border:0px solid #585355;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
   text-align: center;
 }
 
 #people span { display:block; overflow:hidden; max-width:50px; width:50px; }
 
-#people span img { max-height:75px; overflow:hidden; height:75px; }
+#people span img { max-height:50px; overflow:hidden; height:50px; }
 
 #people li.present {
 

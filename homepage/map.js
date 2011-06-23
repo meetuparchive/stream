@@ -64,15 +64,14 @@ var Map = (function() {
     map = po.map()
         .container(document.getElementById("map")
                    .appendChild(po.svg("svg")))
-        .center({lat: 27, lon: -59})
+        .center({lat: 22, lon: -46})
         .zoom(3)
         .add(po.interact())
         .add(po.image()
             .url(po.url("http://{S}tile.cloudmade.com"
-                + "/dbe72e38b0404199b0d8cfdaac26999b" // get yr own key pls @ http://cloudmade.com/register
+                + "/4f160badaf4d4b899408c4104fd05715" // get yr own key pls @ http://cloudmade.com/register
                 + "/30389/256/{Z}/{X}/{Y}.png")
-                 .hosts(["a.", "b.", "c.", ""])))
-        .add(po.compass().pan("none"));
+                 .hosts(["a.", "b.", "c.", ""])));
 
     var load = function(e) {
       for (var i = 0, len = e.features.length; i < len; i++) {

@@ -4,6 +4,7 @@
     <title>Streaming MEMEs</title>
     <link rel="stylesheet" type="text/css" href="../css/jquery.bubblepopup.v2.3.1.css" />
     <link rel="stylesheet" type="text/css" href="map.css" />
+     <link rel="stylesheet" type="text/css" href="meetup.css" />
     <!--[if IE]>
     <style type="text/css">
       #rsvp-detail {
@@ -16,17 +17,118 @@
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="polymaps.min.js"></script>
   </head>
-  <body>
+  <body id="bg">
+  <div id="C_header">
+<div id="C_headerBody">
+<div id="C_logo">
+
+<a href="http://www.meetup.com/">
+<img alt="Meetup" src="http://img1.meetupstatic.com/892670376411449149876/img/header/logo.png">
+</a>
+
+</div>
+<div id="C_userNav">
+
+<ul id="C_userLinks">
+
+<li class="C_userNavItem C_userNavItem_less"><a href="http://www.meetup.com/whats_new/">What's new</a></li>
+<li class="C_userNavItem C_userNavItem_less">
+<a href="http://www.meetup.com/help/">Help</a>
+</li>
+<li class="C_userNavItem"><a class="J_loginLink J_onClick headerLogin" href="https://secure.meetup.com/login/">Log in</a></li>
+<li class="C_userNavItem"><a href="https://secure.meetup.com/register/" class="omnCamp omnrg_signup">Sign up</a></li>
+
+</ul>
+
+</div>
+
+<div id="C_globalNav">
+
+<div id="C_tabs">
+
+<a href="http://www.meetup.com/find/">
+<span class="C_tabContent">
+<span class="C_topBig">
+Find
+</span>
+<span class="C_topSm">
+a Meetup Group
+</span>
+</span>
+</a>
+
+
+<a href="http://www.meetup.com/create/" class="omnCamp omnic_sn1" id="tabs_start">
+
+<span class="C_startContainer C_tabContent">
+<span class="C_topBig">
+Start</span>
+<span class="C_topSm">
+a Meetup Group
+</span>
+</span>
+</a>
+
+<a href="http://www.meetup.com/sponsorships/" class="omnCamp omnrg_perksheader last" id="tabs_sponsor">
+<span class="C_startContainer C_tabContent">
+<span class="C_topBig">
+Sponsor</span>
+<span class="C_topSm">
+Meetup Groups
+</span>
+</span>
+</a>
+</div>
+</div>
+
+
+
+<form action="http://www.meetup.com/find/" method="get" id="C_globalSearch">
+<input type="text" maxlength="100" class="D_topicSearch" id="C_globalSearchInput" autocomplete="off" name="keywords"><div class="D_submitInline"><input type="image" id="C_globalSearchBtn" src="http://img2.meetupstatic.com/0460894421244282745036/img/header/search_20.png"></div>
+<input type="submit" style="display:none"> 
+
+<input type="hidden" value="us" name="country">
+<input type="hidden" value="11211" name="zip">
+
+<input type="hidden" value="search" name="op">
+<input type="hidden" value="topnav" name="searchfrom">
+<input type="hidden" value="us" name="jsCountry">
+</form>
+</div>
+</div>
     <div id="frame">
   	<div id="full">
 	    <div id="map">
-	      <div id="plug">
-	        <a id="apilink" target="_blank" href="http://www.meetup.com/meetup_api/docs/stream/2/rsvps/#websockets"><img alt="Powered by Meetup API" src ="../img/meetupapi.png" /></a> 
-	      </div>
-	          	<div id="grid">
-	    	<ul id="people" class="clearfix"></ul>
-    	</div>
+	    	    <form id="findMeetup">
+	    	<div id="meetupFind">
+	    		<span id="header"><b>Find a Meetup Group near you</b></span>
+	    		<hr>
+    			<span id="subheader">
+					<p>Topic or interest: <input type="search" name="topic" /></p>
+	    			<p>City or ZIP/postal code: <input type="search" name="loc" /></p>
+	    			<input type="submit" value="Search" name="search" />
+	    		</span>
+			</div>
+		</form>
+			<form id="regMeetup">
+	    <div id="register">
+	    	<span id="header"><b>Sign up for Meetup</span>
+	    	<hr>
+	    	<span id="subheader">
+	    		<p>Real Name: <input type="text" name="name" /></p>
+	    		<p>Email: <input type="text" name="email" /></p>
+	    		<p>Password: <input type="password" name="pass" /></p>
+	    		<input type="submit" value="Sign up" name="signup" />
+	    	</span>
 	    </div>
+	</form>
+
+	          	<div id="grid">
+	        Who's meeting up right now?
+	    	<ul id="people" class="clearfix"></ul>
+    			</div>
+	    </div>
+
     	<br>
 	    <script type="text/javascript" src="jquery.svg.min.js"></script>
 	    <script type="text/javascript" src="jquery.svgdom.min.js"></script>
