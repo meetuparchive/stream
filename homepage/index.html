@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Streaming MEMEs</title>
+    <title>Meetup</title>
     <link rel="stylesheet" type="text/css" href="../css/jquery.bubblepopup.v2.3.1.css" />
     <link rel="stylesheet" type="text/css" href="map.css" />
      <link rel="stylesheet" type="text/css" href="meetup.css" />
@@ -99,17 +99,17 @@ Meetup Groups
     <div id="frame">
   	<div id="full">
 	    <div id="map">
-	    	    <form id="findMeetup">
+	    	    
 	    	<div id="meetupFind">
 	    		<span id="header"><b>Find a Meetup Group near you</b></span>
 	    		<hr>
     			<span id="subheader">
-					<p>Topic or interest: <input type="search" name="topic" /></p>
-	    			<p>City or ZIP/postal code: <input type="search" name="loc" /></p>
-	    			<input type="submit" value="Search" name="search" />
+					<p>Topic or interest: <input type="search" value="Boxing" name="topic" id="query" /></p>
+	    			<p>City or ZIP/postal code: <input type="search" value="Brooklyn, NY, USA" name="loc" /></p>
+	    			<input type="submit" value="Search" name="search" id="search"/>
 	    		</span>
 			</div>
-		</form>
+		
 			<form id="regMeetup">
 	    <div id="register">
 	    	<span id="header"><b>Sign up for Meetup</span>
@@ -127,7 +127,44 @@ Meetup Groups
 	        Who's meeting up right now?
 	    	<ul id="people" class="clearfix"></ul>
     			</div>
+    			
 	    </div>
+<div id="target"></div>
+<script type="text/javascript">
+$('#search').click(function() {
+	var url = 'http://api.meetup.com/topics.json?callback=?&page=1&key=2965376f4a27313c71736b6a27c7024&search=';
+	var url2= 'http://api.meetup.com/groups.json?callback=?&page=3&key=2965376f4a27313c71736b6a27c7024&order=members&country=us&state=ny&city=brooklyn&topic=';
+	var query = $('#query').val();
+	$.getJSON(url+query, function(data) {
+	if (data.status && data.status.match(/^200/) == null) {
+        alert(data.status + ": " + data.details);
+      } else {
+      
+      	var topicHit = data.results[0].urlkey;
+      	$.getJSON(url2+topicHit, function(data) {
+      		if (data.status && data.status.match(/^200/) == null) {
+        		alert(data.status + ": " + data.details);
+      		} else {
+      			var groupHit = data.results[0];
+      			$('#target').empty()
+      			$('#target').append("<img src="+ groupHit.photo_url+" />");
+      			$('#target').append("<span id=header>"+groupHit.name+"</span><br>");
+      			$('#target').append("<span id=subheader>"+groupHit.description+"</span>");
+      		}
+      	});
+      	//$('#target').append(topicHit);
+      	/*
+        $.each(data.results, function(i, ev) {
+
+		output = ev.name;
+	  $('#target').append(output);
+        });
+        */
+      }
+		 
+	});
+});
+</script>
 
     	<br>
 	    <script type="text/javascript" src="jquery.svg.min.js"></script>
@@ -147,8 +184,8 @@ Meetup Groups
     	  		var slotCount = 0;
     	     	var p =  $("#people"), colMax = 0, rowMax = 0;;
           		var Grid = (function() {
-            	var picWidth = 37,
-              		picHeight = 37,
+            	var picWidth = 32,
+              		picHeight = 32,
               		slots = [],
               		full = false,
               		dimensions = function() {
@@ -186,7 +223,7 @@ Meetup Groups
                             p.append(li);
                         }
                     }
-                    slots.shuffle();
+                    //slots.shuffle();
                 },
                 add: function(rsvp) {
                     var inject = function (el) {

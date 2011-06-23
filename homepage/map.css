@@ -13,6 +13,35 @@
 	padding: 20px;
 }
 
+#target {
+	position: absolute; 
+	bottom: 0px; 
+	left: 0px;
+	color: #AAA;
+	filter:alpha(opacity=70);
+	-moz-opacity:0.7;
+	opacity: 0.7;
+	background-color: #000;
+	height: 200px;
+	width: 75%;
+	margin: auto;
+	padding: 10px;
+}
+
+#target_photo {
+	float: left;
+	position: relative;
+	left: 0px;
+}
+#target_text {
+	text-align: center;
+	float: right;
+	color: #123;
+	position: relative;
+	right: 0px;
+	
+}
+
 #full {
 	position: relative;
 	margin: auto;
@@ -61,7 +90,7 @@ color: #C60C30;
 	bottom: 30px;
 	left: 10px;
 	overflow: hidden;
-	width: 35%;
+	width: 25%;
 	height: 45%;
 
 }
@@ -147,15 +176,13 @@ circle:hover {
   overflow:hidden;
   display:block;
   float:left; height: 30px; margin:0px; width:30px;
-  background:#585355;
-  border:0px solid #585355;
+  /*background:#585355;*/
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   border-radius: 0px;
-  text-align: center;
 }
 
-#people span { display:block; overflow:hidden; max-width:50px; width:50px; }
+#people span { display:block; overflow:hidden; max-width:30px; width:30px; }
 
 #people span img { max-height:50px; overflow:hidden; height:50px; }
 
