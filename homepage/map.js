@@ -64,7 +64,7 @@ var Map = (function() {
     map = po.map()
         .container(document.getElementById("map")
                    .appendChild(po.svg("svg")))
-        .center({lat: 22, lon: -46})
+        .center({lat: 35, lon: -50})
         .zoom(3)
         .add(po.interact())
         .add(po.image()

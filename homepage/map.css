@@ -2,44 +2,113 @@
 	background-color: #EEE;
 }
 
+#today {
+	display:none;
+	font-size: 20px;
+	position: absolute;
+	right:140px;
+	top: 100px;
+	
+		filter:alpha(opacity=60);
+	-moz-opacity:0.6;
+	opacity: 0.6;
+}
+
+#meetup-fluff {
+	position: absolute;
+	margin: auto;
+	top: 450px;
+	right: 165px;
+}
+
 #frame {
 	top:60px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
 	position: relative;
 	margin: auto;
-	height: 700px;
+	height: 600px;
 	width: 970px;
 	padding: 20px;
 }
 
 #target {
-	position: absolute; 
-	bottom: 0px; 
-	left: 0px;
+	overflow: hidden;
+	display: none;
+	position: relative; 
+	top: 2.3em;
+	right: 20px;
 	color: #AAA;
-	filter:alpha(opacity=70);
-	-moz-opacity:0.7;
-	opacity: 0.7;
-	background-color: #000;
-	height: 200px;
-	width: 75%;
+	height: 292px;
+	width: 100%;
 	margin: auto;
-	padding: 10px;
+	padding: 30px 20px;
 }
 
-#target_photo {
-	float: left;
-	position: relative;
-	left: 0px;
+#target .transparency {
+	filter:alpha(opacity=60);
+	-moz-opacity:0.6;
+	opacity: 0.6;
+	background-color: #000;
+	top:0px;
+	left:0px;
+	position:absolute;
+	height:1500px;
+	width:1500px;
 }
-#target_text {
+
+.selector a:hover{
+	color: blue;
+}
+
+.target-selectors{
+	position: absolute;
+	bottom: 50px;
+	right: 550px;
+	font-size:40px;
+}
+
+.target-close {
+	position: absolute;
+	top:5px;
+	right:5px;
+	color:#C60C30;
+	font-size:15px
+}
+
+.target-link {
+	font-size:20px;
+	position: absolute;
+	bottom: 125px;
+	right: 40px;
+	margin: auto;
+}
+
+.target-imgs {
+	width: 50px;
+	height: 50px;
+}
+
+.target-pic{
+	position:absolute;
+	padding-left: 10px;
+	padding-top: 50px;
 	text-align: center;
+	float: left;
+	width: 20%;
+}
+.target-text {
+	position: absolute;
+	width: 70%;
+	left: 250px;
+	top: 50px;
+	text-align: left;
 	float: right;
-	color: #123;
-	position: relative;
-	right: 0px;
-	
+	font-size: 12px;
+}
+.target-text-header {
+	font-size: 20px;
+	color: #FFF;
 }
 
 #full {
@@ -51,18 +120,20 @@
 }
 
 #register {
+	/*display: none;*/
 	-moz-border-radius: 10px;
 	border-radius: 10px;
 	background-color: #FFF;
-	filter:alpha(opacity=70);
-	-moz-opacity:0.7;
-	opacity: 0.7;
+	filter:alpha(opacity=60);
+	-moz-opacity:0.6;
+	opacity: 0.6;
 	padding: 15px;
 	position: absolute;
 	bottom: 40px;
 	right: 10px;
+	z-index: 100;
 }
-
+/*
 #meetupFind {
 	-moz-border-radius: 10px;
 	border-radius: 10px;
@@ -75,11 +146,29 @@
 	top: 10px;
 	right: 10px;
 }
+*/
+#meetupFind {
+	text-align: center;
+	background-color: #FFF;
+	filter:alpha(opacity=45);
+	-moz-opacity:0.45;
+	opacity: 0.45;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	padding: 10px 0;
+}
+
+
+
+
 #header {
+font-size: 20px;
 color: #C60C30;
 }
 #subheader{
-	font-size:12px;
+	font-size:14px;
 }
 
 #grid {
@@ -91,7 +180,7 @@ color: #C60C30;
 	left: 10px;
 	overflow: hidden;
 	width: 25%;
-	height: 45%;
+	height: 35%;
 
 }
 #map {

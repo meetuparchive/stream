@@ -98,27 +98,27 @@ Meetup Groups
 </div>
     <div id="frame">
   	<div id="full">
+  	<div id="meetup-fluff">
+	<img src="trans_bottom.png" />
+</div>
 	    <div id="map">
 	    	    
 	    	<div id="meetupFind">
-	    		<span id="header"><b>Find a Meetup Group near you</b></span>
-	    		<hr>
+	    		<span id="header"><b>Discover a Meetup</b>&nbsp</span>
     			<span id="subheader">
-					<p>Topic or interest: <input type="search" value="Boxing" name="topic" id="query" /></p>
-	    			<p>City or ZIP/postal code: <input type="search" value="Brooklyn, NY, USA" name="loc" /></p>
-	    			<input type="submit" value="Search" name="search" id="search"/>
+					I want to Meetup about <input type="search" value="Boxing" name="topic" id="query" />&nbsp
+	    			with people from <input type="search" value="Brooklyn, NY, USA" name="loc" />
 	    		</span>
 			</div>
 		
 			<form id="regMeetup">
 	    <div id="register">
-	    	<span id="header"><b>Sign up for Meetup</span>
+	    	<span id="header"><b>Sign up for Meetup</span> &nbsp (If you're already a member, <a href=https://secure.meetup.com/login/>log in</a>!)
 	    	<hr>
 	    	<span id="subheader">
-	    		<p>Real Name: <input type="text" name="name" /></p>
-	    		<p>Email: <input type="text" name="email" /></p>
-	    		<p>Password: <input type="password" name="pass" /></p>
-	    		<input type="submit" value="Sign up" name="signup" />
+	    		Email: <input type="text" name="email" />
+	    		Password: <input type="password" name="pass" />
+	    		<a href=https://secure.meetup.com/register/><input type="submit" value="Sign up" name="signup" /></a>
 	    	</span>
 	    </div>
 	</form>
@@ -128,12 +128,82 @@ Meetup Groups
 	    	<ul id="people" class="clearfix"></ul>
     			</div>
     			
+    			<div id="today"><img src=Meetup.png /></div>
 	    </div>
-<div id="target"></div>
+<div id="target">
+	<div class="transparency"></div>
+	<div class="target-pic"></div>
+	<div class="target-text"></div>
+	<div class="target-link"></div>
+	<div class="target-close"><a>X</a></div>
+	<div class="target-selectors"></div>
+</div>
+
+
+
+
 <script type="text/javascript">
-$('#search').click(function() {
+var resultList;
+$('.target-close').click(function() {
+	$('#target').slideUp('fast', function() {
+
+	});
+	 $('#grid').show('fast', function() {
+      					
+      });
+      		$('#register').css("-moz-opacity", ".6");
+		$('#register').css("opacity",".6");
+
+});
+
+$('#meetupFind').hover(function() {
+	$(this).css("-moz-opacity", ".75");
+	$(this).css("opacity",".75");
+},function() {
+	$(this).css("-moz-opacity", ".45");
+	$(this).css("opacity",".45");
+});
+
+
+
+//$('#search').click(function() {
+$('#query').keypress(function() {
+	var popTarget = function(res, i) {
+			var groupHit = res[i];
+		    $('.target-pic').empty();
+      		$('.target-text').empty();
+      		$('.target-link').empty();
+      		$('.target-pic').append("<p><img src="+ groupHit.photo_url+" /></p>");
+      		$('.target-text').append("<p><span class=target-text-header>"+groupHit.name+"</span><br>");
+			$('.target-link').append("<a href=\""+groupHit.link+"\"><img src=\"checkitout.png\"</a>");
+  			var desc = "";
+      		if (groupHit.description.length > 500) {
+      			desc = groupHit.description.substring(0,500)+"...";
+			} else {
+      			desc = groupHit.description;
+			}
+			$('.target-text').append(desc+"</p>");
+			var memURL = 'http://api.meetup.com/members.json?callback=?&page=10&key=2965376f4a27313c71736b6a27c7024&group_id=';
+			$.getJSON(memURL+groupHit.id, function(data) {
+					if (data.status && data.status.match(/^200/) == null) {
+       					 alert(data.status + ": " + data.details);
+      				} else {
+      					var i = 0;
+      					for (i=0; i<10; i++) {
+      						$('.target-text').append("<span class=target-imgs><img width=50 height=50 src="+data.results[i].photo_url+" /></span>");
+      					}
+      					
+      				
+      				}
+      				
+			});
+			
+			
+			
+	
+	};
 	var url = 'http://api.meetup.com/topics.json?callback=?&page=1&key=2965376f4a27313c71736b6a27c7024&search=';
-	var url2= 'http://api.meetup.com/groups.json?callback=?&page=3&key=2965376f4a27313c71736b6a27c7024&order=members&country=us&state=ny&city=brooklyn&topic=';
+	var url2= 'http://api.meetup.com/groups.json?callback=?&page=5&key=2965376f4a27313c71736b6a27c7024&order=members&country=us&state=ny&city=brooklyn&topic=';
 	var query = $('#query').val();
 	$.getJSON(url+query, function(data) {
 	if (data.status && data.status.match(/^200/) == null) {
@@ -145,11 +215,40 @@ $('#search').click(function() {
       		if (data.status && data.status.match(/^200/) == null) {
         		alert(data.status + ": " + data.details);
       		} else {
-      			var groupHit = data.results[0];
-      			$('#target').empty()
-      			$('#target').append("<img src="+ groupHit.photo_url+" />");
-      			$('#target').append("<span id=header>"+groupHit.name+"</span><br>");
-      			$('#target').append("<span id=subheader>"+groupHit.description+"</span>");
+      			$('.target-selectors').empty();
+      			var numChoice = 5;
+      			if (data.results.length < 5) {
+      				numChoice = data.results.length;
+      			}
+      			var j=0;
+      			for (j=0;j<numChoice;j++) {
+      				$('.target-selectors').append('<span class=selector id='+j+'>.&nbsp</span>');
+      			}
+      			resultList = data.results;
+      			popTarget(data.results, 2);
+      			$('#0').mouseover(function () {
+    				popTarget(data.results, 0);
+				});
+      			$('#1').mouseover(function () {
+    				popTarget(data.results, 1);
+				});
+      			$('#2').mouseover(function () {
+    				popTarget(data.results, 2);
+				});
+      			$('#3').mouseover(function () {
+    				popTarget(data.results, 3);
+				});
+				$('#4').mouseover(function () {
+    				popTarget(data.results, 4);
+				});
+      			$('#target').slideDown('fast', function() {
+
+      			});
+    			$('#grid').hide('fast', function() {
+      				
+      			});
+					$('#register').css("-moz-opacity", ".8");
+					$('#register').css("opacity",".8");
       		}
       	});
       	//$('#target').append(topicHit);
@@ -315,5 +414,8 @@ $('#search').click(function() {
     </script>
 	</div>
 	</div>
+	
+	
+	
   </body>
 </html>
