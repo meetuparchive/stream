@@ -4,7 +4,7 @@ mu.Time = {
     ago: function(millis) {
         var duration = new Date() - millis;
         if (duration < 1000)
-            return "Just now"
+            return "Just now";
         return this.millisToWords(duration) + ' ago';
     },
     millisToWords: function(millis) {
