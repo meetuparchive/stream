@@ -1,4 +1,3 @@
-#map { position: absolute; height: 0%; width: 0%; }
 
 #logo {
 	position: relative;
@@ -26,14 +25,14 @@
 	opacity: 0.5;
 }
 
-#map #plug { 
+#plug { 
 	position:absolute;
 	height: 10%; 
 	width: 100%;
 	top: 0px;
 	left: 0px;
 	background: transparent; 
-	padding:10px;
+	padding:5px;
 }
 
 #plug-contents {
@@ -54,15 +53,6 @@ a:hover {
 
 }
 #apilink:link, #apilink:visited { color:transparent; }
-circle.rsvp-no, circle.rsvp-yes { fill:#E51937; }
-circle:hover {
-    background:#fff;
-    opacity:1.0;
-    -webkit-transition:fill .25s ease-in;
-    -moz-transition:fill .25s ease-in;
-    -o-transition:fill .25s ease-in;
-    transition:fill .25s ease-in;
-}
 
 #rsvp-detail {
   background:rgb(3,3,3);
@@ -119,53 +109,3 @@ span#rate {
 }
 
 .rsvp .member, .rsvp .event, .rsvp .group, .rsvp .place { }
-
-.compass .back {
-  fill: #eee;
-  fill-opacity: .8;
-}
-
-.compass .fore {
-  stroke: #999;
-  stroke-width: 1.5px;
-}
-
-.compass rect.back.fore {
-  fill: #999;
-  fill-opacity: .3;
-  stroke: #eee;
-  stroke-width: 1px;
-  shape-rendering: crispEdges;
-}
-
-.compass .direction {
-  fill: none;
-}
-
-.compass .chevron {
-  fill: none;
-  stroke: #999;
-  stroke-width: 5px;
-}
-
-.jquerybubblepopup-tail {
-  margin: 0 0 -4px 0;
-}
-
-.jquerybubblepopup .member, .jquerybubblepopup .event {
-  font-weight:bold;
-}
-
-.jquerybubblepopup .member-photo {
-  float:left;
-}
-
-.jquerybubblepopup .rsvp-info {
-  float:right;
-  text-align:left;
-  margin:5px;
-}
-
-.jquerybubblepopup .member-info {
-  margin-left:auto;
-}
