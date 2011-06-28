@@ -52,6 +52,11 @@ a:link, a:visited {
 a:hover {
 
 }
+
+img {
+	border:none;
+}
+
 #apilink:link, #apilink:visited { color:transparent; }
 
 #rsvp-detail {
