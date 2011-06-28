@@ -30,10 +30,14 @@ setInterval(updateTimes, 1000);
 var stm = mu.Rsvps(function(rsvp) {
 
     if ( rsvp.response === "yes") {
+    
+        var imgCode = "";
+        if (rsvp.member.photo != undefined) {
+    	 	imgCode = '<img src="'+rsvp.member.photo+'" />';	
+        }
     	
-    //    Map.plot(rsvp);
-		msg = ['<div class="rsvp"><span class="member-photo"><img src="',rsvp.member.photo,
-                 '"/></span><div class="member-info"> <span class="member">', rsvp.member.member_name,
+		msg = ['<div class="rsvp"><span class="member-photo">',imgCode,
+				 '</span><div class="member-info"> <span class="member">', rsvp.member.member_name,
                  '</span> will meetup with<br/> ',
                  '<span class="group">', rsvp.group.group_name,
                  '</span><br/> in <span class="place">', rsvp.group.group_city, ', ',
