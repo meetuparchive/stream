@@ -30,7 +30,8 @@ setInterval(updateTimes, 1000);
 var stm = mu.Rsvps(function(rsvp) {
 
     if ( rsvp.response === "yes") {
-    
+    	var now = new Date();
+    	rsvp.mtime = now.getTime();
         var imgCode = "";
         if (rsvp.member.photo != undefined) {
     	 	imgCode = '<img src="'+rsvp.member.photo+'" />';	
