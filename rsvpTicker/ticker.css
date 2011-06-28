@@ -27,7 +27,7 @@
 
 #plug { 
 	position:absolute;
-	height: 10%; 
+	height: 2.5em; 
 	width: 100%;
 	top: 0px;
 	left: 0px;
@@ -63,7 +63,7 @@ img {
   background:rgba(3, 3, 3, 0.7);
   position: absolute;
   padding: .25em .25em 0 0;
-  bottom: 0px;
+  top: 2.5em;
   right: 0px;
   width: 100%;
   height: 88%;
