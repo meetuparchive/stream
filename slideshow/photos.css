@@ -15,14 +15,14 @@ body { background:#333; font-size: 20px; overflow: hidden; font-family:helvetica
 #big-img{
 	position: absolute;
 	top: 29px;
-	right: 40px;
+	right: 30px;
 	width: 40%;
-	max-height: 100%;
+	max-height: 90%;
 	background: #FFF;
 	-webkit-border-radius: 15px;
   	-moz-border-radius: 15px;
   	border-radius: 15px;
-
+	overflow: hidden;
 }
 
 #big-img img {
@@ -35,8 +35,9 @@ body { background:#333; font-size: 20px; overflow: hidden; font-family:helvetica
 	margin-bottom: 10px;
 }
 
-#big-img p {
+#big-img-text {
 	position: relative;
+	bottom: 0px;
 	left: 15px;
 	margin-bottom: 10px;
 	max-width: 90%;
@@ -45,7 +46,7 @@ body { background:#333; font-size: 20px; overflow: hidden; font-family:helvetica
 #grid {
 	position: absolute;
 	top: 25px;
-	left: 20px;
+	left: 30px;
 	width: 55%;
 	height: 100%;
 	overflow: hidden;

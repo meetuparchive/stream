@@ -117,8 +117,8 @@
          	$("#big-img").fadeOut(function() {
          		$("#big-img").empty();
          		$("#big-img").append('<img src="'+photo.photo_link+
-         				'" /><p>'+photo.photo_album.group.name+eventText+
-         				'<br><i>Photo by: '+photo.member.name+'</i><br>'+caption+'</p>');
+         				'" /><div id=big-img-text>'+photo.photo_album.group.name+eventText+
+         				'<br><i>Photo by: '+photo.member.name+'</i><br>'+caption+'</div>');
          		$("#big-img").fadeIn();
          	});
          	
