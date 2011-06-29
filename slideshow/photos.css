@@ -24,7 +24,7 @@ body { background:#333; font-size: 20px; overflow: hidden; font-family:helvetica
 
 #big-img img {
 	display: block;
-	background: #000;
+	background: #FFF;
 	width: 100%;
 	max-width:100%;
 	max-height: 65%;
