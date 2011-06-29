@@ -66,9 +66,10 @@
                     
                         var content = ['<a target="_blank" href="',photo.photo_link,
                         	'"><span><img src="',photo.photo_link,
-                        	'"/></span></a><div class=caption>',photo.photo_album.group.name,
-         					'<br><i>Photo by: ',photo.member.name,'</i>',
-                        	'</div>'].join('');
+                        	'"/></span></a>'].join('');
+                        var caption = ['<div class=caption><p>',photo.photo_album.group.name,
+         					'<br>Photo by: ',photo.member.name,
+                        	'</p></div>'].join('');
                         
 
                              
@@ -90,7 +91,8 @@
                             el.animate({"opacity":1.0}, 500);
                           }, function() {
                               el.animate({"opacity":0.95}, 500);
-                          });
+                          })
+                          .append(caption);
                     }
                     inject(nextSlot()
                       .empty()

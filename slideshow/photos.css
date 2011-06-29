@@ -74,15 +74,17 @@ body { background:#333; font-size: 15px; overflow: hidden; font-family:helvetica
 	position: relative;
 	top: -60px;
 	margin: auto;
-	width: 90%;
+	width: 100%;
 	height: 50px;
 	background: #000;
 	filter: alpha(opacity=50);
     -moz-opacity:0.5;
 	opacity: 0.5;
-	-webkit-border-radius: 5px;
-  	-moz-border-radius: 5px;
-  	border-radius: 5px;
+
+}
+
+.caption p {
+	margin-left: 5px;
 
 }
 
