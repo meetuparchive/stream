@@ -22,8 +22,8 @@
       $(function() {
           var p =  $("#people"), colMax = 0, rowMax = 0;;
           var Grid = (function() {
-            var picWidth = 100,
-              picHeight = 100,
+            var picWidth = 250,
+              picHeight = 200,
               slots = [],
               full = false,
               dimensions = function() {
@@ -46,8 +46,8 @@
                     p.empty();
                     slots = [];
                     var d = dimensions(),
-                    rows =  Math.floor(d.height / picHeight) - 1,
-                    cols = Math.floor(d.width / picWidth) - 1;
+                    rows =  Math.ceil(d.height / picHeight),
+                    cols = Math.floor(d.width / picWidth);
                     for(var r = 0; r < rows; r++) {
                         for(var c = 0; c < cols; c++) {
                             var li =$(['<li id="r-', r, '-c-', c, '"></li>'].join(''));
@@ -83,15 +83,12 @@
                         var h = lon, s = 100, v = 100;
 
                         el.data("msg", msg)
-                          .addClass("present").animate({"opacity":0.75}, 500)
+                          .addClass("present").animate({"opacity":0.95}, 500)
                           .append(content)
                           .hover(function() {
                             el.animate({"opacity":1.0}, 500);
-                            if(!el.HasBubblePopup()){
-                                el.CreateBubblePopup(bubbleOpts);
-                            }
                           }, function() {
-                              el.animate({"opacity":0.75}, 500);
+                              el.animate({"opacity":0.95}, 500);
                           });
                     }
                     inject(nextSlot()
@@ -104,7 +101,26 @@
           })();
 
          Grid.fill();
+         
+        var Flagged = ['naturism',
+                    ,'figuredrawing',
+                    ,'beautyindustry',
+                    ,'modeling',
+                    ,'model-photography',
+                    ,'studio-photography'];
+         
+    	var inappropriate = function(t){
+            	return Flagged.indexOf(t.urlkey) !== -1;
+    	};
+         
          var stm = mu.Photos(function(photo) {
+
+        	var topics = photo.photo_album.group.group_topics;
+           	if(!topics || topics.filter(inappropriate).length<1) {
+           		Grid.add(photo);
+           	}
+           	
+           	/*
          	var eventText = "";
          	var caption = "";
          	if (photo.photo_album.event) {
@@ -113,7 +129,10 @@
          	if (photo.caption) {
          		caption = '"'+photo.caption+'"';
          	}
-         
+         	
+         	*/
+         	
+         /*
          	$("#big-img").fadeOut(function() {
          		$("#big-img").empty();
          		$("#big-img").append('<img src="'+photo.photo_link+
@@ -121,37 +140,13 @@
          				'<br><i>Photo by: '+photo.member.name+'</i><br>'+caption+'</div>');
          		$("#big-img").fadeIn();
          	});
+         */
          	
-         	Grid.add(photo);
          });
 
          var randomPopup = function() {
              var slot = Grid.randomSlot(),
              el = $(['#r-', slot[0], '-c-', slot[1]].join(''));
-             if(el.children().length > 0 && el.data()['msg'] != undefined) {
-                 var msg = el.data()['msg'];
-                 bubbleOpts = {
-                     themePath: '../images/jquerybubblepopup-theme',
-                     themeName: 'all-black',
-                     innerHtml: msg,
-                    /* tail: {
-                         align:'left'
-                     },*/
-                     afterHidden: function() {
-                         el.RemoveBubblePopup();
-                     },
-                     afterShown: function() {
-                         var h = function() {
-                             el.HideBubblePopup();
-                         };
-                         setTimeout(h, 3000);
-                     }
-                 };
-                 if(!el.HasBubblePopup()) {
-                     el.CreateBubblePopup(bubbleOpts);
-                 }
-                 el.ShowBubblePopup();
-             }
          };
 
          //setInterval(randomPopup, 7000);

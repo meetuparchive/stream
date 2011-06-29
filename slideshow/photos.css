@@ -12,7 +12,10 @@ html[xmlns] .clearfix { 	display: block; }
 
 body { background:#333; font-size: 20px; overflow: hidden; font-family:helvetica nueve, helvetica, arial, sans serif; }
 
+
+
 #big-img{
+	display: none;
 	position: absolute;
 	top: 29px;
 	right: 30px;
@@ -26,7 +29,7 @@ body { background:#333; font-size: 20px; overflow: hidden; font-family:helvetica
 }
 
 #big-img img {
-	display: block;
+	display: none;
 	background: #FFF;
 	width: 95%;
 	max-width:100%;
@@ -36,6 +39,7 @@ body { background:#333; font-size: 20px; overflow: hidden; font-family:helvetica
 }
 
 #big-img-text {
+	display: none;
 	position: relative;
 	bottom: 0px;
 	left: 15px;
@@ -45,9 +49,9 @@ body { background:#333; font-size: 20px; overflow: hidden; font-family:helvetica
 
 #grid {
 	position: absolute;
-	top: 25px;
-	left: 30px;
-	width: 55%;
+	top: 0px;
+	left: 0px;
+	width: 135%;
 	height: 100%;
 	overflow: hidden;
 }
@@ -55,17 +59,18 @@ body { background:#333; font-size: 20px; overflow: hidden; font-family:helvetica
 #people { list-style: none; margin:2px; padding:0; }
 
 #people li {
-  list-style:none; overflow:hidden; display:block; float:left; height: 100px; margin:2px; width:100px;
-  border:2px solid #FFF;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+  list-style:none;
+  overflow:hidden;
+  display:block;
+  float:left;
+  height: 200px;
+  width:250px;
   text-align: center;
 }
 
 #people span { display:block; overflow:hidden; }
 
-#people span img { overflow:hidden; }
+#people span img { overflow:hidden; min-height: 200px; width: 250px}
 
 #people li.present {
 
