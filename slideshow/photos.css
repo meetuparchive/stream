@@ -17,7 +17,7 @@ body { background:#333; font-size: 20px; overflow: hidden; font-family:helvetica
 	top: 29px;
 	right: 40px;
 	width: 40%;
-	height: 100%;
+	max-height: 100%;
 	background: #FFF;
 	-webkit-border-radius: 15px;
   	-moz-border-radius: 15px;
@@ -28,16 +28,18 @@ body { background:#333; font-size: 20px; overflow: hidden; font-family:helvetica
 #big-img img {
 	display: block;
 	background: #FFF;
-	width: 100%;
+	width: 95%;
 	max-width:100%;
-	max-height: 65%;
+	margin: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 #big-img p {
 	position: relative;
-	top: -90px;
 	left: 15px;
-
+	margin-bottom: 10px;
+	max-width: 90%;
 }
 
 #grid {
