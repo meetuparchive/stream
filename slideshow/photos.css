@@ -10,7 +10,7 @@ html[xmlns] .clearfix { 	display: block; }
 
 * html .clearfix {	height: 1%; }
 
-body { background:#333; font-size: 20px; overflow: hidden; font-family:helvetica nueve, helvetica, arial, sans serif; }
+body { background:#333; font-size: 15px; overflow: hidden; font-family:helvetica nueve, helvetica, arial, sans serif; }
 
 
 
@@ -68,6 +68,24 @@ body { background:#333; font-size: 20px; overflow: hidden; font-family:helvetica
   text-align: center;
 }
 
+.caption {
+	color: #FFF;
+	text-align: left;
+	position: relative;
+	top: -60px;
+	margin: auto;
+	width: 90%;
+	height: 50px;
+	background: #000;
+	filter: alpha(opacity=50);
+    -moz-opacity:0.5;
+	opacity: 0.5;
+	-webkit-border-radius: 5px;
+  	-moz-border-radius: 5px;
+  	border-radius: 5px;
+
+}
+
 #people span { display:block; overflow:hidden; }
 
 #people span img { overflow:hidden; min-height: 200px; width: 250px}
@@ -76,34 +94,3 @@ body { background:#333; font-size: 20px; overflow: hidden; font-family:helvetica
 
 }
 
-.rsvp {
-  text-align:left;
-  margin:0;
-}
-
-.rsvp img {
- /* float:left; */
-    display:none;
-}
-
-.rsvp .member, .rsvp .event, .rsvp .group {
-  font-weight:bold;
-}
-
-.jquerybubblepopup-tail {
-  margin: 0 0 -4px 0;
-}
-
-.jquerybubblepopup .member, .jquerybubblepopup .event {
-  font-weight:bold;
-}
-
-.jquerybubblepopup .member-photo {
-  float:left;
-}
-
-.jquerybubblepopup .rsvp-info {
-  float:right;
-  text-align:left;
-  margin:5px;;
-}

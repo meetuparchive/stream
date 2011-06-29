@@ -58,19 +58,20 @@
                     slots.shuffle();
                 },
                 add: function(photo) {
+
                     var inject = function (el) {
-                        var content = ['<a target="_blank" href="'+photo.photo_link+'"><span><img src="',photo.photo_link,'"/></span></a>'].join(''),
-                          msg = ['<img class-"member-photo" src="',photo.thumb_link,
+                        var msg = ['<img class-"member-photo" src="',photo.thumb_link,
                              '"/><div class="rsvp-info"><span class="member">', photo.member.name,
-                             '</span><br/> just posted a photo!</div>'].join(''),
-                          bubbleOpts = {
-                            themePath: '../images/jquerybubblepopup-theme',
-                            themeName: 'all-black',
-                            innerHtml: msg,
-                            afterHidden: function() {
-                                el.RemoveBubblePopup();
-                            }
-                          };
+                             '</span><br/> just posted a photo!</div>'].join('');
+                    
+                        var content = ['<a target="_blank" href="',photo.photo_link,
+                        	'"><span><img src="',photo.photo_link,
+                        	'"/></span></a><div class=caption>',photo.photo_album.group.name,
+         					'<br><i>Photo by: ',photo.member.name,'</i>',
+                        	'</div>'].join('');
+                        
+
+                             
 
                         /* use these to calc best position/align of popup */
                         var coords = el.attr("id").split("-"), row = parseInt(coords[1]), col = parseInt(coords[3]);
