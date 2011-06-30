@@ -59,6 +59,7 @@ body { background:#333; font-size: 15px; overflow: hidden; font-family:helvetica
 #people { list-style: none; margin:2px; padding:0; }
 
 #people li {
+  position: relative;
   list-style:none;
   overflow:hidden;
   display:block;
@@ -71,8 +72,8 @@ body { background:#333; font-size: 15px; overflow: hidden; font-family:helvetica
 .caption {
 	color: #FFF;
 	text-align: left;
-	position: relative;
-	top: -60px;
+	position: absolute;
+	bottom: 0px;
 	margin: auto;
 	width: 100%;
 	height: 50px;
@@ -88,9 +89,9 @@ body { background:#333; font-size: 15px; overflow: hidden; font-family:helvetica
 
 }
 
-#people span { display:block; overflow:hidden; }
+#people span { display:block; overflow:hidden; width:250px; max-width:250px; }
 
-#people span img { overflow:hidden; min-height: 200px; width: 250px}
+#people span img { overflow:hidden; min-height: 200px; width: 250px; max-width: 250px;}
 
 #people li.present {
 

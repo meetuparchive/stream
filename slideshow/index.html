@@ -50,7 +50,16 @@
                     cols = Math.floor(d.width / picWidth);
                     for(var r = 0; r < rows; r++) {
                         for(var c = 0; c < cols; c++) {
-                            var li =$(['<li id="r-', r, '-c-', c, '"></li>'].join(''));
+                        /*
+                        var h = Math.floor(Math.random()*360);
+                        var v = Math.floor(Math.random()*100);
+                        var s = 30;
+                        var rgb = hsvToRgb(h, s, v);
+                        */
+                        //var rgb = [Math.floor(Math.random()*255),Math.floor(Math.random()*255),Math.floor(Math.random()*255)];
+                            //var li =$(['<li style="background-color: rgb(',rgb[0],',',rgb[1],',',rgb[2],
+                            //')" id="r-',r, '-c-', c, '"></li>'].join(''));
+                            var li =$(['<li id="r-',r, '-c-', c, '"></li>'].join(''));
                             slots.push([r,c]);
                             p.append(li);
                         }
@@ -65,14 +74,13 @@
                              '</span><br/> just posted a photo!</div>'].join('');
                     
                         var content = ['<a target="_blank" href="',photo.photo_link,
-                        	'"><span><img src="',photo.photo_link,
+                        	'"><span><img id="',photo.photo_id,'" src="',photo.photo_link,
                         	'"/></span></a>'].join('');
                         var caption = ['<div class=caption><p>',photo.photo_album.group.name,
          					'<br>Photo by: ',photo.member.name,
                         	'</p></div>'].join('');
-                        
-
-                             
+                                                
+                        // calc caption location for absolute positioning
 
                         /* use these to calc best position/align of popup */
                         var coords = el.attr("id").split("-"), row = parseInt(coords[1]), col = parseInt(coords[3]);
@@ -83,7 +91,8 @@
                             lon = (((lon + 180) - 60) / 45) * 240;
                         //}
                         var h = lon, s = 100, v = 100;
-
+                        
+                        var rgb = hsvToRgb(h, s, v);
                         el.data("msg", msg)
                           .addClass("present").animate({"opacity":0.95}, 500)
                           .append(content)
@@ -99,6 +108,7 @@
                       .removeClass("present")
                       .css({"opacity":0})
                       .animate({"opacity":1.0}, 400));
+                      
                 }
              };
           })();
