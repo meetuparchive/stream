@@ -31,7 +31,7 @@ var stm = mu.Rsvps(function(rsvp) {
 
     if ( rsvp.response === "yes") {
     	var now = new Date();
-    	rsvp.mtime = now.getTime();
+    	rsvp.systime = now.getTime();
         var imgCode = "";
         if (rsvp.member.photo != undefined) {
     	 	imgCode = '<img src="'+rsvp.member.photo+'" />';	
@@ -43,8 +43,8 @@ var stm = mu.Rsvps(function(rsvp) {
                  '<span class="group">', rsvp.group.group_name,
                  '</span><br/> in <span class="place">', rsvp.group.group_city, ', ',
                  (rsvp.group.group_state ? rsvp.group.group_state : rsvp.group.group_country).toUpperCase(),
-                 '</span><br/> <span class="time" mtime="', rsvp.mtime, 
-                 '">', mu.Time.ago(rsvp.mtime), '</span></div></div>'].join('');  
+                 '</span><br/> <span class="time" mtime="', rsvp.systime, 
+                 '">', mu.Time.ago(rsvp.systime), '</span></div></div>'].join('');  
                  
         /* push this map entry in a queue to be removed from the dom at a given time */
         rsvps.push({ id: "r-"+uuid++, time: +new Date() });
