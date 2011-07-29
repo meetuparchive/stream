@@ -1,0 +1,13 @@
+body {
+    background: #777777;
+    color: white;
+    width: 20em;
+    font: 40px Sans;
+    margin: 1em auto;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
