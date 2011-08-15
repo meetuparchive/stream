@@ -137,8 +137,7 @@ if (!Array.prototype.indexOf) {
         };
 
         var go = function() {
-            $("#please-wait").slideDown();
-            setInterval(poll, 3000);
+            setInterval(poll, 2000);
         }
        , Flagged = ['naturism',
                     ,'figuredrawing',
@@ -154,12 +153,14 @@ if (!Array.prototype.indexOf) {
            if(!topics || topics.filter(inappropriate).length<1) {
                queue.push(photo);
            }
+       }, {
+           since_count: 10
        });
-       setTimeout(go, 2500);
+       setTimeout(go, 1000);
     });
     $(document).bind('afterReveal.facebox', function() {
         if ($.browser.msie) {
-            $('#facebox .bigphoto').each(function() {
+            $('#facebox .bigphoto').each(function() { // 
                 $('#facebox .content').width(this.clientWidth + 'px');
                 $('#facebox').css('left', $(window).width() / 2 - ($('#facebox .popup').outerWidth() / 2));
             });
