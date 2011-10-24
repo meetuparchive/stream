@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Streaming MEMEs</title>
+    <link rel="stylesheet" type="text/css" href="ticker.css" />
+    <!--[if IE]>
+    <style type="text/css">
+      #rsvp-detail {
+        background:transparent;
+        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#33333370,endColorstr=#33333370);
+        zoom: 1;
+      }
+    </style>
+     <![endif]-->
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="frame">
+    	<div id="big-logo"><img src="MeetupBig.png" /></div>
+    </div>
+	<div id="plug">
+		<div id="plug-contents">
+        	<span id="rate">
+        		<span id="r">#</span> &nbsp <span id="logo"><a id="apilink" target="_blank" href="http://www.meetup.com/meetup_api/docs/stream/2/rsvps/#websockets"><img alt="Meetup" src ="Meetup.png" /></a></span> &nbsp Local RSVPs / minute
+        	</span>
+    	</div>
+    </div>
+    <div id="rsvp-detail"></div>
+
+    <script type="text/javascript" src="../js/dates.js"></script>
+    <script type="text/javascript" src="http://static2.meetupstatic.com/0258563337614806693/script/api/mu.js"></script>
+    <script type="text/javascript" src="../js/jquery.bubblepopup.v2.3.1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../js/mu.time.js"></script>
+    <script type="text/javascript" src="ticker.js"></script>
+  </body>
+</html>
