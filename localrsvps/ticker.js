@@ -47,14 +47,15 @@ var stm = mu.Rsvps(function(rsvp) {
     	 	imgCode = '<img src="'+rsvp.member.photo+'" />';	
         }
     	
-		msg = ['<div class="rsvp"><span class="member-photo">',imgCode,
+		msg = ['<a target="_BLANK" href="', rsvp.event.event_url, '">',
+               '<div class="rsvp"><span class="member-photo">',imgCode,
 				 '</span><div class="member-info"> <span class="member">', rsvp.member.member_name,
                  '</span> will meetup with<br/> ',
                  '<span class="group">', rsvp.group.group_name,
                  '</span><br/> in <span class="place">', rsvp.group.group_city, ', ',
                  (rsvp.group.group_state ? rsvp.group.group_state : rsvp.group.group_country).toUpperCase(),
                  '</span><br/> <span class="time" mtime="', rsvp.systime, 
-                 '">', mu.Time.ago(rsvp.systime), '</span></div></div>'].join('');  
+                 '">', mu.Time.ago(rsvp.systime), '</span></div></div></a>'].join('');  
                  
         /* push this map entry in a queue to be removed from the dom at a given time */
         rsvps.push({ id: "r-"+uuid++, time: +new Date() });
