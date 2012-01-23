@@ -1,3 +1,24 @@
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+ 
+.clearfix {
+    display: inline-block;
+}
+ 
+html[xmlns] .clearfix {
+    display: block;
+}
+ 
+* html .clearfix {
+    height: 1%;
+}
+
 * {
   margin: 0; padding:0;
 }
@@ -21,7 +42,7 @@ body {
   width:100%;
 }
 
-.caption {
+#caption {
   background:none repeat scroll 0 0 rgba(3, 3, 3, 0.7);
   position:fixed;
   bottom:0;
@@ -31,11 +52,27 @@ body {
   text-shadow:0 2x #000;
 }
 
-.group {
+#group {
   color:#fff;
+  width:85%;
 }
 
-.event {
+#event {
   color:#fff;
   font-size:60%;
+}
+
+#logo:visited, #logo:link, #logo:hover {
+  color:transparent;
+}
+
+#details {
+  float:left;
+}
+
+#logo {
+  float:right;
+  margin-right:20px;
+  display:relative;
+  bottom:0;
 }
