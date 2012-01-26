@@ -41,11 +41,11 @@
        
    var pstream, dispCount = 0, content = $("#content")
    , blacklist = [
-       'naturism',
-       ,'figuredrawing',
-       ,'beautyindustry',
-       ,'modeling',
-       ,'model-photography',
+       'naturism'
+       ,'figuredrawing'
+       ,'beautyindustry'
+       ,'modeling'
+       ,'model-photography'
        ,'studio-photography'
     ]
     , blacklisted = function(topic) {
