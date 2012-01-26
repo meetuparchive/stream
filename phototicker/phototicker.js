@@ -28,7 +28,18 @@
     };
  }
  $(function() {
-   var content = $("#content")
+       
+   var updateId = -1, updateInterval = 1000
+   , updateTimes = function() {
+     $(".when").each(function() {
+       var elem = $(this), mtime = elem.data() ? elem.data().mtime : undefined;
+       if(mtime) {
+         elem.text(mu.Time.ago(mtime));    
+       }
+     });
+   };
+       
+   var pstream, dispCount = 0, content = $("#content")
    , blacklist = [
        'naturism',
        ,'figuredrawing',
@@ -42,7 +53,7 @@
     }
     , queue = []
     , enqueue = function(p) {
-        var topics = p.photo_album.group.group_topics;
+        var topics =  p.photo_album.group.group_topics;
         if(!topics || topics.filter(blacklisted).length < 1) {
           queue.push(p);
         }
@@ -51,31 +62,56 @@
         return queue.shift();
     }
     , pollInterval = 5000
-    , maxPhotos = 2
+    , pollId
+    , maxPhotos = 1
     , img = function(src) {
         return '<img src="'+src+'"/>';
     }
     , render = function(p) {
-        return '<li><div class="p">' + img(p.highres_link) + '</div></li>';
+        var pa = p.photo_album;
+        return ['<li class="p-container">'
+                , '<div class="p">'
+                ,   img(p.highres_link)
+                , '</div>'
+                , '<div class="caption" class="clearfix">'
+                ,  '<div class="details">'
+                ,    '<div class="group">', pa.group.name, '</div>'
+                ,    '<div class="event">', pa.event.name, '</div>'
+                ,    '<div class="when" data-mtime="', p.mtime, '">'
+                ,       mu.Time.ago(p.mtime)
+                ,    '</div>'
+                ,  '</div>'
+                , '</li>'].join('');
     }
     , process = function(p) {
       if(p.photo_album.event) {
+        dispCount++;
         var el = $(render(p))
           , photos = content.children()
           , psize = photos.size();
+        // chop the tail
+        var removing = [];
         photos.each(function(i) {
-          if (i < psize - maxPhotos) $(this).remove();
+          if (i >= maxPhotos) {
+            removing.push($(this));
+          }
         });
         el.hide();
-        content.prepend(el);
-        $('#caption').slideUp('fast');
-        el.find('.p img').load(function() {
+        content.prepend(el);               
+        $("#waiting").slideUp('fast', function() {
+           $(this).remove();                     
+        });
+        $('.caption', el).slideUp('fast');
+          el.find('.p img').load(function() {
+          for(i in removing) {
+            removing[i].remove();;    
+          }          
           el.animate({ height: 'show' }, 700, function() {
-            var pa = p.photo_album;
-            $('#group').html(pa.group.name);
-            $('#event').html(pa.event.name);
-            $('#caption').slideDown('slow');            
-          });          
+            $('.caption', el).slideDown('slow');
+            if(updateId < 0) {
+              setInterval(updateTimes, updateInterval);
+            }
+          });
         });
       }
     }
@@ -86,7 +122,7 @@
     , params = {
         since_count: 10
     };          
-    mu.Photos(enqueue, params);
-    setInterval(pollq, pollInterval);
+    pstream = mu.Photos(enqueue, params);
+    pollId = setInterval(pollq, pollInterval);
   });
 })(jQuery, mu);
