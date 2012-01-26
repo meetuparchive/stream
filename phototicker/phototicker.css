@@ -40,10 +40,13 @@ body {
 
 .p {
   text-align:center;
+  height:100%;
+  width:100%;
 }
 
 .p img {
   height:100%;
+  text-align:center;
 }
 
 #waiting {
