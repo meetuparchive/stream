@@ -13,7 +13,12 @@
       .c { }
       .u { font-weight: bold; font-size:60%; margin:.75em 0 0 120px; }
       .clear { clear: both; }
-      .g { color:#ccc; display:block; }
+      .g { font-weight: bold; }
+      .e { color:#ccc; display:block; }
+      a:link, a:visited {
+        text-decoration:none;
+        color:#0A96FA;
+      }
     </style>
     <script type="text/javascript"
             src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -62,7 +67,7 @@
                    , '<span class="i">', img(c.member.photo), '</span>'
                    , '<div class="c">' , linkify(c.comment), '</div>'
                    , '<div class="u">&#151; ', c.member.member_name
-                   ,' for <span class="e">', elink(c.group, c.event),'</span> <span class="g">',c.group.name,'</span></div><div class="clear"/>'
+                   ,' | <span class="g">',c.group.name,'</span> <span class="e">', elink(c.group, c.event),'</span></div><div class="clear"/>'
                    ,'</li>'].join('')
                 ).hide();
                 comments.prepend(el);
