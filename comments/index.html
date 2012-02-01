@@ -9,8 +9,6 @@
       ul { list-style: none; }
       li { clear: both; margin:.5em 0; border-bottom: 1px solid #eee; padding-bottom:.5em; }
       li div { margin-left:100px; }
-      .i { }
-      .c { }
       .u { font-weight: bold; font-size:60%; margin:.75em 0 0 120px; }
       .clear { clear: both; }
       .g { font-weight: bold; }
@@ -19,18 +17,30 @@
         text-decoration:none;
         color:#0A96FA;
       }
+      .when { color:#ccc; font-size: 60%; }
     </style>
     <script type="text/javascript"
             src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="http://static2.meetupstatic.com/24087933819704228/script/api/mu.js"></script>
   </head>
   <body>
     <ul id="comments"/>
-    <script type="text/javascript"
-            src="http://static2.meetupstatic.com/24087933819704228/script/api/mu.js"></script>
+    <script type="text/javascript" src="../js/mu.time.js"></script>
     <script type="text/javascript">
       (function($) {
-        $(function(){
+        $(function() {
+            var updateId = -1, updateInterval = 1000
+            , updateTimes = function() {
+               $(".when").each(function() {
+                   var elem = $(this), mtime = elem.data() ? elem.data().mtime : undefined;
+                   if(mtime) {
+                      elem.text(mu.Time.ago(mtime));
+                   }
+               });
+            };
             var params = { since_count: 10 }
+            , maxComments = 10
             , interval = 2000
             , queue = []
             , enqueue = function(c) {
@@ -66,10 +76,16 @@
                   ['<li>'
                    , '<span class="i">', img(c.member.photo), '</span>'
                    , '<div class="c">' , linkify(c.comment), '</div>'
+                   , '<div class="when" data-mtime="', c.mtime,'">', mu.Time.ago(c.mtime),'</div>'
                    , '<div class="u">&#151; ', c.member.member_name
                    ,' | <span class="g">',c.group.name,'</span> <span class="e">', elink(c.group, c.event),'</span></div><div class="clear"/>'
                    ,'</li>'].join('')
                 ).hide();
+                comments.children().each(function(i) {
+                   if (i >= maxComments) {
+                     $(this).remove();
+                   }
+                });
                 comments.prepend(el);
                 el.find('img.mi').load(function(e) {
                     el.slideDown('slow');
@@ -80,6 +96,7 @@
             }
             mu.Comments(enqueue, params);
             poll();
+            if(updateId < 0) setInterval(updateTimes, updateInterval);
         });
       })(jQuery);
     </script>
