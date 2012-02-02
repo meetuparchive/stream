@@ -68,14 +68,17 @@
         return '<img src="'+src+'"/>';
     }
     , render = function(p) {
-        var pa = p.photo_album;
+        var pa = p.photo_album, group = pa.group;
         return ['<li class="p-container">'
                 , '<div class="p">'
                 ,   img(p.highres_link)
                 , '</div>'
                 , '<div class="caption" class="clearfix">'
                 ,  '<div class="details">'
-                ,    '<div class="group">', pa.group.name, '</div>'
+                ,    '<div class="group">', group.name, '</div>'
+                ,    '<div class="where">', group.city || '', ' '
+                ,        group.country&&group.country==='us'? group.state||'': group.country||''
+                ,    '</div>'
                 ,    '<div class="event">', pa.event.name, '</div>'
                 ,    '<div class="when" data-mtime="', p.mtime, '">'
                 ,       mu.Time.ago(p.mtime)
