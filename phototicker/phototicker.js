@@ -28,17 +28,17 @@
     };
  }
  $(function() {
-       
+
    var updateId = -1, updateInterval = 1000
    , updateTimes = function() {
      $(".when").each(function() {
        var elem = $(this), mtime = elem.data() ? elem.data().mtime : undefined;
        if(mtime) {
-         elem.text(mu.Time.ago(mtime));    
+         elem.text(mu.Time.ago(mtime));
        }
      });
    };
-       
+
    var pstream, dispCount = 0, content = $("#content")
    , blacklist = [
        'naturism'
@@ -49,7 +49,7 @@
        ,'studio-photography'
     ]
     , blacklisted = function(topic) {
-       return blacklist.indexOf(topic.urlkey) !== -1; 
+       return blacklist.indexOf(topic.urlkey) !== -1;
     }
     , queue = []
     , enqueue = function(p) {
@@ -100,15 +100,15 @@
           }
         });
         el.hide();
-        content.prepend(el);               
+        content.prepend(el);
         $("#waiting").slideUp('fast', function() {
-           $(this).remove();                     
+           $(this).remove();
         });
         $('.caption', el).slideUp('fast');
           el.find('.p img').load(function() {
           for(i in removing) {
-            removing[i].remove();;    
-          }          
+            removing[i].remove();;
+          }
           el.animate({ height: 'show' }, 700, function() {
             $('.caption', el).slideDown('slow');
             if(updateId < 0) {
@@ -124,8 +124,8 @@
     }
     , params = {
         since_count: 10
-    };          
-    pstream = mu.Photos(enqueue, params);
+    };
+    pstream = must.Photos(enqueue, params);
     pollId = setInterval(pollq, pollInterval);
   });
 })(jQuery, mu);

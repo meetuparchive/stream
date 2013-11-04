@@ -3,14 +3,14 @@
   <head>
     <title>Streaming Photos</title>
     <script type="text/javascript" src="../js/jquery.min.js"></script>
-    <script type="text/javascript" src="http://static2.meetupstatic.com/0258563337614806693/script/api/mu.js" ></script>
+    <script type="text/javascript" src="../components/must/must.js"></script>
   </head>
   <body>
     <div id="l">
       <ul id="photos"></ul>
     </div>
     <script type="text/javascript">
-      mu.Photos(function(photo) {
+      must.Photos(function(photo) {
           $("#photos").append( [
               '<li><img src="'
               , photo.photo_link

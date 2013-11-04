@@ -55,8 +55,8 @@ if (!Array.prototype.indexOf) {
                     , '" data-related="Meetup"'
                     , ' data-via="MeetupAPI">Tweet</a>'].join('');
         }, rltwt = function() {
-            /* needed for dynamic additions of tweet btns to the page. don't worry. it's cached.*/                              
-            $.ajax({url:"http://platform.twitter.com/widgets.js",dataType:"script",cache:true});                           
+            /* needed for dynamic additions of tweet btns to the page. don't worry. it's cached.*/
+            $.ajax({url:"http://platform.twitter.com/widgets.js",dataType:"script",cache:true});
         };
         $("#photos li").live('click', function() {
             var p = $(this).data();
@@ -99,7 +99,7 @@ if (!Array.prototype.indexOf) {
                        );
 
                 p.data(photo);
-                
+
                 p.hover(function() {
                   var what = photo.photo_album.event ?
                   [photo.member.name
@@ -148,7 +148,7 @@ if (!Array.prototype.indexOf) {
         , inappropriate = function(t){
             return Flagged.indexOf(t.urlkey) !== -1;
         };
-       mu.Photos(function(photo) {
+       must.Photos(function(photo) {
            var topics = photo.photo_album.group.group_topics;
            if(!topics || topics.filter(inappropriate).length<1) {
                queue.push(photo);
@@ -160,7 +160,7 @@ if (!Array.prototype.indexOf) {
     });
     $(document).bind('afterReveal.facebox', function() {
         if ($.browser.msie) {
-            $('#facebox .bigphoto').each(function() { // 
+            $('#facebox .bigphoto').each(function() { //
                 $('#facebox .content').width(this.clientWidth + 'px');
                 $('#facebox').css('left', $(window).width() / 2 - ($('#facebox .popup').outerWidth() / 2));
             });
