@@ -21,8 +21,7 @@
     </style>
     <script type="text/javascript"
             src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript"
-            src="http://static2.meetupstatic.com/24087933819704228/script/api/mu.js"></script>
+    <script type="text/javascript" src="../components/must/must.js"></script>
   </head>
   <body>
     <ul id="comments"/>
@@ -94,7 +93,7 @@
             if(window.location.hash) {
                 params.event_id = window.location.hash.substring(1);
             }
-            mu.Comments(enqueue, params);
+            must.Comments(enqueue, params);
             poll();
             if(updateId < 0) setInterval(updateTimes, updateInterval);
         });
