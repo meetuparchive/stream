@@ -85,7 +85,7 @@ Meetup Groups
 
 <form action="http://www.meetup.com/find/" method="get" id="C_globalSearch">
 <input type="text" maxlength="100" class="D_topicSearch" id="C_globalSearchInput" autocomplete="off" name="keywords"><div class="D_submitInline"><input type="image" id="C_globalSearchBtn" src="http://img2.meetupstatic.com/0460894421244282745036/img/header/search_20.png"></div>
-<input type="submit" style="display:none"> 
+<input type="submit" style="display:none">
 
 <input type="hidden" value="us" name="country">
 <input type="hidden" value="11211" name="zip">
@@ -102,7 +102,7 @@ Meetup Groups
 	<img src="trans_bottom.png" />
 </div>
 	    <div id="map">
-	    	    
+
 	    	<div id="meetupFind">
 	    		<span id="header"><b>Discover a Meetup</b>&nbsp</span>
     			<span id="subheader">
@@ -110,7 +110,7 @@ Meetup Groups
 	    			with people from <input type="search" value="Brooklyn, NY, USA" name="loc" />
 	    		</span>
 			</div>
-		
+
 			<form id="regMeetup">
 	    <div id="register">
 	    	<span id="header"><b>Sign up for Meetup</span> &nbsp (If you're already a member, <a href=https://secure.meetup.com/login/>log in</a>!)
@@ -127,7 +127,7 @@ Meetup Groups
 	        Who's meeting up right now?
 	    	<ul id="people" class="clearfix"></ul>
     			</div>
-    			
+
     			<div id="today"><img src=Meetup.png /></div>
 	    </div>
 <div id="target">
@@ -149,7 +149,7 @@ $('.target-close').click(function() {
 
 	});
 	 $('#grid').show('fast', function() {
-      					
+
       });
       		$('#register').css("-moz-opacity", ".6");
 		$('#register').css("opacity",".6");
@@ -192,15 +192,15 @@ $('#query').keypress(function() {
       					for (i=0; i<10; i++) {
       						$('.target-text').append("<span class=target-imgs><img width=50 height=50 src="+data.results[i].photo_url+" /></span>");
       					}
-      					
-      				
+
+
       				}
-      				
+
 			});
-			
-			
-			
-	
+
+
+
+
 	};
 	var url = 'http://api.meetup.com/topics.json?callback=?&page=1&key=2965376f4a27313c71736b6a27c7024&search=';
 	var url2= 'http://api.meetup.com/groups.json?callback=?&page=5&key=2965376f4a27313c71736b6a27c7024&order=members&country=us&state=ny&city=brooklyn&topic=';
@@ -209,7 +209,7 @@ $('#query').keypress(function() {
 	if (data.status && data.status.match(/^200/) == null) {
         alert(data.status + ": " + data.details);
       } else {
-      
+
       	var topicHit = data.results[0].urlkey;
       	$.getJSON(url2+topicHit, function(data) {
       		if (data.status && data.status.match(/^200/) == null) {
@@ -245,7 +245,7 @@ $('#query').keypress(function() {
 
       			});
     			$('#grid').hide('fast', function() {
-      				
+
       			});
 					$('#register').css("-moz-opacity", ".8");
 					$('#register').css("opacity",".8");
@@ -260,7 +260,7 @@ $('#query').keypress(function() {
         });
         */
       }
-		 
+
 	});
 });
 </script>
@@ -270,7 +270,7 @@ $('#query').keypress(function() {
 	    <script type="text/javascript" src="jquery.svgdom.min.js"></script>
 	    <script type="text/javascript" src="jquery.svganim.min.js"></script>
 	    <script type="text/javascript" src="../js/dates.js"></script>
-	    <script type="text/javascript" src="http://static2.meetupstatic.com/0258563337614806693/script/api/mu.js" ></script>
+      <script type="text/javascript" src="../components/must/must.js"></script>
 	    <script type="text/javascript" src="../js/jquery.bubblepopup.v2.3.1.min.js"></script>
 	    <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
 	    <script type="text/javascript" src="../js/mu.time.js"></script>
@@ -307,7 +307,7 @@ $('#query').keypress(function() {
                 	var temp = slotCount
                 	slotCount = (slotCount + 1) % slots.length;
                 	return slots[temp];
-                	
+
                 },
                 fill: function() {
                     p.empty();
@@ -374,7 +374,7 @@ $('#query').keypress(function() {
           })();
 
          Grid.fill();
-         var stm = mu.Rsvps(function(rsvp) {
+         var stm = must.Rsvps(function(rsvp) {
              if (rsvp.member.photo != undefined && rsvp.response === "yes")
                  Grid.add(rsvp);
          });
@@ -414,8 +414,8 @@ $('#query').keypress(function() {
     </script>
 	</div>
 	</div>
-	
-	
-	
+
+
+
   </body>
 </html>

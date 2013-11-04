@@ -1,5 +1,5 @@
 (function($){
-     var MEETUP = 'http://meetup.com' 
+     var MEETUP = 'http://meetup.com'
      , T = {
          glink: function(p) {
              return [MEETUP, p.photo_album.group.urlname].join('/');
@@ -77,10 +77,10 @@
             , thumbs = $("#bg div.reel .t");
             for(var i = 0, tl = thumbs.size(); i<tl; i++) {
                 var t = $(thumbs[i]);
-                if(t && t.offset){                
+                if(t && t.offset){
                     var ttop = t.offset().top;
                     if(ttop >= mint && ttop <=maxt) {
-                        return t.data();           
+                        return t.data();
                     }
                 }
             }
@@ -89,7 +89,7 @@
         , refocus = function() {
             var focused = focusedPhoto();
             if(focused) {
-                fg.find("div.focused").html(T.div(T.full(focused), "f"));    
+                fg.find("div.focused").html(T.div(T.full(focused), "f"));
             }
         }
         , poll = function() {
@@ -128,7 +128,7 @@
         $(window).resize(onResize);
         $("#earlier").bind('click', function(e){
             e.preventDefault();
-            if(!$(this).hasClass("odisabled")) {            
+            if(!$(this).hasClass("odisabled")) {
                 $("#bg .reel div.t").animate({top:"-="+PHOH}, 500, function(){
                    refocus();
                 });
@@ -137,15 +137,15 @@
         });
         $("#later").bind('click', function(e){
             e.preventDefault();
-            if(!$(this).hasClass("odisabled")) {            
+            if(!$(this).hasClass("odisabled")) {
                 $("#bg .reel div.t").animate({top:"+="+PHOH}, 500, function(){
                    refocus();
                 });
             }
-            return false;    
+            return false;
         });
         setInterval(poll, 3000);
-        mu.Stream({
+        must.Stream({
             url: "http://stream.dev.meetup.com:8100/2/photos",
             callback: function(photo) {
                 var topics = photo.photo_album.group.group_topics;
