@@ -64,14 +64,11 @@ var Map = (function() {
     map = po.map()
         .container(document.getElementById("map")
                    .appendChild(po.svg("svg")))
-        .center({lat: 27, lon: 5})
-        .zoom(2.3)
+        .center({lat: 27, lon: 105})
+        .zoom(1.8)
         .add(po.interact())
         .add(po.image()
-            .url(po.url("http://{S}tile.cloudmade.com"
-                + "/dbe72e38b0404199b0d8cfdaac26999b" // get yr own key pls @ http://cloudmade.com/register
-                + "/30389/256/{Z}/{X}/{Y}.png")
-                 .hosts(["a.", "b.", "c.", ""])))
+            .url("http://s3.amazonaws.com/com.modestmaps.bluemarble/{Z}-r{Y}-c{X}.jpg"))
         .add(po.compass().pan("none"));
 
     var load = function(e) {
@@ -85,7 +82,7 @@ var Map = (function() {
           p.addClass("present").attr("id", "r-"+uuid++);
 
           f.attr({"transform":  "translate("+tx+","+(ty-30)+")"});
-          f.animate({ "opacity":0.25, svgTransform:t }, 500)
+          f.animate({ "opacity":0.5, svgTransform:t }, 500)
               .addClass(rsvp.response === "yes" ? "rsvp-yes" : "rsvp-no");
 
           simpleMsg = ['<div class="rsvp"><span class="member-photo"><img src="',rsvp.member.photo,
