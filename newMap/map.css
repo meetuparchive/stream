@@ -1,0 +1,130 @@
+#map { position: absolute; height: 100%; width: 100% }
+#map #plug { position:fixed; bottom:10px; left:20px; background: transparent; margin:0; padding:0; }
+body {
+ background:#333; font-family:helvetica nueve, helvetica, arial, sans serif; overflow: hidden;
+ margin: 0;
+ font-size: 18px;
+}
+a:link, a:visited {
+  color:#FF006F;
+  text-decoration:none;
+}
+a:hover {
+
+}
+#apilink:link, #apilink:visited { color:transparent; }
+circle.rsvp-no, circle.rsvp-yes { fill:#E51937; }
+circle:hover {
+    background:#fff;
+    opacity:1.0;
+    -webkit-transition:fill .25s ease-in;
+    -moz-transition:fill .25s ease-in;
+    -o-transition:fill .25s ease-in;
+    transition:fill .25s ease-in;
+}
+
+#rsvp-detail {
+  background:rgb(3,3,3);
+  background:rgba(3, 3, 3, 0.7);
+  position: absolute;
+  padding: .25em .25em 0 0;
+  top: 0px;
+  right: 0px;
+  width: 25em;
+  height: 100%;
+  font-size: 1em;
+  -moz-box-shadow: 0px 0px 15px #000;
+  -webkit-box-shadow: 0px 0px 15px #000;
+  box-shadow: 0px 0px 15px #000;
+}
+
+#rsvp-detail .rsvp {
+  margin:0 0 .25em 0;
+  padding:.25em 0;
+  overflow:hidden;
+ /* height:78px;*/
+  clear:both;
+  color:#eee;
+}
+
+.rsvp {
+  text-align:left;
+}
+
+#rsvp-detail .rsvp .time {
+  color: #bbb;
+  font-size: .8em;
+}
+
+#rsvp-detail .rsvp .member-photo {
+  float:left;
+  width: 115px;
+  height: 78px;
+  text-align: right;
+  display:block;
+  float:left;
+}
+
+span#rate {
+    color: #999;
+}
+
+.rsvp .member-photo img {
+  padding-right: 10px;
+}
+
+#rsvp-detail .rsvp .member-info {
+  margin-left: 120px;
+}
+
+.rsvp .member, .rsvp .event, .rsvp .group, .rsvp .place { }
+
+.compass .back {
+  fill: #eee;
+  fill-opacity: .8;
+}
+
+.compass .fore {
+  stroke: #999;
+  stroke-width: 1.5px;
+}
+
+.compass rect.back.fore {
+  fill: #999;
+  fill-opacity: .3;
+  stroke: #eee;
+  stroke-width: 1px;
+  shape-rendering: crispEdges;
+}
+
+.compass .direction {
+  fill: none;
+}
+
+.compass .chevron {
+  fill: none;
+  stroke: #999;
+  stroke-width: 5px;
+}
+
+.jquerybubblepopup-tail {
+  margin: 0 0 -4px 0;
+}
+
+.jquerybubblepopup .member, .jquerybubblepopup .event {
+  font-weight:bold;
+}
+
+.jquerybubblepopup .member-photo {
+  float:left;
+}
+
+.jquerybubblepopup .rsvp-info {
+  float:right;
+  text-align:left;
+  margin:5px;
+}
+
+.jquerybubblepopup .member-info {
+  margin-left:auto;
+}

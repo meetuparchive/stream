@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Streaming MEMEs</title>
+    <!-- bubblepopup looks outdated, getting recs for qTip2-->
+    <link rel="stylesheet" type="text/css" href="../css/jquery.bubblepopup.v2.3.1.css" />
+    <link rel="stylesheet" type="text/css" href="map.css" />
+    <!--[if IE]>
+    <style type="text/css">
+      #rsvp-detail {
+        background:transparent;
+        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#33333370,endColorstr=#33333370);
+        zoom: 1;
+      }
+    </style>
+     <![endif]-->
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <!-- maybe switch to leaflet? -->
+    <script type="text/javascript" src="polymaps.min.js"></script>
+  </head>
+  <body>
+    <div id="map">
+      <div id="plug">
+        <a id="apilink" target="_blank" href="http://www.meetup.com/meetup_api/docs/stream/2/rsvps/#websockets"><img alt="Powered by Meetup API" src ="../img/meetupapi.png" /></a>
+        <span id="rate"><span>&mdash;</span> RSVPs / minute in Public Meetup Groups</span>
+      </div>
+    </div>
+    <div id="rsvp-detail"></div>
+    <script type="text/javascript" src="jquery.svg.min.js"></script>
+    <script type="text/javascript" src="jquery.svgdom.min.js"></script>
+    <script type="text/javascript" src="jquery.svganim.min.js"></script>
+    <script type="text/javascript" src="../js/dates.js"></script>
+    <script type="text/javascript" src="http://static2.meetupstatic.com/0258563337614806693/script/api/mu.js"></script>
+    <script type="text/javascript" src="../js/jquery.bubblepopup.v2.3.1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../js/mu.time.js"></script>
+    <script type="text/javascript" src="map.js"></script>
+  </body>
+</html>
