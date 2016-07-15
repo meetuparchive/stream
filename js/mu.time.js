@@ -24,4 +24,4 @@ mu.Time = {
         var days = hours / 24;
         return print(days, 'day');
     }
-}
+};

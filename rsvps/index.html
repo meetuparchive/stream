@@ -5,14 +5,14 @@
       body { margin:0; font-family:helvetica, arial, 'sans serif'; }
     </style>
     <script type="text/javascript" src="../js/jquery.min.js"></script>
-    <script type="text/javascript" src="http://static2.meetupstatic.com/0258563337614806693/script/api/mu.js"></script>
+    <script type="text/javascript" src="../components/must/must.js"></script>
   </head>
   <body>
     <div id="l">
       <ul id="photos"></ul>
     </div>
     <script type="text/javascript">
-      mu.Rsvps(function(rsvp) {
+      must.Rsvps(function(rsvp) {
           $("#photos").append( [
               '<li><a target="_blank" href="'
               , rsvp.event.event_url,

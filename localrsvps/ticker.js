@@ -34,7 +34,7 @@ setInterval(updateTimes, 1000);
 
 
 
-var stm = mu.Rsvps(function(rsvp) {
+var stm = must.Rsvps(function(rsvp) {
     var latDiff = rsvp.group.group_lat - geo_ip.lat, lonDiff = rsvp.group.group_lon - geo_ip.lon;
     var dist = Math.sqrt(latDiff*latDiff + lonDiff*lonDiff);
     console.log(rsvp.group.group_city)
@@ -44,9 +44,9 @@ var stm = mu.Rsvps(function(rsvp) {
     	rsvp.systime = now.getTime();
         var imgCode = "";
         if (rsvp.member.photo != undefined) {
-    	 	imgCode = '<img src="'+rsvp.member.photo+'" />';	
+    	 	imgCode = '<img src="'+rsvp.member.photo+'" />';
         }
-    	
+
 		msg = ['<a target="_BLANK" href="', rsvp.event.event_url, '">',
                '<div class="rsvp"><span class="member-photo">',imgCode,
 				 '</span><div class="member-info"> <span class="member">', rsvp.member.member_name,
@@ -54,9 +54,9 @@ var stm = mu.Rsvps(function(rsvp) {
                  '<span class="group">', rsvp.group.group_name,
                  '</span><br/> in <span class="place">', rsvp.group.group_city, ', ',
                  (rsvp.group.group_state ? rsvp.group.group_state : rsvp.group.group_country).toUpperCase(),
-                 '</span><br/> <span class="time" mtime="', rsvp.systime, 
-                 '">', mu.Time.ago(rsvp.systime), '</span></div></div></a>'].join('');  
-                 
+                 '</span><br/> <span class="time" mtime="', rsvp.systime,
+                 '">', mu.Time.ago(rsvp.systime), '</span></div></div></a>'].join('');
+
         /* push this map entry in a queue to be removed from the dom at a given time */
         rsvps.push({ id: "r-"+uuid++, time: +new Date() });
 
@@ -65,7 +65,7 @@ var stm = mu.Rsvps(function(rsvp) {
         	var rate = (depth - 1) * 60 * 1000 / (rsvps[rsvps.length-1].time - rsvps[rsvps.length - depth].time);
             $("#r").text(Math.round(rate));
         }
-        
+
         var details = $("#rsvp-detail"),
             detail = $(msg).hide(),
             showDetail = function() {

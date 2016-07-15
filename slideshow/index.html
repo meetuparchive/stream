@@ -14,7 +14,8 @@
     <div id="big-img">
   		<img src="MeetupBig.png" />
   	</div>
-    <script type="text/javascript" src="http://static2.meetupstatic.com/0258563337614806693/script/api/mu.js"></script>
+
+    <script type="text/javascript" src="../components/must/must.js"></script>
     <script type="text/javascript" src="../js/jquery.bubblepopup.v2.3.1.min.js"></script>
     <script type="text/javascript" src="../js/color.js"></script>
     <script type="text/javascript" src="../js/arrays.js"></script>
@@ -72,14 +73,14 @@
                         var msg = ['<img class-"member-photo" src="',photo.thumb_link,
                              '"/><div class="rsvp-info"><span class="member">', photo.member.name,
                              '</span><br/> just posted a photo!</div>'].join('');
-                    
+
                         var content = ['<a target="_blank" href="',photo.photo_link,
                         	'"><span><img id="',photo.photo_id,'" src="',photo.photo_link,
                         	'"/></span></a>'].join('');
                         var caption = ['<div class=caption><p>',photo.photo_album.group.name,
          					'<br>Photo by: ',photo.member.name,
                         	'</p></div>'].join('');
-                                                
+
                         // calc caption location for absolute positioning
 
                         /* use these to calc best position/align of popup */
@@ -91,7 +92,7 @@
                             lon = (((lon + 180) - 60) / 45) * 240;
                         //}
                         var h = lon, s = 100, v = 100;
-                        
+
                         var rgb = hsvToRgb(h, s, v);
                         el.data("msg", msg)
                           .addClass("present").animate({"opacity":0.95}, 500)
@@ -108,31 +109,31 @@
                       .removeClass("present")
                       .css({"opacity":0})
                       .animate({"opacity":1.0}, 400));
-                      
+
                 }
              };
           })();
 
          Grid.fill();
-         
+
         var Flagged = ['naturism',
                     ,'figuredrawing',
                     ,'beautyindustry',
                     ,'modeling',
                     ,'model-photography',
                     ,'studio-photography'];
-         
+
     	var inappropriate = function(t){
             	return Flagged.indexOf(t.urlkey) !== -1;
     	};
-         
-         var stm = mu.Photos(function(photo) {
+
+         var stm = must.Photos(function(photo) {
 
         	var topics = photo.photo_album.group.group_topics;
            	if(!topics || topics.filter(inappropriate).length<1) {
            		Grid.add(photo);
            	}
-           	
+
            	/*
          	var eventText = "";
          	var caption = "";
@@ -142,9 +143,9 @@
          	if (photo.caption) {
          		caption = '"'+photo.caption+'"';
          	}
-         	
+
          	*/
-         	
+
          /*
          	$("#big-img").fadeOut(function() {
          		$("#big-img").empty();
@@ -154,7 +155,7 @@
          		$("#big-img").fadeIn();
          	});
          */
-         	
+
          });
 
          var randomPopup = function() {

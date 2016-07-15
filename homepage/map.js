@@ -100,7 +100,7 @@ var Map = (function() {
                  '<span class="group">', rsvp.group.group_name,
                  '</span><br/> in <span class="place">', rsvp.group.group_city, ', ',
                  (rsvp.group.group_state ? rsvp.group.group_state : rsvp.group.group_country).toUpperCase(),
-                 '</span><br/> <span class="time" mtime="', rsvp.mtime, 
+                 '</span><br/> <span class="time" mtime="', rsvp.mtime,
                  '">', mu.Time.ago(rsvp.mtime), '</span></div></div>'].join('');
 
           p.data('rsvp', simpleMsg);
@@ -149,7 +149,7 @@ var Map = (function() {
     };
 })();
 
-var stm = mu.Rsvps(function(rsvp) {
+var stm = must.Rsvps(function(rsvp) {
     if (rsvp.member.photo != undefined && rsvp.response === "yes")
         Map.plot(rsvp);
 });
