@@ -39,9 +39,9 @@ var stm = must.Rsvps(function(rsvp) {
 
 		msg = ['<div class="rsvp"><span class="member-photo">',imgCode,
 				 '</span><div class="member-info"> <span class="member">', rsvp.member.member_name,
-                 '</span> will meetup with<br/> ',
+                 '</span><span class="will-mup"> will meetup with</span><br/> ',
                  '<span class="group">', rsvp.group.group_name,
-                 '</span><br/> in <span class="place">', rsvp.group.group_city, ', ',
+                 '</span><br/><span class="place">in ', rsvp.group.group_city, ', ',
                  (rsvp.group.group_state ? rsvp.group.group_state : rsvp.group.group_country).toUpperCase(),
                  '</span><br/> <span class="time" mtime="', rsvp.systime,
                  '">', mu.Time.ago(rsvp.systime), '</span></div></div>'].join('');
