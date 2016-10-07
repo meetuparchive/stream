@@ -75,7 +75,7 @@ var Map = (function() {
       for (var i = 0, len = e.features.length; i < len; i++) {
         var feature = e.features[i],
            rsvp = feature.data.properties.rsvp;
-
+           
           var f = $(feature.element, $("#map").svg()), p = f.parent(), t = f.attr("transform"),
             m = /translate\((\S+),(\S+)\)/.exec(t), tx = parseFloat(m[1]), ty = parseFloat(m[2]);
 
@@ -87,16 +87,16 @@ var Map = (function() {
 
           simpleMsg = ['<div class="rsvp"><span class="member-photo"><img src="',rsvp.member.photo,
                  '"/></span><div class="member-info"> <span class="member">', rsvp.member.member_name,
-                       '</span> will meetup with<br/> <span class="group">', rsvp.group.group_name, '</span> in <span class="place">',
+                       '</span><br/><span class="will-mup"> will meetup with</span><br/> <span class="group">', rsvp.group.group_name, '</span><br/><span class="place">in ',
                        rsvp.group.group_city, ', ',
                         (rsvp.group.group_state ? rsvp.group.group_state : rsvp.group.group_country).toUpperCase(),
                        '</span></div>'].join(''),
 
           msg = ['<div class="rsvp"><span class="member-photo"><img src="',rsvp.member.photo,
                  '"/></span><div class="member-info"> <span class="member">', rsvp.member.member_name,
-                 '</span> will meetup with<br/> ',
+                 '</span><span class="will-mup"> will meetup with</span><br/> ',
                  '<span class="group">', rsvp.group.group_name,
-                 '</span><br/> in <span class="place">', rsvp.group.group_city, ', ',
+                 '</span><br/><span class="place">in ', rsvp.group.group_city, ', ',
                  (rsvp.group.group_state ? rsvp.group.group_state : rsvp.group.group_country).toUpperCase(),
                  '</span><br/> <span class="time" mtime="', rsvp.mtime,
                  '">', mu.Time.ago(rsvp.mtime), '</span></div></div>'].join('');
@@ -109,7 +109,7 @@ var Map = (function() {
           var depth = Math.min(rsvps.length, 60);
           if (depth > 1) {
               var rate = (depth - 1) * 60 * 1000 / (rsvps[rsvps.length-1].time - rsvps[rsvps.length - depth].time);
-              $("span#rate span").text(Math.round(rate));
+              $("span#rate .r").text(Math.round(rate));
           }
 
           var details = $("#rsvp-detail"),
