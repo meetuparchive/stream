@@ -2,7 +2,7 @@ $(function() {
     var src = window.location.hash.length > 0 ?
         window.location.hash.substr(1) : 'https://www.meetup.com/';
     $('#content').attr('src', src);
-    var socket = new WebSocket("ws://stream.meetup.com/2/rsvps");
+    var socket = new WebSocket("wss://stream.meetup.com/2/rsvps");
 
     var ticker = $('#ticker');
 
