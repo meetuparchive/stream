@@ -4,7 +4,7 @@
   }
   var mu = {};
 
-  /** Streams public RSVP data from http://www.meetup.com/meetup_api/docs/stream/2/rsvps/#polling */
+  /** Streams public RSVP data from https://www.meetup.com/meetup_api/docs/stream/2/rsvps/#polling */
   mu.Rsvps = function(callback, params, error) {
     return mu.Stream({
       path: "/2/rsvps",
@@ -14,7 +14,7 @@
     });
   };
 
-  /** Streams public photo data from http://www.meetup.com/meetup_api/docs/stream/2/photos/#polling */
+  /** Streams public photo data from https://www.meetup.com/meetup_api/docs/stream/2/photos/#polling */
   mu.Photos = function(callback, params, error) {
     return mu.Stream({
       path: "/2/photos",
@@ -24,7 +24,7 @@
     });
   };
 
-  /** Streams public checkin data from http://www.meetup.com/meetup_api/docs/stream/2/checkins/#polling */
+  /** Streams public checkin data from https://www.meetup.com/meetup_api/docs/stream/2/checkins/#polling */
   mu.Checkins = function(callback, params, error) {
     return mu.Stream({
       path: "/2/checkins",
@@ -34,7 +34,7 @@
     });
   };
 
-  /** Streams public Meetup comments from http://www.meetup.com/meetup_api/docs/stream/2/event_comments/#polling */
+  /** Streams public Meetup comments from https://www.meetup.com/meetup_api/docs/stream/2/event_comments/#polling */
   mu.Comments = function(callback, params, error) {
     return mu.Stream({
       path: "/2/event_comments",

@@ -1,11 +1,11 @@
 $(function() {
     var src = window.location.hash.length > 0 ?
-        window.location.hash.substr(1) : 'http://www.meetup.com/';
+        window.location.hash.substr(1) : 'https://www.meetup.com/';
     $('#content').attr('src', src);
     var socket = new WebSocket("ws://stream.meetup.com/2/rsvps");
 
     var ticker = $('#ticker');
-  
+
     socket.onmessage = function(event) {
         var rsvp = JSON.parse(event.data);
         if (rsvp.response != "yes") return;

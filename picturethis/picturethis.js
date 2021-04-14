@@ -60,7 +60,7 @@ if (!Array.prototype.indexOf) {
         };
         $("#photos li").live('click', function() {
             var p = $(this).data();
-            var mulink = ['http://www.meetup.com'
+            var mulink = ['https://www.meetup.com'
                           , p.photo_album.group.urlname
                           , 'photos'
                           , p.photo_album.photo_album_id
