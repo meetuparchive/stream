@@ -251,14 +251,14 @@ body.hasAnnouncement #C_globalNav {
     padding: 2px;
 }
 .hasDropDown {
-    background-image: url("http://img1.meetupstatic.com/img/49152924430453339404/module/common/pager_bot_b_v2.png");
+    background-image: url("https://img1.meetupstatic.com/img/49152924430453339404/module/common/pager_bot_b_v2.png");
     background-position: right 0;
     background-repeat: no-repeat;
     padding: 0 15px 5px 0;
     position: relative;
 }
 .hasDropDown .C_arrowTab {
-    background-image: url("http://img1.meetupstatic.com/img/2766325411989718553317500/arrow_tab.gif");
+    background-image: url("https://img1.meetupstatic.com/img/2766325411989718553317500/arrow_tab.gif");
     height: 19px;
     position: absolute;
     right: 0;
@@ -2229,12 +2229,12 @@ table.D_tabular .discussions .newCount {
     font-weight: bold;
 }
 .D_sortedDesc .D_selected {
-    background: url("http://img1.meetupstatic.com/img/7648487429011416/arrow_down.gif") no-repeat scroll right center transparent;
+    background: url("https://img1.meetupstatic.com/img/7648487429011416/arrow_down.gif") no-repeat scroll right center transparent;
     color: #2380CF !important;
     padding-right: 12px;
 }
 .D_sortedAsc .D_selected {
-    background: url("http://img1.meetupstatic.com/img/68303913898350203/arrow_up.gif") no-repeat scroll right center transparent;
+    background: url("https://img1.meetupstatic.com/img/68303913898350203/arrow_up.gif") no-repeat scroll right center transparent;
     color: #2380CF !important;
     padding-right: 12px;
 }
@@ -2734,11 +2734,11 @@ p.letItBeKnown {
     text-align: left;
 }
 .D_tip {
-    background: url("http://img2.meetupstatic.com/img/65126409368739706802/icon_tip.gif") no-repeat scroll 5px 2px transparent;
+    background: url("https://img2.meetupstatic.com/img/65126409368739706802/icon_tip.gif") no-repeat scroll 5px 2px transparent;
     padding: 0 2em;
 }
 .D_inform {
-    background: url("http://img2.meetupstatic.com/img/951590293841049465157/thirdparty/fff/silk/information.png") no-repeat scroll 5px 2px transparent;
+    background: url("https://img2.meetupstatic.com/img/951590293841049465157/thirdparty/fff/silk/information.png") no-repeat scroll 5px 2px transparent;
     padding: 0 2.2em;
 }
 ul.D_actions {
@@ -4405,7 +4405,7 @@ fieldset.D_dateMenu {
     color: #333333 !important;
 }
 .splainBoxPointer {
-    background: url("http://img1.meetupstatic.com/img/3004928835845017/pointer.gif") no-repeat scroll left top transparent;
+    background: url("https://img1.meetupstatic.com/img/3004928835845017/pointer.gif") no-repeat scroll left top transparent;
     margin-top: 4em;
     padding-top: 1em;
     position: absolute;
@@ -4413,7 +4413,7 @@ fieldset.D_dateMenu {
     z-index: 3;
 }
 .splainBoxPointerRight {
-    background: url("http://img1.meetupstatic.com/img/77810818527789969974505/pointer_right.gif") no-repeat scroll left top transparent;
+    background: url("https://img1.meetupstatic.com/img/77810818527789969974505/pointer_right.gif") no-repeat scroll left top transparent;
     left: 32.7em;
     margin-top: 4em;
     padding-top: 1em;
@@ -4948,7 +4948,7 @@ div.pickerPic img {
     position: absolute;
 }
 .comment_deleteConfirmDiv {
-    background: url("http://img1.meetupstatic.com/img/122275598138298484337/bg_gray_fade.gif") repeat-x scroll left center #E6E6E6;
+    background: url("https://img1.meetupstatic.com/img/122275598138298484337/bg_gray_fade.gif") repeat-x scroll left center #E6E6E6;
     border: 1px solid #CAD3AE;
     padding: 0.5em;
     text-align: center;
@@ -5162,7 +5162,7 @@ body {
     text-align: center;
 }
 .D_ipledged {
-    background: url("http://img1.meetupstatic.com/img/84971504354890544227/ipledged_bg.gif") no-repeat scroll left top white;
+    background: url("https://img1.meetupstatic.com/img/84971504354890544227/ipledged_bg.gif") no-repeat scroll left top white;
     color: #FFFFFF;
     font-size: 9px;
     font-weight: bold;
@@ -5175,7 +5175,7 @@ body {
     width: 80px;
 }
 .D_pledgestitle {
-    background: url("http://img1.meetupstatic.com/img/422846844299933816739/pledges_bg.gif") no-repeat scroll left top white;
+    background: url("https://img1.meetupstatic.com/img/422846844299933816739/pledges_bg.gif") no-repeat scroll left top white;
     color: #FFFFFF;
     font-family: "helvetica";
     font-size: 16px;
@@ -5712,7 +5712,7 @@ ul.D_jobs li {
     font-weight: bold;
 }
 .D_asterisk {
-    background: url("http://img2.meetupstatic.com/img/62552900245854122304/thirdparty/fff/silk/asterisk_orange.png") no-repeat scroll left top transparent;
+    background: url("https://img2.meetupstatic.com/img/62552900245854122304/thirdparty/fff/silk/asterisk_orange.png") no-repeat scroll left top transparent;
     padding: 0 0 0 2em;
     text-align: left;
 }
@@ -6515,7 +6515,7 @@ table.are-you-sure div.D_form {
     background: url("//img1.meetupstatic.com/img/88346414660667546/thirdparty/fff/silk/user_red.png") no-repeat scroll left top transparent;
 }
 .T_tag-prompt {
-    background: url("http://img2.meetupstatic.com/img/932691053154620440/groupTagger/yellow-pointer-F8EFBC.png") no-repeat scroll left bottom transparent;
+    background: url("https://img2.meetupstatic.com/img/932691053154620440/groupTagger/yellow-pointer-F8EFBC.png") no-repeat scroll left bottom transparent;
     padding-bottom: 13px;
     position: absolute;
     text-align: center;
@@ -6694,7 +6694,7 @@ ul.D_summaryList:after, ul.D_summaryList li:after {
     margin: 0.25em 0;
 }
 .contact_wizard_step h3 a {
-    background: url("http://img2.meetupstatic.com/img/4172210059267637723561/arrow/wizardnext.png") no-repeat scroll right center transparent;
+    background: url("https://img2.meetupstatic.com/img/4172210059267637723561/arrow/wizardnext.png") no-repeat scroll right center transparent;
     padding-right: 20px;
 }
 #import_services {
@@ -6714,7 +6714,7 @@ ul.D_summaryList:after, ul.D_summaryList li:after {
     padding: 0.25em;
 }
 .import_logo div a {
-    background: url("http://img1.meetupstatic.com/img/4172210059267637723561/arrow/wizardnext.png") no-repeat scroll right center white;
+    background: url("https://img1.meetupstatic.com/img/4172210059267637723561/arrow/wizardnext.png") no-repeat scroll right center white;
     display: -moz-box;
     padding-left: 5px;
     padding-right: 20px;
@@ -8211,13 +8211,13 @@ ul.D_furtherExplore li {
     width: 240px;
 }
 #memberOwnPhotoOnlyOne .pendingProfilePhoto div {
-    background: url("http://img1.meetupstatic.com/img/219692975400/photo_processing.gif") no-repeat scroll 0 0 transparent;
+    background: url("https://img1.meetupstatic.com/img/219692975400/photo_processing.gif") no-repeat scroll 0 0 transparent;
     border: 1px solid #CCCCCC;
     height: 358px;
     width: 238px;
 }
 #memberOwnPhotosListWider .pendingProfilePhoto div {
-    background: url("http://img1.meetupstatic.com/img/219692975400/photo_processing.gif") no-repeat scroll 0 0 transparent;
+    background: url("https://img1.meetupstatic.com/img/219692975400/photo_processing.gif") no-repeat scroll 0 0 transparent;
     border: 1px solid #CCCCCC;
     height: 358px;
     width: 238px;
@@ -8415,7 +8415,7 @@ ul.D_topicalertList li .D_boxcols {
     padding-top: 0 !important;
 }
 #D_profileQuestionEditWarn {
-    background: url("http://img2.meetupstatic.com/img/932691053154620440/groupTagger/yellow-pointer-F8EFBC.png") no-repeat scroll left bottom transparent;
+    background: url("https://img2.meetupstatic.com/img/932691053154620440/groupTagger/yellow-pointer-F8EFBC.png") no-repeat scroll left bottom transparent;
     padding-bottom: 13px;
     position: absolute;
     width: 43em;
@@ -10307,7 +10307,7 @@ div.fileSection .D_boxfoot .D_pager {
     display: none;
 }
 .D_seeCalendar {
-    background: url("http://img1.meetupstatic.com/img/0919832613484209749/icon/ical.gif") no-repeat scroll 0 0 transparent;
+    background: url("https://img1.meetupstatic.com/img/0919832613484209749/icon/ical.gif") no-repeat scroll 0 0 transparent;
     padding-bottom: 3px;
     padding-left: 21px;
 }
@@ -10765,7 +10765,7 @@ body div.variant_or div.input {
     margin-bottom: 2px;
 }
 .pastEvents li.note, .upcomingEvents li.note, .memHomeEvents li.note {
-    background-image: url("http://img1.meetupstatic.com/img/1973171737649288895381/icon/icon_note.gif");
+    background-image: url("https://img1.meetupstatic.com/img/1973171737649288895381/icon/icon_note.gif");
 }
 .pastEvent_activityCount {
     font-size: 0.9em;
@@ -10792,10 +10792,10 @@ body div.variant_or div.input {
     padding: 8px 0 8px 22px;
 }
 .pastEvents li, .memHomeEvents li.past, .feed-item-slim p {
-    background-image: url("http://img1.meetupstatic.com/img/224298277108867972898/tearsheet_past_mini.gif");
+    background-image: url("https://img1.meetupstatic.com/img/224298277108867972898/tearsheet_past_mini.gif");
 }
 .upcomingEvents li, .memHomeEvents li, .tearImg {
-    background-image: url("http://img1.meetupstatic.com/img/03339425271041844/tearsheet_mini.gif");
+    background-image: url("https://img1.meetupstatic.com/img/03339425271041844/tearsheet_mini.gif");
 }
 .memHomeEvents p.group-name {
     margin: 0;
@@ -10816,22 +10816,22 @@ body div.variant_or div.input {
     padding-top: 0;
 }
 .D_socialNetworksList .facebookLink {
-    background-image: url("http://img1.meetupstatic.com/img/192008639833446537662/externalservice/socialmediaicons/facebook-16x16.png");
+    background-image: url("https://img1.meetupstatic.com/img/192008639833446537662/externalservice/socialmediaicons/facebook-16x16.png");
 }
 .D_socialNetworksList .twitterLink {
-    background-image: url("http://img1.meetupstatic.com/img/13191465716213475/externalservice/socialmediaicons/twitter-16x16.png");
+    background-image: url("https://img1.meetupstatic.com/img/13191465716213475/externalservice/socialmediaicons/twitter-16x16.png");
 }
 .D_socialNetworksList .flickrLink {
-    background-image: url("http://img1.meetupstatic.com/img/6310819397354786350/externalservice/socialmediaicons/flickr-16x16.png");
+    background-image: url("https://img1.meetupstatic.com/img/6310819397354786350/externalservice/socialmediaicons/flickr-16x16.png");
 }
 .D_socialNetworksList .linkedinLink {
-    background-image: url("http://img1.meetupstatic.com/img/34793909745133197614343/externalservice/socialmediaicons/linkedin-16x16.png");
+    background-image: url("https://img1.meetupstatic.com/img/34793909745133197614343/externalservice/socialmediaicons/linkedin-16x16.png");
 }
 .D_socialNetworksList .tumblrLink {
-    background-image: url("http://img1.meetupstatic.com/img/5018610054812456462245/externalservice/socialmediaicons/tumblr-16x16.png");
+    background-image: url("https://img1.meetupstatic.com/img/5018610054812456462245/externalservice/socialmediaicons/tumblr-16x16.png");
 }
 .D_socialNetworksList .otherLink {
-    background-image: url("http://img1.meetupstatic.com/img/3483762053671604980/externalservice/socialmediaicons/website-16x16.png");
+    background-image: url("https://img1.meetupstatic.com/img/3483762053671604980/externalservice/socialmediaicons/website-16x16.png");
 }
 .D_profileQuestionSocialNetwork {
     margin-bottom: 0;
@@ -11056,7 +11056,7 @@ body div.variant_or div.input {
 .D_fbconnect_login_button {
     background-attachment: scroll;
     background-color: #29447E;
-    background-image: url("http://img1.meetupstatic.com/img/58068507502172015/externalservice/fb_login_button/facebook_22x22.gif");
+    background-image: url("https://img1.meetupstatic.com/img/58068507502172015/externalservice/fb_login_button/facebook_22x22.gif");
     background-position: 0 0;
     background-repeat: no-repeat;
     color: #6E1919;
@@ -11315,7 +11315,7 @@ a.D_fbconnect_login_button:hover {
     visibility: visible;
 }
 .ideaMini {
-    background-image: url("http://img1.meetupstatic.com/img/450219860040664702/idea_mini.png");
+    background-image: url("https://img1.meetupstatic.com/img/450219860040664702/idea_mini.png");
 }
 .likedialog {
     cursor: pointer;
@@ -11355,7 +11355,7 @@ a.D_fbconnect_login_button:hover {
     vertical-align: middle;
 }
 .mceItemHiddenSpellWord {
-    background: url("http://img1.meetupstatic.com/img/13698007189894721856/wline.gif") repeat-x scroll left bottom pink;
+    background: url("https://img1.meetupstatic.com/img/13698007189894721856/wline.gif") repeat-x scroll left bottom pink;
     cursor: default;
 }
 #menu_body_spellcheckermenu_tbl a:hover {
@@ -11452,13 +11452,13 @@ table.discretePrompt tr.top td {
     height: 10px;
 }
 table.discretePrompt tr.top td.left {
-    background-image: url("http://img1.meetupstatic.com/img/63589469281489925425/discreteprompt/top-left.png");
+    background-image: url("https://img1.meetupstatic.com/img/63589469281489925425/discreteprompt/top-left.png");
 }
 table.discretePrompt tr.top td.right {
-    background-image: url("http://img1.meetupstatic.com/img/355171596533231035167/discreteprompt/top-right.png");
+    background-image: url("https://img1.meetupstatic.com/img/355171596533231035167/discreteprompt/top-right.png");
 }
 table.discretePrompt tr.top td.center {
-    background-image: url("http://img1.meetupstatic.com/img/514859257393447192934/discreteprompt/top-pat.png");
+    background-image: url("https://img1.meetupstatic.com/img/514859257393447192934/discreteprompt/top-pat.png");
     background-position: 0 0;
     background-repeat: repeat-x;
 }
@@ -11466,10 +11466,10 @@ table.discretePrompt tr.body td.left, table.discretePrompt tr.body td.right {
     background-repeat: repeat-y;
 }
 table.discretePrompt tr.body td.left {
-    background-image: url("http://img1.meetupstatic.com/img/5722720533780740092/discreteprompt/body-left-pat.png");
+    background-image: url("https://img1.meetupstatic.com/img/5722720533780740092/discreteprompt/body-left-pat.png");
 }
 table.discretePrompt tr.body td.right {
-    background-image: url("http://img1.meetupstatic.com/img/6610337884901703196294/discreteprompt/body-right-pat.png");
+    background-image: url("https://img1.meetupstatic.com/img/6610337884901703196294/discreteprompt/body-right-pat.png");
 }
 table.discretePrompt tr.body td.center {
     background-color: #FFFFFF;
@@ -11482,19 +11482,19 @@ table.discretePrompt tr.bot td {
     height: 21px;
 }
 table.discretePrompt tr.bot td.left {
-    background-image: url("http://img1.meetupstatic.com/img/567483666439416/discreteprompt/bot-left.png");
+    background-image: url("https://img1.meetupstatic.com/img/567483666439416/discreteprompt/bot-left.png");
 }
 table.discretePrompt tr.bot td.right {
-    background-image: url("http://img1.meetupstatic.com/img/2258200698951/discreteprompt/bot-right.png");
+    background-image: url("https://img1.meetupstatic.com/img/2258200698951/discreteprompt/bot-right.png");
 }
 table.discretePrompt tr.bot td.center {
-    background-image: url("http://img1.meetupstatic.com/img/1886319535737020318/discreteprompt/bot-pat.png");
+    background-image: url("https://img1.meetupstatic.com/img/1886319535737020318/discreteprompt/bot-pat.png");
     background-position: 0 0;
     background-repeat: repeat-x;
     text-align: center;
 }
 .discretePromptTip {
-    background-image: url("http://img1.meetupstatic.com/img/7618854888054462591621/discreteprompt/tip.png");
+    background-image: url("https://img1.meetupstatic.com/img/7618854888054462591621/discreteprompt/tip.png");
     visibility: hidden;
 }
 .J_discreteMemberSearch {
@@ -11560,13 +11560,13 @@ table.discretePrompt tr.bot td.center {
     z-index: 1;
 }
 .J_discreteMemberSearch .loupe {
-    background-image: url("http://img1.meetupstatic.com/img/8388601600571312/thirdparty/fff/silk/magnifier.png");
+    background-image: url("https://img1.meetupstatic.com/img/8388601600571312/thirdparty/fff/silk/magnifier.png");
 }
 .J_discreteMemberSearch .loading {
-    background-image: url("http://img1.meetupstatic.com/img/93370062661830561247/discrete/membersearch/progress.gif");
+    background-image: url("https://img1.meetupstatic.com/img/93370062661830561247/discrete/membersearch/progress.gif");
 }
 .J_discreteMemberSearch .x {
-    background-image: url("http://img1.meetupstatic.com/img/139248620413920027507/thirdparty/fff/silk/cross.png");
+    background-image: url("https://img1.meetupstatic.com/img/139248620413920027507/thirdparty/fff/silk/cross.png");
 }
 .J_discreteMemberSearch .icon div.interact {
     height: 16px;
@@ -11585,17 +11585,17 @@ table.discretePrompt tr.bot td.center {
     height: 20px;
 }
 .J_discreteMemberSearch .arrowPrev {
-    background-image: url("http://img1.meetupstatic.com/img/725241163197637394255/discrete/membersearch/search_up.png");
+    background-image: url("https://img1.meetupstatic.com/img/725241163197637394255/discrete/membersearch/search_up.png");
     display: none;
 }
 .J_discreteMemberSearch .arrowNext {
-    background-image: url("http://img1.meetupstatic.com/img/6989426032356839367205/discrete/membersearch/search_down.png");
+    background-image: url("https://img1.meetupstatic.com/img/6989426032356839367205/discrete/membersearch/search_down.png");
     display: none;
 }
 .J_discreteMemberSearch .errorOut {
     background-attachment: scroll;
     background-color: #DAEBFC;
-    background-image: url("http://img1.meetupstatic.com/img/511798464036001396246/thirdparty/fff/silk/bullet_error.png");
+    background-image: url("https://img1.meetupstatic.com/img/511798464036001396246/thirdparty/fff/silk/bullet_error.png");
     background-position: 3px center;
     background-repeat: no-repeat;
     color: #000000;
@@ -11687,13 +11687,13 @@ table.discretePrompt tr.bot td.center {
     height: 10px;
 }
 .J_discreteBalloon table.dbTable tr.top td.left {
-    background-image: url("http://img1.meetupstatic.com/img/63589469281489925425/discrete/balloon/top-left.png");
+    background-image: url("https://img1.meetupstatic.com/img/63589469281489925425/discrete/balloon/top-left.png");
 }
 .J_discreteBalloon table.dbTable tr.top td.right {
-    background-image: url("http://img1.meetupstatic.com/img/355171596533231035167/discrete/balloon/top-right.png");
+    background-image: url("https://img1.meetupstatic.com/img/355171596533231035167/discrete/balloon/top-right.png");
 }
 .J_discreteBalloon table.dbTable tr.top td.center {
-    background-image: url("http://img1.meetupstatic.com/img/514859257393447192934/discrete/balloon/top-pat.png");
+    background-image: url("https://img1.meetupstatic.com/img/514859257393447192934/discrete/balloon/top-pat.png");
     background-position: 0 0;
     background-repeat: repeat-x;
 }
@@ -11701,10 +11701,10 @@ table.discretePrompt tr.bot td.center {
     background-repeat: repeat-y;
 }
 .J_discreteBalloon table.dbTable tr.body td.left {
-    background-image: url("http://img1.meetupstatic.com/img/5722720533780740092/discrete/balloon/body-left-pat.png");
+    background-image: url("https://img1.meetupstatic.com/img/5722720533780740092/discrete/balloon/body-left-pat.png");
 }
 .J_discreteBalloon table.dbTable tr.body td.right {
-    background-image: url("http://img1.meetupstatic.com/img/6610337884901703196294/discrete/balloon/body-right-pat.png");
+    background-image: url("https://img1.meetupstatic.com/img/6610337884901703196294/discrete/balloon/body-right-pat.png");
 }
 .J_discreteBalloon table.dbTable tr.body td.center {
     background-color: #FFFFFF;
@@ -11717,19 +11717,19 @@ table.discretePrompt tr.bot td.center {
     height: 21px;
 }
 .J_discreteBalloon table.dbTable tr.bot td.left {
-    background-image: url("http://img1.meetupstatic.com/img/567483666439416/discrete/balloon/bot-left.png");
+    background-image: url("https://img1.meetupstatic.com/img/567483666439416/discrete/balloon/bot-left.png");
 }
 .J_discreteBalloon table.dbTable tr.bot td.right {
-    background-image: url("http://img1.meetupstatic.com/img/2258200698951/discrete/balloon/bot-right.png");
+    background-image: url("https://img1.meetupstatic.com/img/2258200698951/discrete/balloon/bot-right.png");
 }
 .J_discreteBalloon table.dbTable tr.bot td.center {
-    background-image: url("http://img1.meetupstatic.com/img/1886319535737020318/discrete/balloon/bot-pat.png");
+    background-image: url("https://img1.meetupstatic.com/img/1886319535737020318/discrete/balloon/bot-pat.png");
     background-position: 0 0;
     background-repeat: repeat-x;
     text-align: center;
 }
 .discreteBalloonTip {
-    background-image: url("http://img1.meetupstatic.com/img/7618854888054462591621/discrete/balloon/tip.png");
+    background-image: url("https://img1.meetupstatic.com/img/7618854888054462591621/discrete/balloon/tip.png");
     height: 21px;
     visibility: hidden;
     width: 21px;
@@ -11764,7 +11764,7 @@ table.discretePrompt tr.bot td.center {
 .J_discreteBackButton div.bg div.left {
     background-attachment: scroll;
     background-color: transparent;
-    background-image: url("http://img1.meetupstatic.com/img/01858919156422154690/discrete/backbutton/bg_left.png");
+    background-image: url("https://img1.meetupstatic.com/img/01858919156422154690/discrete/backbutton/bg_left.png");
     background-position: 0 0;
     background-repeat: no-repeat;
     height: 26px;
@@ -11777,7 +11777,7 @@ table.discretePrompt tr.bot td.center {
 .J_discreteBackButton div.bg div.center {
     background-attachment: scroll;
     background-color: transparent;
-    background-image: url("http://img1.meetupstatic.com/img/354263191272830201/discrete/backbutton/bg_pat.png");
+    background-image: url("https://img1.meetupstatic.com/img/354263191272830201/discrete/backbutton/bg_pat.png");
     background-position: 0 0;
     background-repeat: repeat-x;
     height: 26px;
@@ -11790,7 +11790,7 @@ table.discretePrompt tr.bot td.center {
 .J_discreteBackButton div.bg div.right {
     background-attachment: scroll;
     background-color: transparent;
-    background-image: url("http://img1.meetupstatic.com/img/58149865963298522/discrete/backbutton/bg_right.png");
+    background-image: url("https://img1.meetupstatic.com/img/58149865963298522/discrete/backbutton/bg_right.png");
     background-position: 0 0;
     background-repeat: no-repeat;
     height: 26px;
@@ -11814,7 +11814,7 @@ table.discretePrompt tr.bot td.center {
 .J_discreteMedXButton div.bg {
     background-attachment: scroll;
     background-color: transparent;
-    background-image: url("http://img1.meetupstatic.com/img/4694126254667166448025/discrete/medxbutton/x.png");
+    background-image: url("https://img1.meetupstatic.com/img/4694126254667166448025/discrete/medxbutton/x.png");
     background-position: 0 0;
     background-repeat: no-repeat;
     z-index: 1;
@@ -11862,19 +11862,19 @@ table.discretePrompt tr.bot td.center {
     height: 16px;
 }
 .J_discreteDialog table.ddTable tr.top td.left {
-    background-image: url("http://img1.meetupstatic.com/img/14324320657676145/discrete/dialog/top-left.png");
+    background-image: url("https://img1.meetupstatic.com/img/14324320657676145/discrete/dialog/top-left.png");
 }
 .J_discreteDialog table.ddTable tr.top td.right {
-    background-image: url("http://img1.meetupstatic.com/img/87446457769674281900972/discrete/dialog/top-right.png");
+    background-image: url("https://img1.meetupstatic.com/img/87446457769674281900972/discrete/dialog/top-right.png");
 }
 .J_discreteDialog table.ddTable tr.top td.center {
-    background-image: url("http://img1.meetupstatic.com/img/570610355650968389641642/discrete/dialog/top-pat.png");
+    background-image: url("https://img1.meetupstatic.com/img/570610355650968389641642/discrete/dialog/top-pat.png");
 }
 .J_discreteDialog table.ddTable tr.body td.left, .J_discreteDialog table.ddTable tr.body td.right {
     background-repeat: repeat-y;
 }
 .J_discreteDialog table.ddTable tr.body td.left {
-    background-image: url("http://img1.meetupstatic.com/img/2631461535377997662/discrete/dialog/side-left-pat.png");
+    background-image: url("https://img1.meetupstatic.com/img/2631461535377997662/discrete/dialog/side-left-pat.png");
 }
 .J_discreteDialog table.ddTable tr.body td.center {
     background-color: #FFFFFF;
@@ -11883,25 +11883,25 @@ table.discretePrompt tr.bot td.center {
     padding: 1px 5px;
 }
 .J_discreteDialog table.ddTable tr.body td.right {
-    background-image: url("http://img1.meetupstatic.com/img/8043724701723800025788/discrete/dialog/side-right-pat.png");
+    background-image: url("https://img1.meetupstatic.com/img/8043724701723800025788/discrete/dialog/side-right-pat.png");
 }
 .J_discreteDialog table.ddTable tr.bot td {
     font-size: 1px;
     height: 14px;
 }
 .J_discreteDialog table.ddTable tr.bot td.left {
-    background-image: url("http://img1.meetupstatic.com/img/385922606118986/discrete/dialog/bot-left.png");
+    background-image: url("https://img1.meetupstatic.com/img/385922606118986/discrete/dialog/bot-left.png");
 }
 .J_discreteDialog table.ddTable tr.bot td.center {
-    background-image: url("http://img1.meetupstatic.com/img/50736039666622268861/discrete/dialog/bot-pat.png");
+    background-image: url("https://img1.meetupstatic.com/img/50736039666622268861/discrete/dialog/bot-pat.png");
 }
 .J_discreteDialog table.ddTable tr.bot td.right {
-    background-image: url("http://img1.meetupstatic.com/img/45002399910902310301318/discrete/dialog/bot-right.png");
+    background-image: url("https://img1.meetupstatic.com/img/45002399910902310301318/discrete/dialog/bot-right.png");
 }
 .J_discreteDialog table.ddTable tr.top td.right div.x {
     background-attachment: scroll;
     background-color: transparent;
-    background-image: url("http://img1.meetupstatic.com/img/49714773692467837234/discrete/dialog/x.gif");
+    background-image: url("https://img1.meetupstatic.com/img/49714773692467837234/discrete/dialog/x.gif");
     background-position: 0 0;
     background-repeat: no-repeat;
     cursor: pointer;
@@ -11922,22 +11922,22 @@ table.discretePrompt tr.bot td.center {
     visibility: hidden;
 }
 .discreteDialogTip.top {
-    background-image: url("http://img1.meetupstatic.com/img/90548069224189943222275/discrete/dialog/tip-top.png");
+    background-image: url("https://img1.meetupstatic.com/img/90548069224189943222275/discrete/dialog/tip-top.png");
     height: 16px;
     width: 13px;
 }
 .discreteDialogTip.right {
-    background-image: url("http://img1.meetupstatic.com/img/97683786172335640/discrete/dialog/tip-right.png");
+    background-image: url("https://img1.meetupstatic.com/img/97683786172335640/discrete/dialog/tip-right.png");
     height: 13px;
     width: 16px;
 }
 .discreteDialogTip.bot {
-    background-image: url("http://img1.meetupstatic.com/img/49897122052405525413/discrete/dialog/tip-bot.png");
+    background-image: url("https://img1.meetupstatic.com/img/49897122052405525413/discrete/dialog/tip-bot.png");
     height: 14px;
     width: 12px;
 }
 .discreteDialogTip.left {
-    background-image: url("http://img1.meetupstatic.com/img/08685476619489504758/discrete/dialog/tip-left.png");
+    background-image: url("https://img1.meetupstatic.com/img/08685476619489504758/discrete/dialog/tip-left.png");
     height: 12px;
     width: 16px;
 }
@@ -14169,7 +14169,7 @@ div.D_addSponsor.D_form .footElement {
 }
 .J_anchoredBubbleAnchor {
     background-attachment: scroll;
-    background-image: url("http://img1.meetupstatic.com/img/065682696665175335551290/bagelmeister/anchortri.png");
+    background-image: url("https://img1.meetupstatic.com/img/065682696665175335551290/bagelmeister/anchortri.png");
     background-position: 0 0;
     background-repeat: no-repeat;
     height: 40px;
@@ -14180,7 +14180,7 @@ div.D_addSponsor.D_form .footElement {
 }
 #unified-success {
     background-attachment: scroll;
-    background-image: url("http://img1.meetupstatic.com/img/80598331029333886375636/bagelmeister/uni_success_checkicon.png");
+    background-image: url("https://img1.meetupstatic.com/img/80598331029333886375636/bagelmeister/uni_success_checkicon.png");
     background-position: 12px center;
     background-repeat: no-repeat;
     border: 0.66em solid #B5D0F2;

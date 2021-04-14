@@ -68,8 +68,8 @@ var Map = (function() {
         .zoom(3)
         .add(po.interact())
         .add(po.image()
-            .url(po.url("http://{S}tile.cloudmade.com"
-                + "/4f160badaf4d4b899408c4104fd05715" // get yr own key pls @ http://cloudmade.com/register
+            .url(po.url("https://{S}tile.cloudmade.com"
+                + "/4f160badaf4d4b899408c4104fd05715" // get yr own key pls @ https://cloudmade.com/register
                 + "/30389/256/{Z}/{X}/{Y}.png")
                  .hosts(["a.", "b.", "c.", ""])));
 

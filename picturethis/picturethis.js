@@ -48,7 +48,7 @@ if (!Array.prototype.indexOf) {
         $(window).resize(resizeGrid);
         $(window).resize(rows);
         var twt = function(url) {
-            return ['<a href="http://twitter.com/share" class="twitter-share-button"'
+            return ['<a href="https://twitter.com/share" class="twitter-share-button"'
                     , ' data-text="Picture this: " data-count="horizontal"'
                     , ' data-url="'
                     , url
@@ -56,7 +56,7 @@ if (!Array.prototype.indexOf) {
                     , ' data-via="MeetupAPI">Tweet</a>'].join('');
         }, rltwt = function() {
             /* needed for dynamic additions of tweet btns to the page. don't worry. it's cached.*/
-            $.ajax({url:"http://platform.twitter.com/widgets.js",dataType:"script",cache:true});
+            $.ajax({url:"https://platform.twitter.com/widgets.js",dataType:"script",cache:true});
         };
         $("#photos li").live('click', function() {
             var p = $(this).data();
@@ -81,7 +81,7 @@ if (!Array.prototype.indexOf) {
             var photo = queue.shift();
             if(photo) {
                 if($("#intro").is(":visible")) { $("#intro").slideUp("slow"); }
-                var mulink = ['http://meetup.com'
+                var mulink = ['https://meetup.com'
                               , photo.photo_album.group.urlname
                               , 'photos'
                               , photo.photo_album.photo_album_id

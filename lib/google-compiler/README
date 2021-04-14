@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -23,7 +23,7 @@ optimizations on JavaScript code. The purpose of this README is to
 explain how to build and run the Closure Compiler.
 
 The Closure Compiler requires Java 6 or higher.
-http://www.java.com/
+https://www.java.com/
 
 
 //
@@ -35,17 +35,17 @@ There are three ways to get a Closure Compiler executable.
 1) Use one we built for you.
 
 Pre-built Closure binaries can be found at
-http://code.google.com/p/closure-compiler/downloads/list
+https://code.google.com/p/closure-compiler/downloads/list
 
 
 2) Check out the source and build it with Apache Ant.
 
 First, check out the full source tree of the Closure Compiler. There
 are instructions on how to do this at the project site.
-http://code.google.com/p/closure-compiler/source/checkout
+https://code.google.com/p/closure-compiler/source/checkout
 
 Apache Ant is a cross-platform build tool.
-http://ant.apache.org/
+https://ant.apache.org/
 
 At the root of the source tree, there is an Ant file named
 build.xml. To use it, navigate to the same directory and type the
@@ -59,7 +59,7 @@ This will produce a jar file called "build/compiler.jar".
 3) Check out the source and build it with Eclipse.
 
 Eclipse is a cross-platform IDE.
-http://www.eclipse.org/
+https://www.eclipse.org/
 
 Under Eclipse's File menu, click "New > Project ..." and create a
 "Java Project."  You will see an options screen. Give the project a
@@ -99,7 +99,7 @@ optimizations. To learn more, type
 java -jar compiler.jar --help
 
 You can read more detailed documentation about the many flags at
-http://code.google.com/closure/compiler/docs/gettingstarted_app.html
+https://code.google.com/closure/compiler/docs/gettingstarted_app.html
 
 
 //
@@ -121,7 +121,7 @@ enforcing dependencies between scripts, and a tool called calcdeps.py
 that knows how to give scripts to the Closure Compiler in the right
 order.
 
-http://code.google.com/p/closure-library/
+https://code.google.com/p/closure-library/
 
 //
 // Licensing
@@ -136,7 +136,7 @@ Code under:
 src/com/google/javascript/rhino
 test/com/google/javascript/rhino
 
-URL: http://www.mozilla.org/rhino
+URL: https://www.mozilla.org/rhino
 Version:  1.5R3, with heavy modifications
 License:  Netscape Public License and MPL / GPL dual license
 
@@ -155,7 +155,7 @@ Code in:
 lib/libtrunk_rhino_parser_jarjared.jar
 
 Rhino
-URL: http://www.mozilla.org/rhino
+URL: https://www.mozilla.org/rhino
 Version:  Trunk
 License:  Netscape Public License and MPL / GPL dual license
 
@@ -163,7 +163,7 @@ Description: Mozilla Rhino is an implementation of JavaScript for the JVM.
 
 Local Modifications: None. We've used JarJar to renamespace the code
 post-compilation. See:
-http://code.google.com/p/jarjar/
+https://code.google.com/p/jarjar/
 
 
 -----
@@ -187,7 +187,7 @@ Code in:
 lib/google_common_deploy.jar
 
 Guava Libraries
-URL: http://code.google.com/p/guava-libraries/
+URL: https://code.google.com/p/guava-libraries/
 Version:  Trunk
 License: Apache License 2.0
 
@@ -201,7 +201,7 @@ Code in:
 lib/hamcrest-core-1.1.jar
 
 Hamcrest
-URL: http://code.google.com/p/hamcrest
+URL: https://code.google.com/p/hamcrest
 License: BSD
 License File: LICENSE
 
@@ -222,7 +222,7 @@ Code in:
 lib/junit.jar
 
 JUnit
-URL:  http://sourceforge.net/projects/junit/
+URL:  https://sourceforge.net/projects/junit/
 Version:  4.5
 License:  Common Public License 1.0
 
@@ -236,7 +236,7 @@ Code in:
 lib/protobuf_deploy.jar
 
 Protocol Buffers
-URL: http://code.google.com/p/protobuf/
+URL: https://code.google.com/p/protobuf/
 Version: 2.2.0a
 License: New BSD License
 
@@ -250,7 +250,7 @@ Local Modifications: None
 Code in:
 lib/ant_deploy.jar
 
-URL: http://ant.apache.org/bindownload.cgi
+URL: https://ant.apache.org/bindownload.cgi
 Version: 1.6.5
 License: Apache License 2.0
 Description:

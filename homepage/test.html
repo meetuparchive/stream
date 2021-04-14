@@ -11,12 +11,12 @@
 
 $('#exe').click(function() {
 
-    
+
     target.empty();
-    $.getJSON("http://api.meetup.com/cities.json/?state=CT&key=2965376f4a27313c71736b6a27c7024", function(data) {
+    $.getJSON("https://api.meetup.com/cities.json/?state=CT&key=2965376f4a27313c71736b6a27c7024", function(data) {
 		alert(data);
         $.each(data.results, function(i, ev) {
-			
+
         });
     });
 });
@@ -32,9 +32,9 @@ $('#exe').click(function() {
 	<p>
 	Enter your API key:
 	<input type="text" id="apikey" size="30"></input>
-	&nbsp 
+	&nbsp
 	<form name="f">
-	Remember Me? &nbsp	
+	Remember Me? &nbsp
 	<input type="radio" name="yn" value="yes" checked> Yes
 	<input type="radio" name="yn" value="no" > No
 	</form>

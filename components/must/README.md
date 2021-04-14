@@ -4,7 +4,7 @@ Pipe community into your browser with the Meetup Streaming API
 
 ## Install
 
-Using [bower](http://bower.io/)
+Using [bower](https://bower.io/)
 
     bower install must
 
@@ -72,4 +72,3 @@ An example is provided. Install its depdendencies with
 Then open index.html in your browser
 
 Meetup 2013
-

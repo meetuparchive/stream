@@ -68,7 +68,7 @@ var Map = (function() {
         .zoom(1.8)
         .add(po.interact())
         .add(po.image()
-            .url("http://s3.amazonaws.com/com.modestmaps.bluemarble/{Z}-r{Y}-c{X}.jpg"))
+            .url("https://s3.amazonaws.com/com.modestmaps.bluemarble/{Z}-r{Y}-c{X}.jpg"))
         .add(po.compass().pan("none"));
 
     var load = function(e) {

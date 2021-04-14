@@ -23,7 +23,7 @@
 <div id="C_logo">
 
 <a href="https://www.meetup.com/">
-<img alt="Meetup" src="http://img1.meetupstatic.com/892670376411449149876/img/header/logo.png">
+<img alt="Meetup" src="https://img1.meetupstatic.com/892670376411449149876/img/header/logo.png">
 </a>
 
 </div>
@@ -84,7 +84,7 @@ Meetup Groups
 
 
 <form action="https://www.meetup.com/find/" method="get" id="C_globalSearch">
-<input type="text" maxlength="100" class="D_topicSearch" id="C_globalSearchInput" autocomplete="off" name="keywords"><div class="D_submitInline"><input type="image" id="C_globalSearchBtn" src="http://img2.meetupstatic.com/0460894421244282745036/img/header/search_20.png"></div>
+<input type="text" maxlength="100" class="D_topicSearch" id="C_globalSearchInput" autocomplete="off" name="keywords"><div class="D_submitInline"><input type="image" id="C_globalSearchBtn" src="https://img2.meetupstatic.com/0460894421244282745036/img/header/search_20.png"></div>
 <input type="submit" style="display:none">
 
 <input type="hidden" value="us" name="country">
@@ -183,7 +183,7 @@ $('#query').keypress(function() {
       			desc = groupHit.description;
 			}
 			$('.target-text').append(desc+"</p>");
-			var memURL = 'http://api.meetup.com/members.json?callback=?&page=10&key=2965376f4a27313c71736b6a27c7024&group_id=';
+			var memURL = 'https://api.meetup.com/members.json?callback=?&page=10&key=2965376f4a27313c71736b6a27c7024&group_id=';
 			$.getJSON(memURL+groupHit.id, function(data) {
 					if (data.status && data.status.match(/^200/) == null) {
        					 alert(data.status + ": " + data.details);
@@ -202,8 +202,8 @@ $('#query').keypress(function() {
 
 
 	};
-	var url = 'http://api.meetup.com/topics.json?callback=?&page=1&key=2965376f4a27313c71736b6a27c7024&search=';
-	var url2= 'http://api.meetup.com/groups.json?callback=?&page=5&key=2965376f4a27313c71736b6a27c7024&order=members&country=us&state=ny&city=brooklyn&topic=';
+	var url = 'https://api.meetup.com/topics.json?callback=?&page=1&key=2965376f4a27313c71736b6a27c7024&search=';
+	var url2= 'https://api.meetup.com/groups.json?callback=?&page=5&key=2965376f4a27313c71736b6a27c7024&order=members&country=us&state=ny&city=brooklyn&topic=';
 	var query = $('#query').val();
 	$.getJSON(url+query, function(data) {
 	if (data.status && data.status.match(/^200/) == null) {

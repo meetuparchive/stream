@@ -1,6 +1,6 @@
 
 var geo_ip;
-var signed_url = "http://api.meetup.com/members?relation=self&order=name&offset=0&format=json&page=200&fields=geo_ip&sig_id=7230113&sig=5e3b4d6d9dc360339e131a77a57937daa623a98a&callback=?";
+var signed_url = "https://api.meetup.com/members?relation=self&order=name&offset=0&format=json&page=200&fields=geo_ip&sig_id=7230113&sig=5e3b4d6d9dc360339e131a77a57937daa623a98a&callback=?";
 $.getJSON(signed_url, function(data) {
     geo_ip = data.meta.geo_ip;
 });

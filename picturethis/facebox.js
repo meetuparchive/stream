@@ -5,7 +5,7 @@
  * @homepage https://github.com/defunkt/facebox
  *
  * Licensed under the MIT:
- *   http://www.opensource.org/licenses/mit-license.php
+ *   https://www.opensource.org/licenses/mit-license.php
  *
  * Copyright Forever Chris Wanstrath, Kyle Neath
  *

@@ -1,5 +1,5 @@
 (function($){
-     var MEETUP = 'http://meetup.com'
+     var MEETUP = 'https://meetup.com'
      , T = {
          glink: function(p) {
              return [MEETUP, p.photo_album.group.urlname].join('/');
@@ -146,7 +146,7 @@
         });
         setInterval(poll, 3000);
         must.Stream({
-            url: "http://stream.dev.meetup.com:8100/2/photos",
+            url: "https://stream.dev.meetup.com:8100/2/photos",
             callback: function(photo) {
                 var topics = photo.photo_album.group.group_topics;
                 if(!topics || topics.filter(inappropriate).length<1) {
