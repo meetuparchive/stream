@@ -56,7 +56,7 @@
    */
   mu.Stream = (function(config) {
     var $      = jQuery,
-      host     = config.host  || "http://stream.meetup.com",
+      host     = config.host  || "https://stream.meetup.com",
       path     = config.path  || "/2/rsvps"
       url      = config.url   || host + path,
       wsUrl    = config.wsUrl || url.replace(/^http/, 'ws'),
