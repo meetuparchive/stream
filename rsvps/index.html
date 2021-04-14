@@ -1,26 +1,31 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>mu api stream</title>
-    <style>
-      body { margin:0; font-family:helvetica, arial, 'sans serif'; }
-    </style>
-    <script type="text/javascript" src="../js/jquery.min.js"></script>
-    <script type="text/javascript" src="../components/must/must.js"></script>
-  </head>
-  <body>
-    <div id="l">
-      <ul id="photos"></ul>
-    </div>
-    <script type="text/javascript">
-      must.Rsvps(function(rsvp) {
-          $("#photos").append( [
-              '<li><a target="_blank" href="'
-              , rsvp.event.event_url,
-              ,'">'
-              , rsvp.response
-              , '</a></li>'
-          ].join(''));
-      });
-    </script>
-  </body>
+
+<head>
+  <title>mu api stream</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: helvetica, arial, 'sans serif';
+    }
+
+  </style>
+  <script type="text/javascript" src="../js/jquery.min.js"></script>
+  <script type="text/javascript" src="../components/must/must.js"></script>
+</head>
+
+<body>
+  <div id="l">
+    <ul id="photos"></ul>
+  </div>
+  <script type="text/javascript">
+    must.Rsvps(function (rsvp) {
+      $("#photos").append([
+        '<li><a target="_blank" href="', rsvp.event.event_url, , '">', rsvp.response, '</a></li>'
+      ].join(''));
+    });
+
+  </script>
+</body>
+
 </html>

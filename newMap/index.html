@@ -1,42 +1,49 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Streaming MEMEs</title>
-    <link rel="stylesheet" type="text/css" href="../css/jquery.bubblepopup.v2.3.1.css" />
-    <link rel="stylesheet" type="text/css" href="map.css" />
-    <script type="text/javascript" src="../js/jquery.min.js"></script>
-    <script type="text/javascript" src="polymaps.min.js"></script>
-    <meta name="viewport" content="initial-scale=1.0">
-    <meta charset="utf-8">
-    <style>
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #map {
-        height: 100%;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="map">
-      <div id="plug">
-        <a id="apilink" target="_blank" href="https://www.meetup.com/meetup_api/docs/stream/2/rsvps/#websockets"><img alt="Powered by Meetup API" src ="logo.svg" /></a>
-        <span id="rate"><span class="r">&mdash;</span> <span class="per">RSVPs / minute</span><span class="where"> in Public Meetup Groups</span></span>
-      </div>
+
+<head>
+  <title>Streaming MEMEs</title>
+  <link rel="stylesheet" type="text/css" href="../css/jquery.bubblepopup.v2.3.1.css" />
+  <link rel="stylesheet" type="text/css" href="map.css" />
+  <script type="text/javascript" src="../js/jquery.min.js"></script>
+  <script type="text/javascript" src="polymaps.min.js"></script>
+  <meta name="viewport" content="initial-scale=1.0">
+  <meta charset="utf-8">
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    #map {
+      height: 100%;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div id="map">
+    <div id="plug">
+      <a id="apilink" target="_blank" href="https://www.meetup.com/meetup_api/docs/stream/2/rsvps/#websockets"><img
+          alt="Powered by Meetup API" src="logo.svg" /></a>
+      <span id="rate"><span class="r">&mdash;</span> <span class="per">RSVPs / minute</span><span class="where"> in
+          Public Meetup Groups</span></span>
     </div>
-    <div id="rsvp-detail"></div>
-    <script type="text/javascript" src="jquery.svg.min.js"></script>
-    <script type="text/javascript" src="jquery.svgdom.min.js"></script>
-    <script type="text/javascript" src="jquery.svganim.min.js"></script>
-    <script type="text/javascript" src="../js/dates.js"></script>
-    <script type="text/javascript" src="../components/must/must.js"></script>
-    <script type="text/javascript" src="../js/jquery.bubblepopup.v2.3.1.min.js"></script>
-    <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="../js/mu.time.js"></script>
-    <script type="text/javascript" src="map.js"></script>
-    <!-- <script>
+  </div>
+  <div id="rsvp-detail"></div>
+  <script type="text/javascript" src="jquery.svg.min.js"></script>
+  <script type="text/javascript" src="jquery.svgdom.min.js"></script>
+  <script type="text/javascript" src="jquery.svganim.min.js"></script>
+  <script type="text/javascript" src="../js/dates.js"></script>
+  <script type="text/javascript" src="../components/must/must.js"></script>
+  <script type="text/javascript" src="../js/jquery.bubblepopup.v2.3.1.min.js"></script>
+  <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../js/mu.time.js"></script>
+  <script type="text/javascript" src="map.js"></script>
+  <!-- <script>
       var map;
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
@@ -47,5 +54,6 @@
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEt6tCol_fkRlUTHhBkWn6V7jktQlCIJE&callback=initMap"
     async defer></script> -->
-  </body>
+</body>
+
 </html>
