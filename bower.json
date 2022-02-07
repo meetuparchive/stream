@@ -1,7 +1,0 @@
-{
-  "name": "stream",
-  "version": "0.0.0",
-  "dependencies": {
-    "must": "~0.1.3"
-  }
-}
